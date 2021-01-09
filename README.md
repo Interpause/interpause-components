@@ -16,12 +16,22 @@ yarn install
 yarn dev
 ```
 
-## Setup Steps
+To ensure Typescript linting works properly with [Yarn 2](https://yarnpkg.com/getting-started/install) run these:
+
+```sh
+yarn add --dev @yarnpkg/pnpify
+# for VSCode:
+yarn pnpify --sdk vscode
+```
+
+See <https://yarnpkg.com/getting-started/editor-sdks> for other IDEs.
+
+## Installation
 
 You can follow along with the commit history of this repository to see the effects of each step.
 
-1. [Setup Next.js with Typescript](#setup-next.js-with-typescript)
-2. (Optional) [Setup Yarn 2 PnPify](#(optional)-setup-yarn-2-pnpify)
+1. [Setup Next.js with Typescript](#setup-nextjs-with-typescript)
+2. (Optional) [Setup Yarn 2 PnPify](#optional-setup-yarn-2-pnpify)
 
 ### Setup Next.js with Typescript
 
