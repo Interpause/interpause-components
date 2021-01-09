@@ -41,7 +41,7 @@ export default function Home(){
 
       <p tw="text-2xl text-center my-4">
         Get started by editing{' '}
-        <code tw="bg-normal-soft rounded text-xl p-1 font-mono">pages/index.tsx</code>
+        <code tw="bg-gray-400 rounded text-xl p-1 font-mono">pages/index.tsx</code>
       </p>
       <CardFlex cards={cards}/>
     </main>
