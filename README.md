@@ -7,6 +7,7 @@ My personal components library using [twin.macro](https://github.com/ben-rogerso
 - [Testing](#testing)
 - [Installation](#installation)
 - [Theme System](#theme)
+- [Credits](#credits)
 
 ## Testing
 
@@ -115,13 +116,10 @@ In [_app.tsx](/pages/_app.tsx) add `<GlobalStyles/>` like this:
 
 ```tsx
 import { GlobalStyles } from 'twin.macro';
-import { Global } from '@emotion/react';
-import { baseStyle } from '../src/theme/baseTheme';
 
 export default function App({Component, pageProps}:AppProps){
   return <>
     <GlobalStyles/>
-    <Global styles={baseStyle}/>
     <Component {...pageProps}/>
   </>;
 }
@@ -272,15 +270,12 @@ Finally, to `./.storybook/preview.js` add:
 
 ```js
 import { GlobalStyles } from 'twin.macro'
-import { Global } from '@emotion/react'
-import { baseStyle } from '../src/theme/baseTheme'
 
 export const decorators = [
   Story => (
     <div>
       {/* */}
       <GlobalStyles />
-      <Global styles={baseStyle} />
       <Story />
     </div>
   ),
@@ -289,7 +284,7 @@ export const decorators = [
 
 ## Theme
 
-I created a simple but elegant theming system via CSS variables. The Tailwind colors are dynamically generated in `tailwind.config.js` with 8 different accents:
+I created a simple but elegant theming system via CSS variables. The Tailwind colors are dynamically generated inside [`tailwind.config.js`](tailwind.config.js) with 8 different accents:
 
 - normal
 - special
@@ -309,7 +304,15 @@ of which all of them have 3 variants:
 It is included via:
 
 ```js
+//add this to pages/_app.tsx and .storybook/preview.js
 import { Global } from '@emotion/react'
-//add this to _app.tsx
+import { baseStyle } from '../src/theme/baseTheme'
+
 <Global styles={baseStyle}/>
 ```
+
+The code I wrote should hopefully not be too difficult to change if you wish to have other accents and variants. As for how exactly the theme is configured by default, look at [`baseTheme.ts`](/src/theme/baseTheme).
+
+## Credits
+
+Many thanks to [ben-rogerson](https://github.com/ben-rogerson) for developing twin.macro, if not for which none of this would be possible. I really like the twin.macro + emotionjs library to the point when I tried to switch to a component library, I was actually put off by the relative difficulty of styling things. He had also made several examples of how to use twin.macro with various frameworks, without which it would have taken me much longer to get this to work.
