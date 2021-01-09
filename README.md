@@ -4,13 +4,13 @@ My personal components library using [twin.macro](https://github.com/ben-rogerso
 
 ## Table of Contents
 
+- [Testing](#testing)
 - [Installation](#installation)
-- [Setup Steps](#setup-steps)
-- [Theme System](#theme-system)
+- [Theme System](#theme)
 
 ## Testing
 
-```bash
+```sh
 yarn install
 # see it works by opening http://localhost:3000
 yarn dev
@@ -18,8 +18,74 @@ yarn dev
 
 ## Setup Steps
 
+You can follow along with the commit history of this repository to see the effects of each step.
+
+1. [Setup Next.js with Typescript](#setup-next.js-with-typescript)
+2. (Optional) [Setup Yarn 2 PnPify](#(optional)-setup-yarn-2-pnpify)
+
+### Setup Next.js with Typescript
+
 First, create the Next.js project:
 
-```bash
+```sh
 yarn create next-app
 ```
+
+Next, create `tsconfig.json` at the root of the project and run:
+
+```sh
+yarn add --dev typescript @types/react @types/node
+# Next.js initializes tsconfig.json for you on the first run
+yarn dev
+```
+
+Optionally, change these `tsconfig.json` settings once done:
+
+```json
+{
+  "allowJs": false,
+  "strict": true
+}
+```
+
+As we will not be using them anymore, you may delete `./styles`. Look in [`./pages`](/pages) for how code can be written once installation is complete. If using this repository as a Next.js template, see <https://nextjs.org/docs/basic-features/typescript> for further details.
+
+### (Optional) Setup Yarn 2 PnPify
+
+To setup [Yarn 2](https://yarnpkg.com/getting-started/install):
+
+```sh
+yarn set version berry
+```
+
+Add these to the generated `.gitignore`:
+
+```sh
+# dependencies
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/versions
+```
+
+Then do:
+
+```sh
+yarn add --dev @yarnpkg/pnpify
+# for VSCode:
+yarn pnpify --sdk vscode
+# see https://yarnpkg.com/getting-started/editor-sdks for other IDEs
+# you might want to add to .gitignore some of the generated files like .vscode
+```
+
+Finally in the generated `.yarnrc.yml` file add:
+
+```yml
+nodeLinker: "pnp"
+pnpMode: "loose"
+# required due to issues with some packages
+```
+
+## Theme
+
+TODO
