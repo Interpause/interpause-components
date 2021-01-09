@@ -22,8 +22,8 @@ export const Card = styled.div`
 `;
 
 export const LinkCard = styled(Card)`
-	${tw`hocus:(text-blue-400 border-blue-400)`}
-	>.header{ ${tw`text-blue-400`} }
+	${tw`hocus:(text-link-color border-link-color)`}
+	>.header{ ${tw`text-link-color`} }
 `.withComponent("a");
 
 //TODO generalize this further. Make it a wrapper. Needed for Github Card that will be created in a composition manner.

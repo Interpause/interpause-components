@@ -14,6 +14,8 @@ My personal components library using [twin.macro](https://github.com/ben-rogerso
 yarn install
 # see it works by opening http://localhost:3000
 yarn dev
+# start the storybook (incomplete)
+yarn storybook
 ```
 
 To ensure Typescript linting works properly with [Yarn 2](https://yarnpkg.com/getting-started/install) run these:
@@ -113,10 +115,13 @@ In [_app.tsx](/pages/_app.tsx) add `<GlobalStyles/>` like this:
 
 ```tsx
 import { GlobalStyles } from 'twin.macro';
+import { Global } from '@emotion/react';
+import { baseStyle } from '../src/theme/baseTheme';
 
 export default function App({Component, pageProps}:AppProps){
   return <>
     <GlobalStyles/>
+    <Global styles={baseStyle}/>
     <Component {...pageProps}/>
   </>;
 }
@@ -261,8 +266,50 @@ Create `./.storybook/.babelrc` and add:
 }
 ```
 
-Adapted from <https://github.com/ben-rogerson/twin.examples/blob/master/storybook-emotion/.storybook/.babelrc>. A different set of plugins had to be used for Storybook's `.babelrc` to work. This is probably because the way Next.js and Storybook transpiles is different, leading to the `@emotion/babel-plugin` not working for storybook. Presets had to be respecified too as they were overwritten. Also, see `./src/layout/Cards.stories.tsx` for an example.
+Adapted from <https://github.com/ben-rogerson/twin.examples/blob/master/storybook-emotion/.storybook/.babelrc>. A different set of plugins had to be used for Storybook's `.babelrc` to work. This is probably because the way Next.js and Storybook transpiles is different, leading to the `@emotion/babel-plugin` not working for storybook. Presets had to be respecified too as they were overwritten. Also, see [`./src/containers/Cards.stories.js`](/src/containers/Cards.stories.js) for an example.
+
+Finally, to `./.storybook/preview.js` add:
+
+```js
+import { GlobalStyles } from 'twin.macro'
+import { Global } from '@emotion/react'
+import { baseStyle } from '../src/theme/baseTheme'
+
+export const decorators = [
+  Story => (
+    <div>
+      {/* */}
+      <GlobalStyles />
+      <Global styles={baseStyle} />
+      <Story />
+    </div>
+  ),
+]
+```
 
 ## Theme
 
-TODO
+I created a simple but elegant theming system via CSS variables. The Tailwind colors are dynamically generated in `tailwind.config.js` with 8 different accents:
+
+- normal
+- special
+- info
+- trivial
+- good
+- risky
+- bad
+- theme
+
+of which all of them have 3 variants:
+
+- DEFAULT (for text, button fill, etc)
+- soft (for background, divides, placeholders, etc)
+- hard (for borders, rings, hard lines, etc)
+
+It is included via:
+
+```js
+import { Global } from '@emotion/react'
+//add this to _app.tsx
+<Global styles={baseStyle}/>
+```
