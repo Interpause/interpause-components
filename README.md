@@ -1,6 +1,6 @@
 # Interpause's Components
 
-My personal components library using [twin.macro](https://github.com/ben-rogerson/twin.macro) and [emotion-js](https://emotion.sh/). This repository uses [Next.js](https://nextjs.org/docs/api-reference/create-next-app) however the components are reusable in any project that uses React, twin.macro and emotion-js (see <https://github.com/ben-rogerson/twin.examples>).
+My personal components library using [twin.macro](https://github.com/ben-rogerson/twin.macro) and [emotion-js](https://emotion.sh/) as its CSS-in-JS solution. This repository uses [Next.js](https://nextjs.org/docs/api-reference/create-next-app) however the components are reusable in any project that uses React, twin.macro and emotion-js (see <https://github.com/ben-rogerson/twin.examples>). [Storybook.js](https://storybook.js.org/docs/react/get-started/introduction) is also setup to make it easier to develop components.
 
 ## Table of Contents
 
@@ -33,6 +33,7 @@ You can follow along with the commit history of this repository to see the effec
 1. [Setup Next.js with Typescript](#setup-nextjs-with-typescript)
 2. (Optional) [Setup Yarn 2 PnPify](#optional-setup-yarn-2-pnpify)
 3. [Setup twin.macro and emotion](#setup-twinmacro-and-emotion)
+4. [Setup Storybook](#setup-storybook)
 
 ### Setup Next.js with Typescript
 
@@ -99,12 +100,13 @@ pnpMode: "loose"
 
 ### Setup twin.macro and emotion
 
-Adapted from <https://github.com/ben-rogerson/twin.examples/tree/master/next-emotion>. My steps are very similar to that of the original, but additional dependencies `@emotion/babel-plugin babel-plugin-macros` are needed if you are using Yarn 2. Do take a look at the original as it covers some of the features as well as contains optional steps that I skipped.
+Adapted from <https://github.com/ben-rogerson/twin.examples/tree/master/next-emotion>. My steps are very similar to that of the original, but additional dependencies `@emotion/babel-plugin babel-plugin-macros` are needed if you are using Yarn 2. Do take a look at the original as it covers some of the features as well as contains optional steps that I skipped. Perhaps this is specifically an issue with VSCode, but I had to use "reload window" sometimes to get the Typescript linter to update, so try that if you get weird warnings.
 
 First, install the dependencies:
 
 ```sh
-yarn add twin.macro tailwindcss @emotion/react @emotion/styled @emotion/css @emotion/babel-plugin babel-plugin-macros
+yarn add twin.macro tailwindcss @emotion/react @emotion/styled @emotion/css
+yarn add --dev @emotion/babel-plugin babel-plugin-macros
 ```
 
 In [_app.tsx](/pages/_app.tsx) add `<GlobalStyles/>` like this:
@@ -199,11 +201,11 @@ Get it from <https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-t
 {
   "editor.quickSuggestions": true,
   "tailwindCSS.experimental.classRegex": [
-      "tw`([^`]*)", // tw`...`
-      "tw=\"([^\"]*)", // <div tw="..." />
-      "tw={\"([^\"}]*)", // <div tw={"..."} />
-      "tw\\.\\w+`([^`]*)", // tw.xxx`...`
-      "tw\\(.*?\\)`([^`]*)" // tw(Component)`...`
+      "tw`([^`]*)",
+      "tw=\"([^\"]*)",
+      "tw={\"([^\"}]*)",
+      "tw\\.\\w+`([^`]*)",
+      "tw\\(.*?\\)`([^`]*)"
   ],
   "tailwindCSS.includeLanguages": {
     "typescript": "javascript",
@@ -211,6 +213,55 @@ Get it from <https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-t
   }
 }
 ```
+
+### Setup Storybook
+
+To add [Storybook.js](https://storybook.js.org/docs/react/get-started/introduction):
+
+```sh
+#Storybook v6.2.0 was needed to solve something related to core-js
+yarn add --dev @storybook/cli@next prop-types @emotion/babel-plugin-jsx-pragmatic @babel/plugin-transform-react-jsx
+yarn sb init
+yarn storybook
+```
+
+Create `./.storybook/.babelrc` and add:
+
+```json
+{
+  "presets": [
+    [
+      "next/babel",
+      {
+        "preset-react": {
+          "runtime": "automatic",
+          "importSource": "@emotion/react"
+        }
+      }
+    ]
+  ],
+  "plugins": [
+    "babel-plugin-macros",
+    [
+      "@emotion/babel-plugin-jsx-pragmatic",
+      {
+        "export": "jsx",
+        "import": "__cssprop",
+        "module": "@emotion/react"
+      }
+    ],
+    [
+      "@babel/plugin-transform-react-jsx",
+      {
+        "pragma": "__cssprop"
+      },
+      "emotion-css-prop"
+    ]
+  ]
+}
+```
+
+Adapted from <https://github.com/ben-rogerson/twin.examples/blob/master/storybook-emotion/.storybook/.babelrc>. A different set of plugins had to be used for Storybook's `.babelrc` to work. This is probably because the way Next.js and Storybook transpiles is different, leading to the `@emotion/babel-plugin` not working for storybook. Presets had to be respecified too as they were overwritten. Also, see `./src/layout/Cards.stories.tsx` for an example.
 
 ## Theme
 

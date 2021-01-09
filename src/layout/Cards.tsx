@@ -16,7 +16,7 @@ export type CardData = HTMLProps<HTMLElement> & {
 }
 
 export const Card = styled.div`
-	${tw`flex-auto rounded border-2 text-left overflow-hidden transition-colors m-4 p-6 w-11/12 sm:(w-5/12 h-64)`}
+	${tw`inline-block flex-auto rounded border-2 text-left overflow-hidden transition-colors m-4 p-6 w-11/12 sm:(w-5/12 h-64)`}
 	>.header{ ${tw`mb-4 text-2xl`} }
 	>.body{ ${tw`text-lg`} }
 `;
