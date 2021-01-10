@@ -53,8 +53,7 @@ export const themeVars = css`
 `;
 export type colorTypes = 'normal' | 'special' | 'info' | 'trivial' | 'good' | 'risky' | 'bad' | 'theme';
 
-// themeVars is put under .light again to allow .dark to be overrided
-export const baseStyle = css`
+export const TypographyStyle = css`
   body {
     h1 { ${tw`text-6xl`} }
     h2 { ${tw`text-5xl`} }
@@ -63,7 +62,7 @@ export const baseStyle = css`
     h5 { ${tw`text-2xl`} }
     h6 { ${tw`text-xl`} }
     p { ${tw`text-lg`} }
-  
+
     @media screen and (max-width:${theme`screens.md`}){
       h1 { ${tw`text-5xl`} }
       h2 { ${tw`text-4xl`} }
@@ -74,6 +73,11 @@ export const baseStyle = css`
       p { ${tw`text-base`} }
     }
   }
+`;
+
+// themeVars is put under .light again to allow .dark to be overrided
+export const baseStyle = css`
+  ${TypographyStyle}
 
   :root {
     ${themeVars}
@@ -89,10 +93,6 @@ export const baseStyle = css`
     ${tw`bg-white text-normal`}
 
     --bg-color: 255, 255, 255;
-
-		* {
-      ${tw`border-normal-hard placeholder-normal-soft overflow-ellipsis`}
-    }
   }
   .dark {
     ${themeVars}
@@ -107,8 +107,5 @@ export const baseStyle = css`
     --bg-color: 0, 0, 0;
 
     ${tw`bg-black text-normal`}
-    * {
-      ${tw`border-normal-hard placeholder-normal-soft overflow-ellipsis`}
-    }
   }
 `;

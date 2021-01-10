@@ -313,6 +313,31 @@ import { baseStyle } from '../src/theme/baseTheme'
 
 The code I wrote should hopefully not be too difficult to change if you wish to have other accents and variants. As for how exactly the theme is configured by default, look at [`baseTheme.ts`](/src/theme/baseTheme).
 
+## Theme V2
+
+consider switching from theme to primary & secondary:
+
+primary, secondary, info, trivial, good, risky, bad, normal
+
+`-link-color` <- why even have this... remove & replace with blue-400?
+
+Tailwind color-reliant classes:
+
+ring, border, divide, ring offset, background, placeholder, text
+
+Most have their own `--tw-opacity` variables among others. Instead of doing `.text-theme .bg-theme`, could directly set those variables when apply a `.color-theme` class?
+
+if not (allow each part to be individually set):
+
+```css
+--color-primary: hsla(${color(theme).hs()},--lumin-primary,--tw-opacity)
+--color-primary-hard: hsla(${color(theme).hs()},--lumin-primary-hard,--tw-opacity)
+```
+
+Would we still stick with the DEFAULT, hard, soft variants? Or create a separate `--lumin` variable for each Tailwind color-reliant class? Either approach, `--lumin` variables will allow easy adjustment for different situations. For example, bg-soft of a outlined button hover should be lighter than bg-soft for a card's background.
+
+Alternatively, (more dynamic, makes light/dark differences for most accents unnecessary) instead of adjusting luminosity, add opacity? Hm no matter how I think about it, adding opacity would just decrease contrast?
+
 ## Standards (unfinished)
 
 The type prop will normally refer to colorTypes aka the accents in theme. The variant prop will normally refer to different design styles such as outlined, filled-in etc. Containers will have `.wrapper` added to them. As for other components, use the browser's devtools to inspect the classes added. These classes were added to make it easier to style the component from the outside if needed.

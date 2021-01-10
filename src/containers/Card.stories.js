@@ -1,7 +1,6 @@
 import React from 'react';
 
 import SimpleCard from './Card';
-import 'twin.macro';
 
 export default {
   title: 'container/SimpleCard',
@@ -10,19 +9,31 @@ export default {
     variant: {
       control: {
         type: 'select',
-        options: ['normal','outline']
+        options: ['filled','outline']
+      }
+    },
+    theme: {
+      control: {
+        type: 'select',
+        options: ['dark','light']
+      }
+    },
+    type: {
+      control: {
+        type: 'select',
+        options: ['normal','special','info','trivial','good','risky','bad','theme']
       }
     }
   }
 };
 
-const Template = (args) => <SimpleCard {...args} />;
+const Template = ({theme,...args}) => <div className={theme}><SimpleCard {...args}/></div>;
 
 export const Normal = Template.bind({});
 Normal.args = {
   header: 'Does not have link',
   body: 'insert lorum ipsum',
-  footer: 'eww feet'
+  footer: 'eww feet',
 };
 
 export const Button = Template.bind({});

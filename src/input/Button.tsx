@@ -3,7 +3,7 @@
  * @author John-Henry Lim <hyphen@interpause.dev>
  */
 
-import { ReactElement, ReactNode } from "react";
+import { ReactNode } from "react";
 import tw, { css } from "twin.macro";
 import { colorTypes } from "../theme/baseTheme";
 

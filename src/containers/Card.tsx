@@ -8,7 +8,7 @@ import tw, { css, styled } from 'twin.macro';
 import { colorTypes } from '../theme/baseTheme';
 import { Button, LinkButton } from '../input/Button';
 
-export type CardVariants = 'outline'|'normal';
+export type CardVariants = 'outline'|'filled';
 
 export interface CardProps {
   type?: colorTypes;
@@ -28,7 +28,7 @@ export const Card = styled.div`
 
   ${({variant='outline'}:CardProps) => ({
     outline:tw`bg-transparent border-2`,
-    normal:tw`shadow-md`,
+    filled:tw`shadow-md`,
   })[variant]}
 `;
 
@@ -66,7 +66,7 @@ export default function SimpleCard(props:SimpleCardProps){
     </CardBody>
     <CardFooter className="footer">
       {(()=>{
-        if('href' in props) return <LinkButton href={props.href}>{props.footer}</LinkButton>;
+        if('href' in props) return <LinkButton variant="text" href={props.href}>{props.footer}</LinkButton>;
         else if('onClick' in props) return <Button onClick={props.onClick}>{props.footer}</Button>;
         else if(isValidElement(props.footer)) return props.footer;
         else return <h6>{props.footer}</h6>;
