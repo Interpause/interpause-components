@@ -313,6 +313,10 @@ import { baseStyle } from '../src/theme/baseTheme'
 
 The code I wrote should hopefully not be too difficult to change if you wish to have other accents and variants. As for how exactly the theme is configured by default, look at [`baseTheme.ts`](/src/theme/baseTheme).
 
+## Standards (unfinished)
+
+The type prop will normally refer to colorTypes aka the accents in theme. The variant prop will normally refer to different design styles such as outlined, filled-in etc. Containers will have `.wrapper` added to them. As for other components, use the browser's devtools to inspect the classes added. These classes were added to make it easier to style the component from the outside if needed.
+
 ## Credits
 
 Many thanks to [ben-rogerson](https://github.com/ben-rogerson) for developing twin.macro, if not for which none of this would be possible. I really like the twin.macro + emotionjs library to the point when I tried to switch to a component library, I was actually put off by the relative difficulty of styling things. He had also made several examples of how to use twin.macro with various frameworks, without which it would have taken me much longer to get this to work.

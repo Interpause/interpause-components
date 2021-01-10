@@ -48,18 +48,37 @@ export const themeVars = css`
   --color-bad-hard: ${theme`colors.red.600`};
 
   --color-theme: ${themeColor};
-  --color-theme-soft: ${themeColor};
+  --color-theme-soft: ${theme`colors.purple.400`};
   --color-theme-hard: ${themeColor};
-
-  --bg-color: 255, 255, 255;
 `;
 export type colorTypes = 'normal' | 'special' | 'info' | 'trivial' | 'good' | 'risky' | 'bad' | 'theme';
 
 // themeVars is put under .light again to allow .dark to be overrided
 export const baseStyle = css`
+  body {
+    h1 { ${tw`text-6xl`} }
+    h2 { ${tw`text-5xl`} }
+    h3 { ${tw`text-4xl`} }
+    h4 { ${tw`text-3xl`} }
+    h5 { ${tw`text-2xl`} }
+    h6 { ${tw`text-xl`} }
+    p { ${tw`text-lg`} }
+  
+    @media screen and (max-width:${theme`screens.md`}){
+      h1 { ${tw`text-5xl`} }
+      h2 { ${tw`text-4xl`} }
+      h3 { ${tw`text-3xl`} }
+      h4 { ${tw`text-2xl`} }
+      h5 { ${tw`text-xl`} }
+      h6 { ${tw`text-lg`} }
+      p { ${tw`text-base`} }
+    }
+  }
+
   :root {
     ${themeVars}
     ${tw`text-normal text-center`}
+
 		scroll-behavior: smooth;
     @media (prefers-reduced-motion) {
       scroll-behavior: auto;
@@ -68,13 +87,16 @@ export const baseStyle = css`
   .light {
     ${themeVars}
     ${tw`bg-white text-normal`}
+
+    --bg-color: 255, 255, 255;
+
 		* {
       ${tw`border-normal-hard placeholder-normal-soft overflow-ellipsis`}
     }
   }
   .dark {
     ${themeVars}
-    --color-normal: 			${theme`colors.white`};
+    --color-normal: ${theme`colors.white`};
     --color-normal-soft: ${theme`colors.black`};
     --color-normal-hard: ${theme`colors.gray.800`};
 
