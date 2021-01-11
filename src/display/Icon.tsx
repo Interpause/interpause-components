@@ -4,7 +4,6 @@
  */
 import tw, { css, styled } from 'twin.macro';
 import { SerializedStyles } from '@emotion/react';
-import Image, { ImageProps } from 'next/image';
 import { OrientableSVG } from '../utils/orientableSVG';
 
 export enum ICON {
@@ -28,17 +27,14 @@ export const IconWrapper = styled.figure`
     `}
 `;
 
-export type IconProps = (
-  | ({ orientation?: number } & Omit<ImageProps, 'height' | 'width' | 'layout'>)
-  | ({ icon: ICON } & OrientableSVG)
-) & {
+export type IconProps = ({ icon: ICON } & OrientableSVG) & {
   as?: keyof JSX.IntrinsicElements;
   href?: string;
   label?: string;
   labelStyle?: SerializedStyles;
 };
 /** Must restyle with height and width. Either specify icon which is enum ICON or src which is path. */
-export function Icon({ orientation, className, href, as, label, labelStyle, onClick, ...props }: IconProps) {
+export function SvgIcon({ orientation, className, href, as, label, labelStyle, onClick, ...props }: IconProps) {
   return (
     <IconWrapper
       as={as}
@@ -47,13 +43,9 @@ export function Icon({ orientation, className, href, as, label, labelStyle, onCl
       href={href}
       onClick={onClick as any}
     >
-      {'src' in props ? (
-        <Image layout="fill" {...props} />
-      ) : (
-        <svg viewBox="0 0 1024 1024" {...props}>
-          <path strokeLinecap="round" strokeLinejoin="round" fill="currentColor" d={props.icon} />
-        </svg>
-      )}
+      <svg viewBox="0 0 1024 1024" {...props}>
+        <path strokeLinecap="round" strokeLinejoin="round" fill="currentColor" d={props.icon} />
+      </svg>
       <figcaption css={labelStyle}>{label}</figcaption>
     </IconWrapper>
   );

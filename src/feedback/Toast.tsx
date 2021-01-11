@@ -6,7 +6,7 @@ import { createContext, useContext, Dispatch, useEffect, HTMLProps, ForwardedRef
 import tw, { css } from 'twin.macro';
 import { accentTypes, getAccent } from '../theme/baseTheme';
 import { ListItemProps, useListReducer, ListAction, List, ListProps } from '../utils/List';
-import { Icon, ICON } from '../display/Icon';
+import { SvgIcon, ICON } from '../display/Icon';
 
 export interface ToastData extends HTMLProps<HTMLDivElement> {
   type: accentTypes;
@@ -58,7 +58,7 @@ export function Toast({ type, dispatch, ...props }: ListItemProps<ToastData>, re
   return (
     <div ref={ref} css={getToastStyle(type)} {...props}>
       <span tw="p-1">{props.children}</span>
-      <Icon
+      <SvgIcon
         as="button"
         icon={ICON.cross}
         tw="flex-none w-4 mr-1 ml-2 self-stretch opacity-60 hocus:opacity-100"

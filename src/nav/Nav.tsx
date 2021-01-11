@@ -5,9 +5,7 @@
 import React, { HTMLProps, useEffect, useRef } from 'react';
 import tw, { css, styled } from 'twin.macro';
 import { StyledComponent } from '@emotion/styled';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { Icon, ICON } from '../display/Icon';
+import { SvgIcon, ICON } from '../display/Icon';
 import { mobileScreen } from '../utils/deviceOrientation';
 import { DarkToggle } from '../theme/DarkThemeProvider';
 
@@ -51,18 +49,13 @@ export interface NavLinkProps extends HTMLProps<HTMLLIElement> {
 }
 /** group-disabled:{class} can be used in className and children to customize */
 export function NavLink({ route, children, ...props }: NavLinkProps) {
-  const router = useRouter();
-  const currentRoute = router.pathname;
-  const disabled = currentRoute === route;
   return (
     <NavItem
-      css={disabled ? tw`text-trivial cursor-not-allowed` : tw`hocus:text-blue-400 cursor-pointer`}
+      css={tw`hocus:text-blue-400 cursor-pointer`}
       {...(props as StyledComponent<HTMLLIElement>)}
     >
       {children}
-      <Link href={route}>
-        <a tw="absolute inset-0" css={disabled && tw`hidden`}></a>
-      </Link>
+      <a tw="absolute inset-0" href={route} css={tw`hidden`}></a>
     </NavItem>
   );
 }
@@ -89,17 +82,8 @@ export function Navbar({ routes, itemProps, ...props }: NavbarProps) {
   const navOpener = () => navbar.current?.classList.toggle('opened');
   return (
     <CollapsableNavbar ref={navbar} height={height} {...(props as StyledComponent<HTMLProps<HTMLElement>>)}>
-      <Icon
-        src="/favicon/original-icon.png"
-        tw="m-1 my-auto"
-        css={css`
-          height: ${(height * 3) / 4}rem;
-          width: ${(height * 3) / 4}rem;
-        `}
-        priority
-      />
       <span tw="flex-grow md:flex-grow-0"></span>
-      <Icon
+      <SvgIcon
         as="button"
         icon={ICON.menu}
         onClick={navOpener}
