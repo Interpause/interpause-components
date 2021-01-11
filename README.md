@@ -298,8 +298,8 @@ I created a simple but elegant theming system via CSS variables. The Tailwind co
 of which all of them have 3 variants:
 
 - DEFAULT (for text, button fill, etc)
-- soft (for background, divides, placeholders, etc)
-- hard (for borders, rings, hard lines, etc)
+- soft (for background, rings, divides, placeholders, etc)
+- hard (for borders, hard lines, etc)
 
 It is included via:
 
@@ -337,6 +337,8 @@ if not (allow each part to be individually set):
 Would we still stick with the DEFAULT, hard, soft variants? Or create a separate `--lumin` variable for each Tailwind color-reliant class? Either approach, `--lumin` variables will allow easy adjustment for different situations. For example, bg-soft of a outlined button hover should be lighter than bg-soft for a card's background.
 
 Alternatively, (more dynamic, makes light/dark differences for most accents unnecessary) instead of adjusting luminosity, add opacity? Hm no matter how I think about it, adding opacity would just decrease contrast?
+
+(The next day) After looking at Tailwind's code, it would not be easy for me to do the above at all. Tailwind adds the alpha channel itself only when its rbga or hsla or #. Therefore, I would have to generate it for all the color-driven classes. That said, with more sleep, I have realised there is no need for `--lumin` variables. To make it softer, decrease the opacity, and to make it harder, increase the opacity. Simple. I have also decided to make it adjustable for all the color-reliant classes rather than based around hard, soft or default. In fact, I don't know why I came up with the hard variant at all. Borders and hardlines should just be the same color as the text.
 
 ## Standards (unfinished)
 
