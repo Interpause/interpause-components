@@ -2,6 +2,7 @@ import React from 'react';
 
 import { useToaster, ToastWrapper, Toast } from './Toast';
 import { Button } from '../input/Button';
+import { accents } from '../theme/baseTheme';
 
 export default {
   title: 'feedback/Toast',
@@ -16,7 +17,7 @@ export default {
     type: {
       control: {
         type: 'select',
-        options: ['normal','special','info','trivial','good','risky','bad','theme']
+        options: accents
       }
     }
   }

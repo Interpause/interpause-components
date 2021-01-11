@@ -1,6 +1,7 @@
 import React from 'react';
 
 import SimpleCard from './Card';
+import { accents } from '../theme/baseTheme';
 
 export default {
   title: 'container/SimpleCard',
@@ -21,7 +22,7 @@ export default {
     type: {
       control: {
         type: 'select',
-        options: ['normal','special','info','trivial','good','risky','bad','theme']
+        options: accents
       }
     }
   }

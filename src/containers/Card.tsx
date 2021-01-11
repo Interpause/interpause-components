@@ -4,30 +4,25 @@
  */
 
 import { ReactNode, ReactText, isValidElement } from 'react';
-import tw, { css, styled } from 'twin.macro';
-import { colorTypes } from '../theme/baseTheme';
+import tw, { styled } from 'twin.macro';
+import { accentTypes, getAccent } from '../theme/baseTheme';
 import { Button, LinkButton } from '../input/Button';
 
 export type CardVariants = 'outline'|'filled';
 
 export interface CardProps {
-  type?: colorTypes;
+  type?: accentTypes;
   variant?: CardVariants;
 }
 
 export const Card = styled.div`
-  ${tw`relative inline-flex flex-col justify-between text-left rounded overflow-x-hidden`}
+  ${({type='normal'}:CardProps) => getAccent(type)}
+  ${tw`relative inline-flex flex-col justify-between text-left rounded overflow-x-hidden bg-opacity-10`}
   min-height: 30ch;
   width: 50ch;
 
-  ${({type='normal'}:CardProps) => css`
-    color: var(--color-${type});
-    background-color: var(--color-${type}-soft);
-    border-color: var(--color-${type}-hard);
-  `}
-
   ${({variant='outline'}:CardProps) => ({
-    outline:tw`bg-transparent border-2`,
+    outline:tw`bg-opacity-0 border-2`,
     filled:tw`shadow-md`,
   })[variant]}
 `;

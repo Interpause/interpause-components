@@ -4,12 +4,12 @@
  */
 import { createContext, useContext, Dispatch, useEffect, HTMLProps, ForwardedRef } from 'react';
 import tw, { css } from 'twin.macro';
-import { colorTypes } from '../theme/baseTheme';
+import { accentTypes, getAccent } from '../theme/baseTheme';
 import { ListItemProps, useListReducer, ListAction, List, ListProps } from '../utils/List';
 import { Icon, ICON } from '../display/Icon';
 
 export interface ToastData extends HTMLProps<HTMLDivElement> {
-  type: colorTypes;
+  type: accentTypes;
   duration: number;
 }
 export const DefaultToastData = {
@@ -22,12 +22,9 @@ export const ToastContext = createContext<Dispatch<ListAction<ToastData>>>(() =>
 );
 
 export const getToastStyle = (type: string) => css`
+  ${getAccent(type)}
   ${tw`relative flex flex-row rounded border-2 ml-auto lg:max-w-2xl motion-reduce:transition-none overflow-hidden mt-1`}
-
   transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1), left 200ms cubic-bezier(0.4, 0, 0.2, 1), max-height 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  color: var(--color-${type});
-  background-color: var(--color-${type}-soft);
-  border-color: var(--color-${type}-hard);
 `;
 
 /**

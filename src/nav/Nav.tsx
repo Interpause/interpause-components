@@ -30,7 +30,7 @@ export const BaseNavbar = styled.nav`
 
 export const CollapsableNavbar = styled(BaseNavbar)`
   ${mobileScreen} {
-    ${tw`fixed bg-transparent`}
+    ${tw`fixed bg-opacity-0`}
     >.nav-items {
       ${tw`absolute flex flex-col divide-y divide-x-0 bg-normal-soft transition-transform motion-reduce:transition-none transform-gpu top-0 -z-25 m-0`}
       padding-top: var(--nav-height);
@@ -56,7 +56,7 @@ export function NavLink({ route, children, ...props }: NavLinkProps) {
   const disabled = currentRoute === route;
   return (
     <NavItem
-      css={disabled ? tw`text-trivial cursor-not-allowed` : tw`hocus:text-link-color cursor-pointer`}
+      css={disabled ? tw`text-trivial cursor-not-allowed` : tw`hocus:text-blue-400 cursor-pointer`}
       {...(props as StyledComponent<HTMLLIElement>)}
     >
       {children}

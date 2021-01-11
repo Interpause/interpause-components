@@ -1,9 +1,10 @@
-import { Button } from './Button';
+import { useState } from 'react';
+import { Toggle } from './Toggle';
 import { accents } from '../theme/baseTheme';
 
 export default {
-  title: 'input/Button',
-  component: Button,
+  title: 'input/Toggle',
+  component: Toggle,
   argTypes: {
     variant: {
       control: {
@@ -16,19 +17,24 @@ export default {
         type: 'select',
         options: ['dark','light']
       }
-    },
+		},
+		/*
     type: {
       control: {
         type: 'select',
         options: accents
       }
-    }
+		}
+		*/
   }
 };
 
-const Template = ({theme,...args}) => <div className={theme}><Button {...args}/></div>;
+const Template = ({theme,...args}) => {
+	const [ isOn, setOn ] = useState(false);
+	return <div className={theme}><Toggle toggleHook={[isOn, setOn]} {...args}/></div>;
+};
 
 export const Normal = Template.bind({});
 Normal.args = {
-	children:"hello world"
+	
 };

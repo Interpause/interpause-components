@@ -5,40 +5,33 @@
 
 import { ReactNode } from "react";
 import tw, { css } from "twin.macro";
-import { colorTypes } from "../theme/baseTheme";
+import { accentTypes, getAccent } from "../theme/baseTheme";
 
 export type ButtonVariants = 'outline'|'filled'|'text';
 
 export interface ButtonProps {
-	type?: colorTypes;
+	type?: accentTypes;
 	variant?: ButtonVariants;
 	children?: ReactNode;
 	className?: string;
 }
 
 const ButtonStyle = (props:ButtonProps) => css`
-	${tw`relative inline-block p-2 bg-transparent text-center rounded`}
-
-  color: var(--color-${props.type??'theme'});
-	--tw-ring-color: var(--color-${props.type??'theme'}-soft);
+	${getAccent(props.type??'primary')}
+	${tw`relative inline-block p-2 text-center rounded`}
 	
 	${props.variant=='outline'&&css`
-		${tw`border-2`}
-		border-color: var(--color-${props.type??'theme'}-hard);
+		${tw`border-2 bg-opacity-0`}
 
-		&:hover,&:focus {
-			background-color: var(--color-${props.type??'theme'}-soft);
-		}
+		&:hover,&:focus { ${tw`bg-opacity-10`} }
 	`}
 
 	${props.variant=='text'&&css`
-		${tw`hocus:underline`}
-		color: var(--color-${props.type??'theme'});
+		${tw`hocus:underline bg-opacity-0`}
 	`}
 
 	${(props.variant??'filled')=='filled'&&css`
-		${tw`text-white hocus:ring-2`}
-		background-color: var(--color-${props.type??'theme'}-hard);
+		${tw`text-white hocus:ring-2 bg-opacity-80`}
 	`}
 `;
 

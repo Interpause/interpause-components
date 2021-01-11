@@ -8,18 +8,10 @@ import { StyledComponent } from '@emotion/styled';
 
 export const defaultStyle = css`
   .slider,
-  .bg {
-    ${tw`rounded-sm`}
-  }
-  .slider {
-    ${tw`bg-white`}
-  }
-  .bg {
-    ${tw`bg-trivial`}
-  }
-  &.on .bg {
-    ${tw`bg-theme`}
-  }
+  .bg { ${tw`rounded-sm`} }
+  .slider { ${tw`bg-white`} }
+  .bg { ${tw`bg-trivial`} }
+  &.on .bg { ${tw`bg-primary bg-opacity-100`} }
 `;
 
 export const ToggleWrapper = styled.label`
@@ -70,6 +62,10 @@ export interface ToggleProps extends HTMLProps<HTMLLabelElement> {
   label?: string;
   /** height of component in rem used for scaling */
   height?: number;
+  /** TODO: implement */
+  variant?: never;
+  /** TODO: implement */
+  type?: never;
 }
 /** Look at defaultStyle for how to customize the toggle. */
 export function Toggle({ toggleHook: [isOn, setOn], label, height = 2, ...props }: ToggleProps) {

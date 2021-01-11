@@ -1,28 +1,35 @@
-// https://github.com/ben-rogerson/twin.examples/tree/master/next-emotion#tailwind-config
-
+/** Prefix for generated CSS vars */
+const prefix = "hi-color";
 /** Hopefully self-explanatory what they can be used for. */
-const accentNames = ["normal","special","info","trivial","good","risky","bad","theme"];
-/** DEFAULT used for button fill, text. soft used for placeholder, bg. hard used for ring, borders. */
-const accentVariants = ["DEFAULT","soft","hard"];
-const prefix = "color";
+const accentNames = ["primary","secondary","info","trivial","good","risky","bad","normal"];
+/** Tailwind color classes to extend & their respective opacity vars */
+const colorClasses = {
+  "textColor":"--tw-text-opacity",
+  "placeholderColor":"--tw-placeholder-opacity",
+  "backgroundColor":"--tw-bg-opacity",
+  "borderColor":"--tw-border-opacity",
+  "divideColor":"--tw-divide-opacity",
+  "ringColor":"--tw-ring-opacity",
+  "ringOffsetColor":"1",
+  "gradientColorStops":"1"
+};
 
-const newColors = Object.fromEntries(accentNames.map(name => [name,Object.fromEntries(accentVariants.map(variant => [variant,`var(--${prefix}-${name}${variant=="DEFAULT"?"":`-${variant}`})`]))]));
-console.debug("Theme colors generated: ",newColors);
-/*
-let varNames = "";
-Object.values(newColors).forEach(accent => Object.values(accent).forEach(val => varNames += val.substring(4,val.length-1) + "\n"));
-console.debug(varNames);
-*/
+const generateColor = ([className,opacityVar]) => [className,Object.fromEntries(accentNames.map(name => [name,`rgba(var(--${prefix}-${name}),var(${opacityVar}))`]))];
+const newColors = Object.fromEntries(Object.entries(colorClasses).map(generateColor));
+
+//Theme colors generated
+//console.debug(newColors);
+
+// copy these CSS vars into baseTheme and edit.
+//console.debug([...accentNames.map(name => `--${prefix}-${name}`),...Object.values(colorClasses)].join("\n"));
+
 module.exports = {
   purge: false,
   darkMode: "class",
   theme: {
     zIndex: Object.fromEntries(['auto',100,75,50,25,0,-25,-50,-75,-100].map(n=>[n,n])),
     extend: {
-      colors: {
-        'link-color':"var(--color-link)",
-        ...newColors
-      },
+      ...newColors,
       flex: {
         'expand':"1 0 auto",
       },

@@ -268,7 +268,7 @@ Adapted from <https://github.com/ben-rogerson/twin.examples/blob/master/storyboo
 
 Finally, to `./.storybook/preview.js` add:
 
-```js
+```jsx
 import { GlobalStyles } from 'twin.macro'
 
 export const decorators = [
@@ -284,26 +284,20 @@ export const decorators = [
 
 ## Theme
 
-I created a simple but elegant theming system via CSS variables. The Tailwind colors are dynamically generated inside [`tailwind.config.js`](tailwind.config.js) with 8 different accents:
+I created a simple theming system via CSS variables. The 8 different accents are dynamically generated inside [`tailwind.config.js`](tailwind.config.js):
 
-- normal
-- special
-- info
-- trivial
-- good
-- risky
-- bad
-- theme
+- `primary`: emphasis, important
+- `secondary`: contrasting primary
+- `info`: notifications, loading alerts, updates
+- `trivial`: disabled, unimportant, extraneous
+- `good`: success, logged in, purchases, loading complete
+- `risky`: warnings, confirmations
+- `bad`: errors, wrong password, serious warnings
+- `normal`: text
 
-of which all of them have 3 variants:
+The base theme is included via:
 
-- DEFAULT (for text, button fill, etc)
-- soft (for background, rings, divides, placeholders, etc)
-- hard (for borders, hard lines, etc)
-
-It is included via:
-
-```js
+```jsx
 //add this to pages/_app.tsx and .storybook/preview.js
 import { Global } from '@emotion/react'
 import { baseStyle } from '../src/theme/baseTheme'
@@ -311,38 +305,67 @@ import { baseStyle } from '../src/theme/baseTheme'
 <Global styles={baseStyle}/>
 ```
 
-The code I wrote should hopefully not be too difficult to change if you wish to have other accents and variants. As for how exactly the theme is configured by default, look at [`baseTheme.ts`](/src/theme/baseTheme).
+I preserved the `--tw-opacity` CSS variables, allowing control over the intensity of the color via changing its opacity for various stuff such as backgrounds and borders:
 
-## Theme V2
-
-consider switching from theme to primary & secondary:
-
-primary, secondary, info, trivial, good, risky, bad, normal
-
-`-link-color` <- why even have this... remove & replace with blue-400?
-
-Tailwind color-reliant classes:
-
-ring, border, divide, ring offset, background, placeholder, text
-
-Most have their own `--tw-opacity` variables among others. Instead of doing `.text-theme .bg-theme`, could directly set those variables when apply a `.color-theme` class?
-
-if not (allow each part to be individually set):
-
-```css
---color-primary: hsla(${color(theme).hs()},--lumin-primary,--tw-opacity)
---color-primary-hard: hsla(${color(theme).hs()},--lumin-primary-hard,--tw-opacity)
+```json
+{
+  "primary":"rgba(var(--hi-color-primary),var(--tw-text-opacity))"
+}
 ```
 
-Would we still stick with the DEFAULT, hard, soft variants? Or create a separate `--lumin` variable for each Tailwind color-reliant class? Either approach, `--lumin` variables will allow easy adjustment for different situations. For example, bg-soft of a outlined button hover should be lighter than bg-soft for a card's background.
+```jsx
+// e.g. this is still possible
+<div tw="bg-primary bg-opacity-50"></div>
+```
 
-Alternatively, (more dynamic, makes light/dark differences for most accents unnecessary) instead of adjusting luminosity, add opacity? Hm no matter how I think about it, adding opacity would just decrease contrast?
+As for how the base theme is configured by default, [`baseTheme.ts`](/src/theme/baseTheme):
 
-(The next day) After looking at Tailwind's code, it would not be easy for me to do the above at all. Tailwind adds the alpha channel itself only when its rbga or hsla or #. Therefore, I would have to generate it for all the color-driven classes. That said, with more sleep, I have realised there is no need for `--lumin` variables. To make it softer, decrease the opacity, and to make it harder, increase the opacity. Simple. I have also decided to make it adjustable for all the color-reliant classes rather than based around hard, soft or default. In fact, I don't know why I came up with the hard variant at all. Borders and hardlines should just be the same color as the text.
+```css
+  --hi-color-primary: ${rgb('#0288d1')};
+  --hi-color-secondary: ${rgb('#311b92')};
+  --hi-color-info: ${rgb('#0288d1')};
+  --hi-color-trivial: ${rgb('#9e9e9e')};
+  --hi-color-good: ${rgb('#4caf50')};
+  --hi-color-risky: ${rgb('#fbc02d')};
+  --hi-color-bad: ${rgb('#d50000')};
+  --hi-color-normal: ${rgb('#000')};
+
+  --tw-text-opacity: 1;
+  --tw-placeholder-opacity: 0.65;
+  --tw-bg-opacity: 0.3;
+  --tw-border-opacity: 1;
+  --tw-divide-opacity: 0.2;
+  --tw-ring-opacity: 0.2;
+```
+
+I have also made dark and light themes (really go check out [`baseTheme.ts`](/src/theme/baseTheme)). Do follow it if you want to change the theme colors. As for changing the accent names and so on, my code in [`tailwind.config.js`](tailwind.config.js) should be fairly easy to change.
+
+Finally, I provided a function in [`baseTheme.ts`](/src/theme/baseTheme) to make it easy to change the accent of a component easily:
+
+```ts
+/** creates a SerializedStyles that sets all colors to that of the accent given */
+export const getAccent = (accent:string) => css`
+  color: rgba(var(--hi-color-${accent}), var(--tw-text-opacity));
+  background-color: rgba(var(--hi-color-${accent}), var(--tw-bg-opacity));
+  border-color: rgba(var(--hi-color-${accent}), var(--tw-border-opacity));
+
+  --tw-ring-color: rgba(var(--hi-color-${accent}), var(--tw-ring-opacity));
+  --tw-ring-offset-color: rgba(var(--hi-color-${accent}), 1);
+
+  & > * + * {
+    border-color: rgba(var(--hi-color-${accent}), var(--tw-divide-opacity));
+  }
+  &::placeholder {
+    color: rgba(var(--hi-color-${accent}), var(--tw-placeholder-opacity));
+  }
+`;
+```
 
 ## Standards (unfinished)
 
-The type prop will normally refer to colorTypes aka the accents in theme. The variant prop will normally refer to different design styles such as outlined, filled-in etc. Containers will have `.wrapper` added to them. As for other components, use the browser's devtools to inspect the classes added. These classes were added to make it easier to style the component from the outside if needed.
+Most of my components will have a `type` and `variant` prop. `type` refers to mainly the accent, allowing you to customize which accent is used for the component. `variant` refers to the style of the component, for example, an outlined button with transparent background versus one that is filled in.
+
+The root element of container components will have `.wrapper` added to them. As for other components, use the browser's devtools to inspect the classes added. These classes were added to make it easier to style the component from the outside if needed.
 
 ## Credits
 
