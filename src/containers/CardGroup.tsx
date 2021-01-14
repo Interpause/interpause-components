@@ -3,34 +3,38 @@
  * @author John-Henry Lim <hyphen@interpause.dev>
  */
 
-import { ReactNode } from "react";
-import tw, { styled } from "twin.macro";
-import SimpleCard from "./Card";
+import { ReactNode } from 'react';
+import tw, { styled } from 'twin.macro';
+import { SimpleCard } from './Card';
 
 export type CardData = {
-  /** title of card */
+  /** Title of card. */
   title: ReactNode;
-  /** text in card */
+  /** Text in card. */
   body: ReactNode;
-  /** link to redirect to when card is clicked */
+  /** Link to redirect to when card is clicked. */
   href?: string;
 };
 
-/** Apply .card to Card elements in here in order for CardFlex to work correctly. */
+/** Apply .card to Card elements in here in order for CardFlex to work correctly. See code for CardFlexAuto as example. Is actually a styled div. */
 const CardFlex = styled.div`
-	${tw`flex flex-col flex-wrap items-center justify-center sm:(max-w-screen-md flex-row)`}
-	&>.card { ${tw`m-4 w-11/12 md:(w-5/12 h-64) flex-auto`} }
+  ${tw`flex flex-col flex-wrap items-center justify-center sm:(max-w-screen-md flex-row)`}
+  &>.card {
+    ${tw`m-4 w-11/12 md:(w-5/12 h-64) flex-auto`}
+  }
 `;
 
 export interface CardFlexAutoProps {
   cards: CardData[];
-	className?: string;
+  className?: string;
 }
-/** Populates a list of flex cards. */
+/** Easily make a CardFlex with the Cards already added to it. */
 export function CardFlexAuto({ cards, ...props }: CardFlexAutoProps) {
-  return <CardFlex className={props.className}>
-		{cards.map((card, i) => (
-			<SimpleCard header={card.title} body={card.body} footer="click me" href={card.href} className="card" key={i} />
-		))}
-	</CardFlex>;
+  return (
+    <CardFlex className={props.className}>
+      {cards.map((card, i) => (
+        <SimpleCard header={card.title} body={card.body} footer="click me" href={card.href} className="card" key={i} />
+      ))}
+    </CardFlex>
+  );
 }

@@ -1,5 +1,5 @@
 /**
- * @file quite a primitive navbar tbh
+ * @file Navbar and other NavItems.
  * @author John-Henry Lim <hyphen@interpause.dev>
  */
 import React, { HTMLProps, useEffect, useRef } from 'react';
@@ -9,10 +9,12 @@ import { SvgIcon, ICON } from '../display/Icon';
 import { mobileScreen } from '../utils/deviceOrientation';
 import { DarkToggle } from '../theme/DarkThemeProvider';
 
+/** Styled li component. */
 export const NavItem = styled.li`
   ${tw`relative inline-flex flex-col flex-expand justify-center text-center w-32 max-w-xs p-1`}
 `;
 
+/** Styled nav component. Set `--nav-height` in rem. */
 export const BaseNavbar = styled.nav`
   ${({ height }: { height: number }) =>
     css`
@@ -26,6 +28,7 @@ export const BaseNavbar = styled.nav`
   }
 `;
 
+/** Styled BaseNavbar that allows NavItems to collapse into dropdown. */
 export const CollapsableNavbar = styled(BaseNavbar)`
   ${mobileScreen} {
     ${tw`fixed bg-opacity-0`}
@@ -47,13 +50,11 @@ export const CollapsableNavbar = styled(BaseNavbar)`
 export interface NavLinkProps extends HTMLProps<HTMLLIElement> {
   route: string;
 }
-/** group-disabled:{class} can be used in className and children to customize */
+
+/** Wraps an anchor tag in NavItem. */
 export function NavLink({ route, children, ...props }: NavLinkProps) {
   return (
-    <NavItem
-      css={tw`hocus:text-blue-400 cursor-pointer`}
-      {...(props as StyledComponent<HTMLLIElement>)}
-    >
+    <NavItem css={tw`hocus:text-blue-400 cursor-pointer`} {...(props as StyledComponent<HTMLLIElement>)}>
       {children}
       <a tw="absolute inset-0" href={route} css={tw`hidden`}></a>
     </NavItem>
@@ -61,13 +62,21 @@ export function NavLink({ route, children, ...props }: NavLinkProps) {
 }
 
 export interface NavbarProps extends HTMLProps<HTMLElement> {
+  /** List of routes to use in Navbar. Uses NavLink. */
   routes: Record<string, string>;
-  itemProps?: HTMLProps<HTMLLIElement>;
+  /** List of routes to use in Navbar. Uses NavLink. */
+  ItemProps?: HTMLProps<HTMLLIElement>;
+  /** Height of Navbar in rem. */
+  height?: number;
 }
-//TODO Implement the navbar context provider for in page hiding of navbar, recustomization by page etc
-export function Navbar({ routes, itemProps, ...props }: NavbarProps) {
-  /** height in rem */
-  const height = 4;
+//TODO: Implement the navbar context provider for in page hiding of navbar, recustomization by page etc
+/** 
+ * Complete Navbar component.
+ * 
+ * @param routes List of routes to use in Navbar. Uses NavLink.
+ * @param ItemProps Additional props to forward to NavItems/NavLinks.
+ */
+export function Navbar({ routes, ItemProps, height=4, ...props }: NavbarProps) {
   const navbar = useRef<HTMLElement>(null);
   useEffect(() => {
     const bar = navbar.current;
@@ -96,7 +105,7 @@ export function Navbar({ routes, itemProps, ...props }: NavbarProps) {
       />
       <ul className="nav-items">
         {Object.entries(routes).map(([route, text], i) => (
-          <NavLink route={route} {...itemProps} key={i} onClick={navOpener}>
+          <NavLink route={route} {...ItemProps} key={i} onClick={navOpener}>
             {text}
           </NavLink>
         ))}

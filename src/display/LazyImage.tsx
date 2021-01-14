@@ -1,5 +1,5 @@
 /**
- * @file better than the one provided by nextjs
+ * @file Lazy loaded image using SVG as substitution to prevent reflow.
  * @author John-Henry Lim <hyphen@interpause.dev>
  */
 
@@ -8,11 +8,12 @@ import 'twin.macro';
 
 export interface LazyImageProps extends DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement> {
   href?: string;
-  /** "width height" */
+  /** String that is `${width} ${height}`. */
   aspect_ratio: string;
   src: string;
 }
 
+/** Lazy loaded image using SVG as substitution to prevent reflow. */
 export function LazyImage({ src, aspect_ratio, ...props }: LazyImageProps) {
   const imgRef = useRef<HTMLImageElement>(null);
   useEffect(() => {

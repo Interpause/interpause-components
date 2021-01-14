@@ -1,6 +1,6 @@
 import { SVGProps } from 'react';
 
-/** All SVG components are designed oriented upwards */
+/** All SVG components are designed oriented upwards. */
 export enum Orientation {
   up = 0,
   right = 90,

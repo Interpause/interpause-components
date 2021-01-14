@@ -1,17 +1,20 @@
 /**
- * @file Localized Dark Theme using Context API
+ * @file Localized Dark Theme using Context API.
  * @author John-Henry Lim <hyphen@interpause.dev>
  */
 import { useContext, useState, createContext, ReactNode, Dispatch, SetStateAction, useEffect } from 'react';
 import tw, { css } from 'twin.macro';
 import { Toggle, ToggleProps } from '../input/Toggle';
 
-interface darkHook {
+/** Used to store and set state about whether it is dark theme or not. */
+export interface darkHook {
   isDark: boolean;
   setDark: Dispatch<SetStateAction<boolean>>;
 }
 
+/** Provides access to darkHook for all DarkToggles wrapped in DarkThemeWrapper. */
 export const DarkThemeContext = createContext({} as darkHook);
+
 /** Wrap this around element tree to localize dark theme. */
 export function DarkThemeWrapper({ children, darkDefault }: { children: ReactNode; darkDefault?: boolean }) {
   const [isDark, setDark] = useState(darkDefault ?? false);
@@ -32,6 +35,8 @@ export function DarkThemeWrapper({ children, darkDefault }: { children: ReactNod
     </DarkThemeContext.Provider>
   );
 }
+
+/** Default style for DarkToggle. */
 export const defaultDarkToggleStyle = css`
   .slider,
   .bg {
@@ -50,6 +55,7 @@ export const defaultDarkToggleStyle = css`
     ${tw`bg-yellow-200`}
   }
 `;
+
 /** Place this as descendant to DarkThemeWrapper to toggle localized dark theme. */
 export function DarkToggle(props: Partial<ToggleProps>) {
   const { isDark, setDark } = useContext(DarkThemeContext);

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SimpleCard from './Card';
+import { SimpleCard } from './Card';
 import { accents } from '../theme/baseTheme';
 
 export default {
@@ -10,25 +10,29 @@ export default {
     variant: {
       control: {
         type: 'select',
-        options: ['filled','outline']
-      }
+        options: ['filled', 'outline'],
+      },
     },
     theme: {
       control: {
         type: 'select',
-        options: ['dark','light']
-      }
+        options: ['dark', 'light'],
+      },
     },
     type: {
       control: {
         type: 'select',
-        options: accents
-      }
-    }
-  }
+        options: accents,
+      },
+    },
+  },
 };
 
-const Template = ({theme,...args}) => <div className={theme}><SimpleCard {...args}/></div>;
+const Template = ({ theme, ...args }) => (
+  <div className={theme}>
+    <SimpleCard {...args} />
+  </div>
+);
 
 export const Normal = Template.bind({});
 Normal.args = {
@@ -40,9 +44,9 @@ Normal.args = {
 export const Button = Template.bind({});
 Button.args = {
   header: 'Has button function',
-  onClick: ()=>alert("hi"),
+  onClick: () => alert('hi'),
   body: 'insert lorum ipsum',
-  footer: 'eww feet'
+  footer: 'eww feet',
 };
 
 export const Linked = Template.bind({});
@@ -50,12 +54,12 @@ Linked.args = {
   header: 'Has link',
   href: '#',
   body: 'insert lorum ipsum',
-  footer: 'eww feet'
+  footer: 'eww feet',
 };
 
 export const Custom = Template.bind({});
 Custom.args = {
   header: 'Has link',
   body: 'insert lorum ipsum',
-  footer: <input type="range"></input>
+  footer: <input type="range"></input>,
 };

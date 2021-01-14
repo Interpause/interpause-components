@@ -11,30 +11,44 @@ export default {
     theme: {
       control: {
         type: 'select',
-        options: ['dark','light']
-      }
+        options: ['dark', 'light'],
+      },
     },
     type: {
       control: {
         type: 'select',
-        options: accents
-      }
-    }
-  }
+        options: accents,
+      },
+    },
+  },
 };
 
 const ToastButton = (args) => {
-	const toast = useToaster();
-	return <div className={args.theme}><Button onClick={()=>toast(args.message,{
-		duration: args.duration,
-		type: args.type
-	})}>make Toast</Button></div>
-}
+  const toast = useToaster();
+  return (
+    <div className={args.theme}>
+      <Button
+        onClick={() =>
+          toast(args.message, {
+            duration: args.duration,
+            type: args.type,
+          })
+        }
+      >
+        make Toast
+      </Button>
+    </div>
+  );
+};
 
-const Template = (args) => <ToastWrapper><ToastButton {...args}/></ToastWrapper>;
+const Template = (args) => (
+  <ToastWrapper>
+    <ToastButton {...args} />
+  </ToastWrapper>
+);
 
 export const Normal = Template.bind({});
 Normal.args = {
-	message:"hello world",
-	duration:1000
+  message: 'hello world',
+  duration: 1000,
 };

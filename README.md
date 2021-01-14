@@ -1,15 +1,18 @@
 # Interpause's Components
 
+> Next.js Component Library using typescript, twin.macro and Emotion with Yarn 2's Plug'n'Play working and Storybook to ease component development.
+
 My personal components library using [twin.macro](https://github.com/ben-rogerson/twin.macro) and [emotion-js](https://emotion.sh/) as its CSS-in-JS solution. This repository uses [Next.js](https://nextjs.org/docs/api-reference/create-next-app) however the components are reusable in any project that uses React, twin.macro and emotion-js (see <https://github.com/ben-rogerson/twin.examples>). [Storybook.js](https://storybook.js.org/docs/react/get-started/introduction) is also setup to make it easier to develop components.
 
 ## Table of Contents
 
-- [Testing](#testing)
 - [Installation](#installation)
+- [Documentation](#documentation)
 - [Theme System](#theme)
+- [How it was set up](#setup)
 - [Credits](#credits)
 
-## Testing
+## Installation
 
 ```sh
 yarn install
@@ -29,7 +32,95 @@ yarn pnpify --sdk vscode
 
 See <https://yarnpkg.com/getting-started/editor-sdks> for other IDEs.
 
-## Installation
+## Documentation
+
+Documentation can be found at <https://interpause.github.io/interpause-components>. It was auto-generated using [typedoc](https://typedoc.org/). I will eventually be hosting an interactive documentation/demo using Storybook when the component library is much more complete.
+
+## Theme
+
+I created a simple theming system via CSS variables. The 8 different accents are dynamically generated inside [`tailwind.config.js`](tailwind.config.js):
+
+- `primary`: emphasis, important
+- `secondary`: contrasting primary
+- `info`: notifications, loading alerts, updates
+- `trivial`: disabled, unimportant, extraneous
+- `good`: success, logged in, purchases, loading complete
+- `risky`: warnings, confirmations
+- `bad`: errors, wrong password, serious warnings
+- `normal`: text
+
+The base theme is included via:
+
+```jsx
+//add this to pages/_app.tsx and .storybook/preview.js
+import { Global } from '@emotion/react'
+import { baseStyle } from '../src/theme/baseTheme'
+
+<Global styles={baseStyle}/>
+```
+
+I preserved the `--tw-opacity` CSS variables, allowing control over the intensity of the color via changing its opacity for various stuff such as backgrounds and borders:
+
+```json
+{
+  "primary":"rgba(var(--hi-color-primary),var(--tw-text-opacity))"
+}
+```
+
+```jsx
+// e.g. this is still possible
+<div tw="bg-primary bg-opacity-50"></div>
+```
+
+As for how the base theme is configured by default, [`baseTheme.ts`](/src/theme/baseTheme):
+
+```ts
+/** Used to convert hex to `${r},${g},${b}`. */
+const rgb = (c: string) => Color(c).array().join(',');
+/** SerializedStyles containing default values for CSS vars. */
+const themeVars = css`
+  --hi-color-primary:   ${rgb('#0288d1')};
+  --hi-color-secondary: ${rgb('#311b92')};
+  --hi-color-info:      ${rgb('#0288d1')};
+  --hi-color-trivial:   ${rgb('#9e9e9e')};
+  --hi-color-good:      ${rgb('#4caf50')};
+  --hi-color-risky:     ${rgb('#fbc02d')};
+  --hi-color-bad:       ${rgb('#d50000')};
+  --hi-color-normal:    ${rgb('#000')};
+
+  --tw-text-opacity:        1;
+  --tw-placeholder-opacity: 0.65;
+  --tw-bg-opacity:          0.3;
+  --tw-border-opacity:      1;
+  --tw-divide-opacity:      0.2;
+  --tw-ring-opacity:        0.2;
+`;
+```
+
+I have also made dark and light themes (really go check out [`baseTheme.ts`](/src/theme/baseTheme)). Do follow it if you want to change the theme colors. As for changing the accent names and so on, my code in [`tailwind.config.js`](tailwind.config.js) should be fairly easy to change.
+
+Finally, I provided a function in [`baseTheme.ts`](/src/theme/baseTheme) to make it easy to change the accent of a component easily:
+
+```ts
+/** creates a SerializedStyles that sets all colors to that of the accent given. */
+const getAccent = (accent:accentTypes) => css`
+  color: rgba(var(--hi-color-${accent}), var(--tw-text-opacity));
+  background-color: rgba(var(--hi-color-${accent}), var(--tw-bg-opacity));
+  border-color: rgba(var(--hi-color-${accent}), var(--tw-border-opacity));
+
+  --tw-ring-color: rgba(var(--hi-color-${accent}), var(--tw-ring-opacity));
+  --tw-ring-offset-color: rgba(var(--hi-color-${accent}), 1);
+
+  & > * + * {
+    border-color: rgba(var(--hi-color-${accent}), var(--tw-divide-opacity));
+  }
+  &::placeholder {
+    color: rgba(var(--hi-color-${accent}), var(--tw-placeholder-opacity));
+  }
+`;
+```
+
+## Setup
 
 You can follow along with the commit history of this repository to see the effects of each step.
 
@@ -95,7 +186,7 @@ yarn pnpify --sdk vscode
 
 Finally in the generated `.yarnrc.yml` file add:
 
-```yml
+```yaml
 nodeLinker: "pnp"
 pnpMode: "loose"
 # required due to issues with some packages
@@ -282,91 +373,12 @@ export const decorators = [
 ]
 ```
 
-## Theme
+## Credits
 
-I created a simple theming system via CSS variables. The 8 different accents are dynamically generated inside [`tailwind.config.js`](tailwind.config.js):
-
-- `primary`: emphasis, important
-- `secondary`: contrasting primary
-- `info`: notifications, loading alerts, updates
-- `trivial`: disabled, unimportant, extraneous
-- `good`: success, logged in, purchases, loading complete
-- `risky`: warnings, confirmations
-- `bad`: errors, wrong password, serious warnings
-- `normal`: text
-
-The base theme is included via:
-
-```jsx
-//add this to pages/_app.tsx and .storybook/preview.js
-import { Global } from '@emotion/react'
-import { baseStyle } from '../src/theme/baseTheme'
-
-<Global styles={baseStyle}/>
-```
-
-I preserved the `--tw-opacity` CSS variables, allowing control over the intensity of the color via changing its opacity for various stuff such as backgrounds and borders:
-
-```json
-{
-  "primary":"rgba(var(--hi-color-primary),var(--tw-text-opacity))"
-}
-```
-
-```jsx
-// e.g. this is still possible
-<div tw="bg-primary bg-opacity-50"></div>
-```
-
-As for how the base theme is configured by default, [`baseTheme.ts`](/src/theme/baseTheme):
-
-```css
-  --hi-color-primary: ${rgb('#0288d1')};
-  --hi-color-secondary: ${rgb('#311b92')};
-  --hi-color-info: ${rgb('#0288d1')};
-  --hi-color-trivial: ${rgb('#9e9e9e')};
-  --hi-color-good: ${rgb('#4caf50')};
-  --hi-color-risky: ${rgb('#fbc02d')};
-  --hi-color-bad: ${rgb('#d50000')};
-  --hi-color-normal: ${rgb('#000')};
-
-  --tw-text-opacity: 1;
-  --tw-placeholder-opacity: 0.65;
-  --tw-bg-opacity: 0.3;
-  --tw-border-opacity: 1;
-  --tw-divide-opacity: 0.2;
-  --tw-ring-opacity: 0.2;
-```
-
-I have also made dark and light themes (really go check out [`baseTheme.ts`](/src/theme/baseTheme)). Do follow it if you want to change the theme colors. As for changing the accent names and so on, my code in [`tailwind.config.js`](tailwind.config.js) should be fairly easy to change.
-
-Finally, I provided a function in [`baseTheme.ts`](/src/theme/baseTheme) to make it easy to change the accent of a component easily:
-
-```ts
-/** creates a SerializedStyles that sets all colors to that of the accent given */
-export const getAccent = (accent:string) => css`
-  color: rgba(var(--hi-color-${accent}), var(--tw-text-opacity));
-  background-color: rgba(var(--hi-color-${accent}), var(--tw-bg-opacity));
-  border-color: rgba(var(--hi-color-${accent}), var(--tw-border-opacity));
-
-  --tw-ring-color: rgba(var(--hi-color-${accent}), var(--tw-ring-opacity));
-  --tw-ring-offset-color: rgba(var(--hi-color-${accent}), 1);
-
-  & > * + * {
-    border-color: rgba(var(--hi-color-${accent}), var(--tw-divide-opacity));
-  }
-  &::placeholder {
-    color: rgba(var(--hi-color-${accent}), var(--tw-placeholder-opacity));
-  }
-`;
-```
+Many thanks to [ben-rogerson](https://github.com/ben-rogerson) for developing twin.macro, if not for which none of this would be possible. I really like the twin.macro + emotionjs library to the point when I tried to switch to a component library, I was actually put off by the relative difficulty of styling things. He had also made several examples of how to use twin.macro with various frameworks, without which it would have taken me much longer to get this to work.
 
 ## Standards (unfinished)
 
 Most of my components will have a `type` and `variant` prop. `type` refers to mainly the accent, allowing you to customize which accent is used for the component. `variant` refers to the style of the component, for example, an outlined button with transparent background versus one that is filled in.
 
-The root element of container components will have `.wrapper` added to them. As for other components, use the browser's devtools to inspect the classes added. These classes were added to make it easier to style the component from the outside if needed.
-
-## Credits
-
-Many thanks to [ben-rogerson](https://github.com/ben-rogerson) for developing twin.macro, if not for which none of this would be possible. I really like the twin.macro + emotionjs library to the point when I tried to switch to a component library, I was actually put off by the relative difficulty of styling things. He had also made several examples of how to use twin.macro with various frameworks, without which it would have taken me much longer to get this to work.
+The root element of container components will have `.root` added to them. As for other components, use the browser's devtools to inspect the classes added. These classes were added to make it easier to style the component from the outside if needed.

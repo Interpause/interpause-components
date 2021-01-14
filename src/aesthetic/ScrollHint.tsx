@@ -1,9 +1,11 @@
 /**
- * @file I will put more react SVGs here next time.
+ * @file Animated SVG that hints user to scroll.
  * @author John-Henry Lim <hyphen@interpause.dev>
  */
+
 import { OrientableSVG } from '../utils/orientableSVG';
 
+/** Hardcoded style of stroke used in SVG. */
 export const lineStyle = {
   stroke: 'currentColor',
   strokeWidth: 8,

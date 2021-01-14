@@ -1,19 +1,29 @@
 /**
- * @file ReactJS + twin.macro customizable toggle.
+ * @file Everything about Toggles.
  * @author John-Henry Lim <hyphen@interpause.dev>
  */
 import { Dispatch, SetStateAction, HTMLProps, useRef, useEffect } from 'react';
 import tw, { css, styled } from 'twin.macro';
 import { StyledComponent } from '@emotion/styled';
 
+/** Default style used for Toggle. */
 export const defaultStyle = css`
   .slider,
-  .bg { ${tw`rounded-sm`} }
-  .slider { ${tw`bg-white`} }
-  .bg { ${tw`bg-trivial`} }
-  &.on .bg { ${tw`bg-primary bg-opacity-100`} }
+  .bg {
+    ${tw`rounded-sm`}
+  }
+  .slider {
+    ${tw`bg-white`}
+  }
+  .bg {
+    ${tw`bg-trivial`}
+  }
+  &.on .bg {
+    ${tw`bg-primary bg-opacity-100`}
+  }
 `;
 
+/** Internal styled label used for Toggle. */
 export const ToggleWrapper = styled.label`
   ${({ height }: { height: number }) =>
     css`
@@ -56,18 +66,18 @@ export const ToggleWrapper = styled.label`
 `;
 
 export interface ToggleProps extends HTMLProps<HTMLLabelElement> {
-  /** array returned by React.useState\<boolean\> */
+  /** Array returned by React.useState(true|false). */
   toggleHook: [boolean, Dispatch<SetStateAction<boolean>>];
-  /** text label for toggle */
+  /** Text label for toggle. */
   label?: string;
-  /** height of component in rem used for scaling */
+  /** Height of component in rem used for scaling. */
   height?: number;
-  /** TODO: implement */
+  /** TODO: implement. */
   variant?: never;
-  /** TODO: implement */
+  /** TODO: implement. */
   type?: never;
 }
-/** Look at defaultStyle for how to customize the toggle. */
+/** Toggle component. Look at defaultStyle for how to customize the toggle using css prop. */
 export function Toggle({ toggleHook: [isOn, setOn], label, height = 2, ...props }: ToggleProps) {
   const tRef = useRef<HTMLLabelElement>(null);
   useEffect(() => tRef.current?.classList[isOn ? 'add' : 'remove']('on'), [isOn]);

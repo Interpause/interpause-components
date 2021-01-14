@@ -1,5 +1,5 @@
 /**
- * @file Magic stuff to easily make animated lists of things. See Toast.tsx for example usage.
+ * @file Generic List to easily make animated lists of things. See Toast.tsx for example usage.
  * @author John-Henry Lim <hyphen@interpause.dev>
  */
 import { createRef, Dispatch, ForwardedRef, forwardRef, HTMLProps, useReducer } from 'react';
@@ -7,6 +7,7 @@ import 'twin.macro';
 import { SerializedStyles } from '@emotion/react';
 import { Transition, TransitionGroup } from 'react-transition-group';
 
+/** Reducer actions for List. */
 export type ListAction<ItemType> =
   | {
       type: 'delAll';
@@ -21,10 +22,12 @@ export type ListAction<ItemType> =
       data: ItemType;
     };
 
+/** Type of state used in reducer. */
 export type ListState<ItemType> = {
   [id: string]: ItemType;
 };
 
+/** List reducer used to add and remove items. */
 export const useListReducer = <ItemType,>() =>
   useReducer((state: ListState<ItemType>, action: ListAction<ItemType>) => {
     switch (action.type) {
@@ -41,7 +44,8 @@ export const useListReducer = <ItemType,>() =>
     }
   }, {});
 
-export interface animProps {
+/** Properties required to animate List items. */
+export interface AnimProps {
   timeout: number | { enter?: number; exit?: number; appear?: number };
   styles: {
     [key: string]: SerializedStyles;
@@ -49,34 +53,45 @@ export interface animProps {
 }
 
 export interface ListProps<ItemType> extends HTMLProps<HTMLDivElement> {
+  /** Access to the List reducer and state. */
   reducerHook: [ListState<ItemType>, Dispatch<ListAction<ItemType>>];
-  /** listItemComponent will be wrapped by React.ForwardRef */
-  listItemComponent: (props: ListItemProps<ItemType>, ref: ForwardedRef<HTMLDivElement>) => JSX.Element;
-  animProps?: animProps;
+  /** Component used as the List item. Will be wrapped by React.ForwardRef. */
+  ListItemComponent: (props: ListItemProps<ItemType>, ref: ForwardedRef<HTMLDivElement>) => JSX.Element;
+  /** Properties used to animate List items. */
+  AnimProps?: AnimProps;
 }
 
 export type ListItemProps<ItemType> = {
+  /** Used to remove the List item via a button in that item for example. */
   dispatch: Dispatch<ListAction<ItemType>>;
+  /** Used to refer to the List item when dispatching to the store. */
   id: string;
 } & ItemType;
 
-export function List<ItemType>({ reducerHook, listItemComponent, animProps, ...props }: ListProps<ItemType>) {
+/**
+ * List component. See Toast.tsx for usage example.
+ * 
+ * @param ListItemComponent Component used as the List item.
+ * @param AnimProps Properties used to animate List items.
+ * @param reducerHook Access to the List reducer and state.
+ * */
+export function List<ItemType>({ reducerHook, ListItemComponent, AnimProps, ...props }: ListProps<ItemType>) {
   const [state, dispatch] = reducerHook;
-  const Item = forwardRef(listItemComponent);
+  const Item = forwardRef(ListItemComponent);
   return (
     <div {...props}>
       <TransitionGroup component={null}>
         {Object.entries(state).map(([key, item]) => {
           const itemRef = createRef<HTMLDivElement>();
           return (
-            <Transition nodeRef={itemRef} key={key} timeout={animProps?.timeout ?? 0}>
+            <Transition nodeRef={itemRef} key={key} timeout={AnimProps?.timeout ?? 0}>
               {(animState) => (
                 //@ts-ignore some type-checking bug that expectedly comes around when it gets so complex
                 <Item
                   ref={itemRef}
                   {...item}
                   dispatch={dispatch}
-                  css={animProps && animProps.styles[animState]}
+                  css={AnimProps && AnimProps.styles[animState]}
                   id={key}
                 />
               )}

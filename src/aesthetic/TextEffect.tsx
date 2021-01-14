@@ -2,9 +2,11 @@
  * @file Base for SVG text effects.
  * @author John-Henry Lim <hyphen@interpause.dev>
  */
+
 import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 import { OrientableSVG } from '../utils/orientableSVG';
 
+/** Used to store height, width and font of text to properly style the SVG. */
 export interface styleState {
   height: number;
   width: number;
@@ -12,12 +14,12 @@ export interface styleState {
 }
 
 export interface BaseTextProps extends OrientableSVG {
+  /** Text used in effect. */
   text: string;
+  /** Allows styleState to be passed to the parent component to style. */
   styleStateHook: [styleState | undefined, Dispatch<SetStateAction<styleState | undefined>>];
 }
-/**
- * Base component for text with special SVG effects
- */
+/** Internal component for SVG text with special effects. */
 export function BaseTextWithEffect({ orientation, text, children, styleStateHook, ...props }: BaseTextProps) {
   const [state, setState] = styleStateHook;
   const fontRef = useRef<any>(null);
@@ -27,6 +29,7 @@ export function BaseTextWithEffect({ orientation, text, children, styleStateHook
     if (fontElem == null) return;
     let measureSpan = document.createElement('span');
     measureSpan.style.font = getComputedStyle(fontElem).font;
+
     // ensure span never get clipped by being small, reset some parts of style to be consistent
     measureSpan.style.lineHeight = 'normal';
     measureSpan.style.fontSize = '1px';
@@ -36,6 +39,7 @@ export function BaseTextWithEffect({ orientation, text, children, styleStateHook
     document.documentElement.appendChild(measureSpan);
     const rect = measureSpan.getBoundingClientRect();
     measureSpan.remove();
+
     // aspect ratio of height to width should be constant no matter viewport size
     setState({
       height: rect.height,

@@ -8,27 +8,31 @@ export default {
     variant: {
       control: {
         type: 'select',
-        options: ['text','outline','filled']
-      }
+        options: ['text', 'outline', 'filled'],
+      },
     },
     theme: {
       control: {
         type: 'select',
-        options: ['dark','light']
-      }
+        options: ['dark', 'light'],
+      },
     },
     type: {
       control: {
         type: 'select',
-        options: accents
-      }
-    }
-  }
+        options: accents,
+      },
+    },
+  },
 };
 
-const Template = ({theme,...args}) => <div className={theme}><Button {...args}/></div>;
+const Template = ({ theme, ...args }) => (
+  <div className={theme}>
+    <Button {...args} />
+  </div>
+);
 
 export const Normal = Template.bind({});
 Normal.args = {
-	children:"hello world"
+  children: 'hello world',
 };

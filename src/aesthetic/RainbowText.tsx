@@ -6,29 +6,30 @@
 import { ReactText, useState } from 'react';
 import { BaseTextProps, styleState, BaseTextWithEffect } from './TextEffect';
 
+/** Default config for RainbowText. */
 export const RainbowTextConfig = {
-  /** Duration of animation in seconds */
+  /** Duration of animation in seconds. */
   duration: 20,
-  /** Number of color stops in rainbow gradient, increase to make more accurate gradient */
+  /** Number of color stops in rainbow gradient, increase to make more accurate gradient. */
   numStops: 21,
-  /** Saturation of rainbow gradient (HSL colorspace) */
+  /** Saturation of rainbow gradient (HSL colorspace). */
   saturation: 100,
-  /** Luminosity of rainbow gradient (HSL colorspace) */
+  /** Luminosity of rainbow gradient (HSL colorspace). */
   luminosity: 60,
-  /** SVG path of pattern */
+  /** SVG path of pattern. */
   pattern:
     'M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z',
-  /** height of pattern */
+  /** Height of pattern viewport. */
   pHeight: 49,
-  /** width of pattern */
+  /** Width of pattern viewport. */
   pWidth: 28,
-  /** Size of pattern */
+  /** Size of pattern relative to text in percent. */
   pSize: 50,
-  /** Color of pattern */
+  /** Color of pattern. */
   pFill: '#fff',
-  /** width of rect used in pattern, should be larger than 100% to transition smoothly. Default allows smooth tessellation. */
+  /** Width of rect used in pattern, should be larger than 100% to transition smoothly. Default allows smooth tessellation. */
   bgWidth: (100 * 49) / 28,
-  /** Height of rect used in pattern, just leave at 100% */
+  /** Height of rect used in pattern, just leave at 100%. */
   bgHeight: 100,
 } as const;
 
@@ -36,9 +37,7 @@ export interface RainbowTextProps extends Omit<BaseTextProps, 'text' | 'styleSta
   config?: Partial<typeof RainbowTextConfig>;
   children: ReactText;
 }
-/**
- * rainbow text cause why not
- */
+/** rainbow text cause why not. */
 export function RainbowText({ children, config, ...props }: RainbowTextProps) {
   const [state, setState] = useState<styleState>();
   const conf = { ...RainbowTextConfig, ...config };
