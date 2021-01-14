@@ -40,7 +40,7 @@ Documentation can be found at <https://interpause.github.io/interpause-component
 
 ## Theme
 
-I created a simple theming system via CSS variables. The 8 different accents are dynamically generated inside [`tailwind.config.js`](tailwind.config.js):
+I created a simple theming system via CSS variables. The 8 different accents are dynamically generated inside [`tailwind.config.js`](https://github.com/Interpause/interpause-components/blob/main/tailwind.config.js):
 
 - `primary`: emphasis, important
 - `secondary`: contrasting primary
@@ -74,7 +74,7 @@ I preserved the `--tw-opacity` CSS variables, allowing control over the intensit
 <div tw="bg-primary bg-opacity-50"></div>
 ```
 
-As for how the base theme is configured by default, [`baseTheme.ts`](https://github.com/Interpause/interpause-components/blob/main/src/theme/baseTheme):
+As for how the base theme is configured by default, [`baseTheme.ts`](https://github.com/Interpause/interpause-components/blob/main/src/theme/baseTheme.ts):
 
 ```ts
 /** Used to convert hex to `${r},${g},${b}`. */
@@ -99,9 +99,9 @@ const themeVars = css`
 `;
 ```
 
-I have also made dark and light themes (really go check out [`baseTheme.ts`](https://github.com/Interpause/interpause-components/blob/main/src/theme/baseTheme)). Do follow it if you want to change the theme colors. As for changing the accent names and so on, my code in [`tailwind.config.js`](tailwind.config.js) should be fairly easy to change.
+I have also made dark and light themes (really go check out [`baseTheme.ts`](https://github.com/Interpause/interpause-components/blob/main/src/theme/baseTheme.ts)). Do follow it if you want to change the theme colors. As for changing the accent names and so on, my code in [`tailwind.config.js`](https://github.com/Interpause/interpause-components/blob/main/tailwind.config.js) should be fairly easy to change.
 
-Finally, I provided a function in [`baseTheme.ts`](https://github.com/Interpause/interpause-components/blob/main/src/theme/baseTheme) to make it easy to change the accent of a component easily:
+Finally, I provided a function in [`baseTheme.ts`](https://github.com/Interpause/interpause-components/blob/main/src/theme/baseTheme.ts) to make it easy to change the accent of a component easily:
 
 ```ts
 /** creates a SerializedStyles that sets all colors to that of the accent given. */
@@ -357,7 +357,7 @@ Create `./.storybook/.babelrc` and add:
 }
 ```
 
-Adapted from <https://github.com/ben-rogerson/twin.examples/blob/master/storybook-emotion/.storybook/.babelrc>. A different set of plugins had to be used for Storybook's `.babelrc` to work. This is probably because the way Next.js and Storybook transpiles is different, leading to the `@emotion/babel-plugin` not working for storybook. Presets had to be respecified too as they were overwritten. Also, see [`./src/containers/Cards.stories.js`](https://github.com/Interpause/interpause-components/blob/main/src/containers/Cards.stories.js) for an example.
+Adapted from <https://github.com/ben-rogerson/twin.examples/blob/master/storybook-emotion/.storybook/.babelrc>. A different set of plugins had to be used for Storybook's `.babelrc` to work. This is probably because the way Next.js and Storybook transpiles is different, leading to the `@emotion/babel-plugin` not working for storybook. Presets had to be respecified too as they were overwritten. Also, see [`./src/containers/Card.stories.js`](https://github.com/Interpause/interpause-components/blob/main/src/containers/Card.stories.js) for an example.
 
 Finally, to `./.storybook/preview.js` add:
 
