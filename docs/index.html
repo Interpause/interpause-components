@@ -98,7 +98,7 @@
 				<a href="#theme" id="theme" style="color: inherit; text-decoration: none;">
 					<h2>Theme</h2>
 				</a>
-				<p>I created a simple theming system via CSS variables. The 8 different accents are dynamically generated inside <a href="tailwind.config.js"><code>tailwind.config.js</code></a>:</p>
+				<p>I created a simple theming system via CSS variables. The 8 different accents are dynamically generated inside <a href="https://github.com/Interpause/interpause-components/blob/main/tailwind.config.js"><code>tailwind.config.js</code></a>:</p>
 				<ul>
 					<li><code>primary</code>: emphasis, important</li>
 					<li><code>secondary</code>: contrasting primary</li>
@@ -124,7 +124,7 @@
 				<pre><code class="language-jsx"><span style="color: #000000">// e.g. this is still possible</span>
 <span style="color: #000000">&lt;div tw=&quot;bg-primary bg-opacity-50&quot;&gt;&lt;/div&gt;</span>
 </code></pre>
-				<p>As for how the base theme is configured by default, <a href="https://github.com/Interpause/interpause-components/blob/main/src/theme/baseTheme"><code>baseTheme.ts</code></a>:</p>
+				<p>As for how the base theme is configured by default, <a href="https://github.com/Interpause/interpause-components/blob/main/src/theme/baseTheme.ts"><code>baseTheme.ts</code></a>:</p>
 				<pre><code class="language-ts"><span style="color: #008000">/** Used to convert hex to `${r},${g},${b}`. */</span>
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #795E26">rgb</span><span style="color: #000000"> = (</span><span style="color: #001080">c</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #795E26">Color</span><span style="color: #000000">(</span><span style="color: #001080">c</span><span style="color: #000000">).</span><span style="color: #795E26">array</span><span style="color: #000000">().</span><span style="color: #795E26">join</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;,&#039;</span><span style="color: #000000">);</span>
 <span style="color: #008000">/** SerializedStyles containing default values for CSS vars. */</span>
@@ -146,8 +146,8 @@
 <span style="color: #A31515">  --tw-ring-opacity:        0.2;</span>
 <span style="color: #A31515">`</span><span style="color: #000000">;</span>
 </code></pre>
-				<p>I have also made dark and light themes (really go check out <a href="https://github.com/Interpause/interpause-components/blob/main/src/theme/baseTheme"><code>baseTheme.ts</code></a>). Do follow it if you want to change the theme colors. As for changing the accent names and so on, my code in <a href="tailwind.config.js"><code>tailwind.config.js</code></a> should be fairly easy to change.</p>
-				<p>Finally, I provided a function in <a href="https://github.com/Interpause/interpause-components/blob/main/src/theme/baseTheme"><code>baseTheme.ts</code></a> to make it easy to change the accent of a component easily:</p>
+				<p>I have also made dark and light themes (really go check out <a href="https://github.com/Interpause/interpause-components/blob/main/src/theme/baseTheme.ts"><code>baseTheme.ts</code></a>). Do follow it if you want to change the theme colors. As for changing the accent names and so on, my code in <a href="https://github.com/Interpause/interpause-components/blob/main/tailwind.config.js"><code>tailwind.config.js</code></a> should be fairly easy to change.</p>
+				<p>Finally, I provided a function in <a href="https://github.com/Interpause/interpause-components/blob/main/src/theme/baseTheme.ts"><code>baseTheme.ts</code></a> to make it easy to change the accent of a component easily:</p>
 				<pre><code class="language-ts"><span style="color: #008000">/** creates a SerializedStyles that sets all colors to that of the accent given. */</span>
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #795E26">getAccent</span><span style="color: #000000"> = (</span><span style="color: #001080">accent</span><span style="color: #000000">:</span><span style="color: #267F99">accentTypes</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #795E26">css</span><span style="color: #A31515">`</span>
 <span style="color: #A31515">  color: rgba(var(--hi-color-</span><span style="color: #0000FF">${</span><span style="color: #001080">accent</span><span style="color: #0000FF">}</span><span style="color: #A31515">), var(--tw-text-opacity));</span>
@@ -355,7 +355,7 @@
 <span style="color: #000000">  ]</span>
 <span style="color: #000000">}</span>
 </code></pre>
-				<p>Adapted from <a href="https://github.com/ben-rogerson/twin.examples/blob/master/storybook-emotion/.storybook/.babelrc">https://github.com/ben-rogerson/twin.examples/blob/master/storybook-emotion/.storybook/.babelrc</a>. A different set of plugins had to be used for Storybook&#39;s <code>.babelrc</code> to work. This is probably because the way Next.js and Storybook transpiles is different, leading to the <code>@emotion/babel-plugin</code> not working for storybook. Presets had to be respecified too as they were overwritten. Also, see <a href="https://github.com/Interpause/interpause-components/blob/main/src/containers/Cards.stories.js"><code>./src/containers/Cards.stories.js</code></a> for an example.</p>
+				<p>Adapted from <a href="https://github.com/ben-rogerson/twin.examples/blob/master/storybook-emotion/.storybook/.babelrc">https://github.com/ben-rogerson/twin.examples/blob/master/storybook-emotion/.storybook/.babelrc</a>. A different set of plugins had to be used for Storybook&#39;s <code>.babelrc</code> to work. This is probably because the way Next.js and Storybook transpiles is different, leading to the <code>@emotion/babel-plugin</code> not working for storybook. Presets had to be respecified too as they were overwritten. Also, see <a href="https://github.com/Interpause/interpause-components/blob/main/src/containers/Card.stories.js"><code>./src/containers/Card.stories.js</code></a> for an example.</p>
 				<p>Finally, to <code>./.storybook/preview.js</code> add:</p>
 				<pre><code class="language-jsx"><span style="color: #000000">import { GlobalStyles } from &#039;twin.macro&#039;</span>
 
