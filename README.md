@@ -4,6 +4,8 @@
 
 My personal components library using [twin.macro](https://github.com/ben-rogerson/twin.macro) and [emotion-js](https://emotion.sh/) as its CSS-in-JS solution. This repository uses [Next.js](https://nextjs.org/docs/api-reference/create-next-app) however the components are reusable in any project that uses React, twin.macro and emotion-js (see <https://github.com/ben-rogerson/twin.examples>). [Storybook.js](https://storybook.js.org/docs/react/get-started/introduction) is also setup to make it easier to develop components.
 
+If you are seeing the README from the documentation site, <https://github.com/Interpause/interpause-components> to get back.
+
 ## Table of Contents
 
 - [Installation](#installation)
@@ -72,7 +74,7 @@ I preserved the `--tw-opacity` CSS variables, allowing control over the intensit
 <div tw="bg-primary bg-opacity-50"></div>
 ```
 
-As for how the base theme is configured by default, [`baseTheme.ts`](/src/theme/baseTheme):
+As for how the base theme is configured by default, [`baseTheme.ts`](https://github.com/Interpause/interpause-components/blob/main/src/theme/baseTheme):
 
 ```ts
 /** Used to convert hex to `${r},${g},${b}`. */
@@ -97,9 +99,9 @@ const themeVars = css`
 `;
 ```
 
-I have also made dark and light themes (really go check out [`baseTheme.ts`](/src/theme/baseTheme)). Do follow it if you want to change the theme colors. As for changing the accent names and so on, my code in [`tailwind.config.js`](tailwind.config.js) should be fairly easy to change.
+I have also made dark and light themes (really go check out [`baseTheme.ts`](https://github.com/Interpause/interpause-components/blob/main/src/theme/baseTheme)). Do follow it if you want to change the theme colors. As for changing the accent names and so on, my code in [`tailwind.config.js`](tailwind.config.js) should be fairly easy to change.
 
-Finally, I provided a function in [`baseTheme.ts`](/src/theme/baseTheme) to make it easy to change the accent of a component easily:
+Finally, I provided a function in [`baseTheme.ts`](https://github.com/Interpause/interpause-components/blob/main/src/theme/baseTheme) to make it easy to change the accent of a component easily:
 
 ```ts
 /** creates a SerializedStyles that sets all colors to that of the accent given. */
@@ -154,7 +156,7 @@ Optionally, change these `tsconfig.json` settings once done:
 }
 ```
 
-As we will not be using them anymore, you may delete `./styles`. Look in [`./pages`](/pages) for how code can be written once installation is complete. If using this repository as a Next.js template, see <https://nextjs.org/docs/basic-features/typescript> for further details.
+As we will not be using them anymore, you may delete `./styles`. Look in [`./pages`](https://github.com/Interpause/interpause-components/blob/main/pages) for how code can be written once installation is complete. If using this repository as a Next.js template, see <https://nextjs.org/docs/basic-features/typescript> for further details.
 
 ### (Optional) Setup Yarn 2 PnPify
 
@@ -203,7 +205,7 @@ yarn add twin.macro tailwindcss @emotion/react @emotion/styled @emotion/css
 yarn add --dev @emotion/babel-plugin babel-plugin-macros
 ```
 
-In [_app.tsx](/pages/_app.tsx) add `<GlobalStyles/>` like this:
+In [_app.tsx](https://github.com/Interpause/interpause-components/blob/main/pages/_app.tsx) add `<GlobalStyles/>` like this:
 
 ```tsx
 import { GlobalStyles } from 'twin.macro';
@@ -285,7 +287,7 @@ And include it into `tsconfig.json`:
 }
 ```
 
-See [`./pages/index.tsx`](/pages/index.tsx) for code that uses twin.macro's features to see if everything so far is setup correctly.
+See [`./pages/index.tsx`](https://github.com/Interpause/interpause-components/blob/main/pages/index.tsx) for code that uses twin.macro's features to see if everything so far is setup correctly.
 
 #### (Optional) Setup TailwindCSS Intellisense for VSCode
 
@@ -355,7 +357,7 @@ Create `./.storybook/.babelrc` and add:
 }
 ```
 
-Adapted from <https://github.com/ben-rogerson/twin.examples/blob/master/storybook-emotion/.storybook/.babelrc>. A different set of plugins had to be used for Storybook's `.babelrc` to work. This is probably because the way Next.js and Storybook transpiles is different, leading to the `@emotion/babel-plugin` not working for storybook. Presets had to be respecified too as they were overwritten. Also, see [`./src/containers/Cards.stories.js`](/src/containers/Cards.stories.js) for an example.
+Adapted from <https://github.com/ben-rogerson/twin.examples/blob/master/storybook-emotion/.storybook/.babelrc>. A different set of plugins had to be used for Storybook's `.babelrc` to work. This is probably because the way Next.js and Storybook transpiles is different, leading to the `@emotion/babel-plugin` not working for storybook. Presets had to be respecified too as they were overwritten. Also, see [`./src/containers/Cards.stories.js`](https://github.com/Interpause/interpause-components/blob/main/src/containers/Cards.stories.js) for an example.
 
 Finally, to `./.storybook/preview.js` add:
 
