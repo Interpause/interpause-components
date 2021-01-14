@@ -69,14 +69,14 @@ export function SimpleCard(props: SimpleCardProps) {
       <CardBody className="body">{isValidElement(props.body) ? props.body : <p>{props.body}</p>}</CardBody>
       <CardFooter className="footer">
         {(() => {
-          if ('href' in props)
+          if (isValidElement(props.footer)) return props.footer;
+          else if ('href' in props)
             return (
               <LinkButton variant="text" href={props.href}>
                 {props.footer}
               </LinkButton>
             );
           else if ('onClick' in props) return <Button onClick={props.onClick}>{props.footer}</Button>;
-          else if (isValidElement(props.footer)) return props.footer;
           else return <h6>{props.footer}</h6>;
         })()}
       </CardFooter>

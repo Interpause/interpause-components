@@ -59,7 +59,7 @@ Linked.args = {
 
 export const Custom = Template.bind({});
 Custom.args = {
-  header: 'Has link',
+  header: 'Custom',
   body: 'insert lorum ipsum',
-  footer: <input type="range"></input>,
+  footer: <input type="range"></input>
 };
