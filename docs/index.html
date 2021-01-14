@@ -1,0 +1,475 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>interpause-components</title>
+	<meta name="description" content="Documentation for interpause-components">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">interpause-components</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<h1>interpause-components</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#interpause39s-components" id="interpause39s-components" style="color: inherit; text-decoration: none;">
+					<h1>Interpause&#39;s Components</h1>
+				</a>
+				<blockquote>
+					<p>Next.js Component Library using typescript, twin.macro and Emotion with Yarn 2&#39;s Plug&#39;n&#39;Play working and Storybook to ease component development.</p>
+				</blockquote>
+				<p>My personal components library using <a href="https://github.com/ben-rogerson/twin.macro">twin.macro</a> and <a href="https://emotion.sh/">emotion-js</a> as its CSS-in-JS solution. This repository uses <a href="https://nextjs.org/docs/api-reference/create-next-app">Next.js</a> however the components are reusable in any project that uses React, twin.macro and emotion-js (see <a href="https://github.com/ben-rogerson/twin.examples">https://github.com/ben-rogerson/twin.examples</a>). <a href="https://storybook.js.org/docs/react/get-started/introduction">Storybook.js</a> is also setup to make it easier to develop components.</p>
+				<a href="#table-of-contents" id="table-of-contents" style="color: inherit; text-decoration: none;">
+					<h2>Table of Contents</h2>
+				</a>
+				<ul>
+					<li><a href="#installation">Installation</a></li>
+					<li><a href="#documentation">Documentation</a></li>
+					<li><a href="#theme">Theme System</a></li>
+					<li><a href="#setup">How it was set up</a></li>
+					<li><a href="#credits">Credits</a></li>
+				</ul>
+				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+					<h2>Installation</h2>
+				</a>
+				<pre><code class="language-sh"><span style="color: #000000">yarn install</span>
+<span style="color: #008000"># see it works by opening http://localhost:3000</span>
+<span style="color: #000000">yarn dev</span>
+<span style="color: #008000"># start the storybook (incomplete)</span>
+<span style="color: #000000">yarn storybook</span>
+</code></pre>
+				<p>To ensure Typescript linting works properly with <a href="https://yarnpkg.com/getting-started/install">Yarn 2</a> run these:</p>
+				<pre><code class="language-sh"><span style="color: #000000">yarn add --dev @yarnpkg/pnpify</span>
+<span style="color: #008000"># for VSCode:</span>
+<span style="color: #000000">yarn pnpify --sdk vscode</span>
+</code></pre>
+				<p>See <a href="https://yarnpkg.com/getting-started/editor-sdks">https://yarnpkg.com/getting-started/editor-sdks</a> for other IDEs.</p>
+				<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
+					<h2>Documentation</h2>
+				</a>
+				<p>Documentation can be found at <a href="https://interpause.github.io/interpause-components">https://interpause.github.io/interpause-components</a>. It was auto-generated using <a href="https://typedoc.org/">typedoc</a>. I will eventually be hosting an interactive documentation/demo using Storybook when the component library is much more complete.</p>
+				<a href="#theme" id="theme" style="color: inherit; text-decoration: none;">
+					<h2>Theme</h2>
+				</a>
+				<p>I created a simple theming system via CSS variables. The 8 different accents are dynamically generated inside <a href="tailwind.config.js"><code>tailwind.config.js</code></a>:</p>
+				<ul>
+					<li><code>primary</code>: emphasis, important</li>
+					<li><code>secondary</code>: contrasting primary</li>
+					<li><code>info</code>: notifications, loading alerts, updates</li>
+					<li><code>trivial</code>: disabled, unimportant, extraneous</li>
+					<li><code>good</code>: success, logged in, purchases, loading complete</li>
+					<li><code>risky</code>: warnings, confirmations</li>
+					<li><code>bad</code>: errors, wrong password, serious warnings</li>
+					<li><code>normal</code>: text</li>
+				</ul>
+				<p>The base theme is included via:</p>
+				<pre><code class="language-jsx"><span style="color: #000000">//add this to pages/_app.tsx and .storybook/preview.js</span>
+<span style="color: #000000">import { Global } from &#039;@emotion/react&#039;</span>
+<span style="color: #000000">import { baseStyle } from &#039;../src/theme/baseTheme&#039;</span>
+
+<span style="color: #000000">&lt;Global styles={baseStyle}/&gt;</span>
+</code></pre>
+				<p>I preserved the <code>--tw-opacity</code> CSS variables, allowing control over the intensity of the color via changing its opacity for various stuff such as backgrounds and borders:</p>
+				<pre><code class="language-json"><span style="color: #000000">{</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;primary&quot;</span><span style="color: #000000">:</span><span style="color: #A31515">&quot;rgba(var(--hi-color-primary),var(--tw-text-opacity))&quot;</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<pre><code class="language-jsx"><span style="color: #000000">// e.g. this is still possible</span>
+<span style="color: #000000">&lt;div tw=&quot;bg-primary bg-opacity-50&quot;&gt;&lt;/div&gt;</span>
+</code></pre>
+				<p>As for how the base theme is configured by default, <a href="/src/theme/baseTheme"><code>baseTheme.ts</code></a>:</p>
+				<pre><code class="language-ts"><span style="color: #008000">/** Used to convert hex to `${r},${g},${b}`. */</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #795E26">rgb</span><span style="color: #000000"> = (</span><span style="color: #001080">c</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #795E26">Color</span><span style="color: #000000">(</span><span style="color: #001080">c</span><span style="color: #000000">).</span><span style="color: #795E26">array</span><span style="color: #000000">().</span><span style="color: #795E26">join</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;,&#039;</span><span style="color: #000000">);</span>
+<span style="color: #008000">/** SerializedStyles containing default values for CSS vars. */</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">themeVars</span><span style="color: #000000"> = </span><span style="color: #795E26">css</span><span style="color: #A31515">`</span>
+<span style="color: #A31515">  --hi-color-primary:   </span><span style="color: #0000FF">${</span><span style="color: #795E26">rgb</span><span style="color: #000000FF">(</span><span style="color: #A31515">&#039;#0288d1&#039;</span><span style="color: #000000FF">)</span><span style="color: #0000FF">}</span><span style="color: #A31515">;</span>
+<span style="color: #A31515">  --hi-color-secondary: </span><span style="color: #0000FF">${</span><span style="color: #795E26">rgb</span><span style="color: #000000FF">(</span><span style="color: #A31515">&#039;#311b92&#039;</span><span style="color: #000000FF">)</span><span style="color: #0000FF">}</span><span style="color: #A31515">;</span>
+<span style="color: #A31515">  --hi-color-info:      </span><span style="color: #0000FF">${</span><span style="color: #795E26">rgb</span><span style="color: #000000FF">(</span><span style="color: #A31515">&#039;#0288d1&#039;</span><span style="color: #000000FF">)</span><span style="color: #0000FF">}</span><span style="color: #A31515">;</span>
+<span style="color: #A31515">  --hi-color-trivial:   </span><span style="color: #0000FF">${</span><span style="color: #795E26">rgb</span><span style="color: #000000FF">(</span><span style="color: #A31515">&#039;#9e9e9e&#039;</span><span style="color: #000000FF">)</span><span style="color: #0000FF">}</span><span style="color: #A31515">;</span>
+<span style="color: #A31515">  --hi-color-good:      </span><span style="color: #0000FF">${</span><span style="color: #795E26">rgb</span><span style="color: #000000FF">(</span><span style="color: #A31515">&#039;#4caf50&#039;</span><span style="color: #000000FF">)</span><span style="color: #0000FF">}</span><span style="color: #A31515">;</span>
+<span style="color: #A31515">  --hi-color-risky:     </span><span style="color: #0000FF">${</span><span style="color: #795E26">rgb</span><span style="color: #000000FF">(</span><span style="color: #A31515">&#039;#fbc02d&#039;</span><span style="color: #000000FF">)</span><span style="color: #0000FF">}</span><span style="color: #A31515">;</span>
+<span style="color: #A31515">  --hi-color-bad:       </span><span style="color: #0000FF">${</span><span style="color: #795E26">rgb</span><span style="color: #000000FF">(</span><span style="color: #A31515">&#039;#d50000&#039;</span><span style="color: #000000FF">)</span><span style="color: #0000FF">}</span><span style="color: #A31515">;</span>
+<span style="color: #A31515">  --hi-color-normal:    </span><span style="color: #0000FF">${</span><span style="color: #795E26">rgb</span><span style="color: #000000FF">(</span><span style="color: #A31515">&#039;#000&#039;</span><span style="color: #000000FF">)</span><span style="color: #0000FF">}</span><span style="color: #A31515">;</span>
+
+<span style="color: #A31515">  --tw-text-opacity:        1;</span>
+<span style="color: #A31515">  --tw-placeholder-opacity: 0.65;</span>
+<span style="color: #A31515">  --tw-bg-opacity:          0.3;</span>
+<span style="color: #A31515">  --tw-border-opacity:      1;</span>
+<span style="color: #A31515">  --tw-divide-opacity:      0.2;</span>
+<span style="color: #A31515">  --tw-ring-opacity:        0.2;</span>
+<span style="color: #A31515">`</span><span style="color: #000000">;</span>
+</code></pre>
+				<p>I have also made dark and light themes (really go check out <a href="/src/theme/baseTheme"><code>baseTheme.ts</code></a>). Do follow it if you want to change the theme colors. As for changing the accent names and so on, my code in <a href="tailwind.config.js"><code>tailwind.config.js</code></a> should be fairly easy to change.</p>
+				<p>Finally, I provided a function in <a href="/src/theme/baseTheme"><code>baseTheme.ts</code></a> to make it easy to change the accent of a component easily:</p>
+				<pre><code class="language-ts"><span style="color: #008000">/** creates a SerializedStyles that sets all colors to that of the accent given. */</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #795E26">getAccent</span><span style="color: #000000"> = (</span><span style="color: #001080">accent</span><span style="color: #000000">:</span><span style="color: #267F99">accentTypes</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #795E26">css</span><span style="color: #A31515">`</span>
+<span style="color: #A31515">  color: rgba(var(--hi-color-</span><span style="color: #0000FF">${</span><span style="color: #001080">accent</span><span style="color: #0000FF">}</span><span style="color: #A31515">), var(--tw-text-opacity));</span>
+<span style="color: #A31515">  background-color: rgba(var(--hi-color-</span><span style="color: #0000FF">${</span><span style="color: #001080">accent</span><span style="color: #0000FF">}</span><span style="color: #A31515">), var(--tw-bg-opacity));</span>
+<span style="color: #A31515">  border-color: rgba(var(--hi-color-</span><span style="color: #0000FF">${</span><span style="color: #001080">accent</span><span style="color: #0000FF">}</span><span style="color: #A31515">), var(--tw-border-opacity));</span>
+
+<span style="color: #A31515">  --tw-ring-color: rgba(var(--hi-color-</span><span style="color: #0000FF">${</span><span style="color: #001080">accent</span><span style="color: #0000FF">}</span><span style="color: #A31515">), var(--tw-ring-opacity));</span>
+<span style="color: #A31515">  --tw-ring-offset-color: rgba(var(--hi-color-</span><span style="color: #0000FF">${</span><span style="color: #001080">accent</span><span style="color: #0000FF">}</span><span style="color: #A31515">), 1);</span>
+
+<span style="color: #A31515">  &amp; &gt; * + * {</span>
+<span style="color: #A31515">    border-color: rgba(var(--hi-color-</span><span style="color: #0000FF">${</span><span style="color: #001080">accent</span><span style="color: #0000FF">}</span><span style="color: #A31515">), var(--tw-divide-opacity));</span>
+<span style="color: #A31515">  }</span>
+<span style="color: #A31515">  &amp;::placeholder {</span>
+<span style="color: #A31515">    color: rgba(var(--hi-color-</span><span style="color: #0000FF">${</span><span style="color: #001080">accent</span><span style="color: #0000FF">}</span><span style="color: #A31515">), var(--tw-placeholder-opacity));</span>
+<span style="color: #A31515">  }</span>
+<span style="color: #A31515">`</span><span style="color: #000000">;</span>
+</code></pre>
+				<a href="#setup" id="setup" style="color: inherit; text-decoration: none;">
+					<h2>Setup</h2>
+				</a>
+				<p>You can follow along with the commit history of this repository to see the effects of each step.</p>
+				<ol>
+					<li><a href="#setup-nextjs-with-typescript">Setup Next.js with Typescript</a></li>
+					<li>(Optional) <a href="#optional-setup-yarn-2-pnpify">Setup Yarn 2 PnPify</a></li>
+					<li><a href="#setup-twinmacro-and-emotion">Setup twin.macro and emotion</a></li>
+					<li><a href="#setup-storybook">Setup Storybook</a></li>
+				</ol>
+				<a href="#setup-nextjs-with-typescript" id="setup-nextjs-with-typescript" style="color: inherit; text-decoration: none;">
+					<h3>Setup Next.js with Typescript</h3>
+				</a>
+				<p>First, create the Next.js project:</p>
+				<pre><code class="language-sh"><span style="color: #000000">yarn create next-app</span>
+</code></pre>
+				<p>Next, create <code>tsconfig.json</code> in the root folder and run:</p>
+				<pre><code class="language-sh"><span style="color: #000000">yarn add --dev typescript @types/react @types/node</span>
+<span style="color: #008000"># Next.js initializes tsconfig.json for you on the first run</span>
+<span style="color: #000000">yarn dev</span>
+</code></pre>
+				<p>Optionally, change these <code>tsconfig.json</code> settings once done:</p>
+				<pre><code class="language-json"><span style="color: #000000">{</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;allowJs&quot;</span><span style="color: #000000">: </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;strict&quot;</span><span style="color: #000000">: </span><span style="color: #0000FF">true</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<p>As we will not be using them anymore, you may delete <code>./styles</code>. Look in <a href="/pages"><code>./pages</code></a> for how code can be written once installation is complete. If using this repository as a Next.js template, see <a href="https://nextjs.org/docs/basic-features/typescript">https://nextjs.org/docs/basic-features/typescript</a> for further details.</p>
+				<a href="#optional-setup-yarn-2-pnpify" id="optional-setup-yarn-2-pnpify" style="color: inherit; text-decoration: none;">
+					<h3>(Optional) Setup Yarn 2 PnPify</h3>
+				</a>
+				<p>To setup <a href="https://yarnpkg.com/getting-started/install">Yarn 2</a>:</p>
+				<pre><code class="language-sh"><span style="color: #000000">yarn </span><span style="color: #795E26">set</span><span style="color: #000000"> version berry</span>
+</code></pre>
+				<p>Add these to the generated <code>.gitignore</code>:</p>
+				<pre><code class="language-sh"><span style="color: #008000"># dependencies</span>
+<span style="color: #000000">.yarn/*</span>
+<span style="color: #000000">!.yarn/releases</span>
+<span style="color: #000000">!.yarn/plugins</span>
+<span style="color: #000000">!.yarn/versions</span>
+</code></pre>
+				<p>Then do:</p>
+				<pre><code class="language-sh"><span style="color: #000000">yarn add --dev @yarnpkg/pnpify</span>
+<span style="color: #008000"># for VSCode:</span>
+<span style="color: #000000">yarn pnpify --sdk vscode</span>
+<span style="color: #008000"># see https://yarnpkg.com/getting-started/editor-sdks for other IDEs</span>
+<span style="color: #008000"># you might want to add to .gitignore some of the generated files like .vscode</span>
+</code></pre>
+				<p>Finally in the generated <code>.yarnrc.yml</code> file add:</p>
+				<pre><code class="language-yaml"><span style="color: #800000">nodeLinker</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;pnp&quot;</span>
+<span style="color: #800000">pnpMode</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;loose&quot;</span>
+<span style="color: #008000"># required due to issues with some packages</span>
+</code></pre>
+				<a href="#setup-twinmacro-and-emotion" id="setup-twinmacro-and-emotion" style="color: inherit; text-decoration: none;">
+					<h3>Setup twin.macro and emotion</h3>
+				</a>
+				<p>Adapted from <a href="https://github.com/ben-rogerson/twin.examples/tree/master/next-emotion">https://github.com/ben-rogerson/twin.examples/tree/master/next-emotion</a>. My steps are very similar to that of the original, but additional dependencies <code>@emotion/babel-plugin babel-plugin-macros</code> are needed if you are using Yarn 2. Do take a look at the original as it covers some of the features as well as contains optional steps that I skipped. Perhaps this is specifically an issue with VSCode, but I had to use &quot;reload window&quot; sometimes to get the Typescript linter to update, so try that if you get weird warnings.</p>
+				<p>First, install the dependencies:</p>
+				<pre><code class="language-sh"><span style="color: #000000">yarn add twin.macro tailwindcss @emotion/react @emotion/styled @emotion/css</span>
+<span style="color: #000000">yarn add --dev @emotion/babel-plugin babel-plugin-macros</span>
+</code></pre>
+				<p>In <a href="/pages/_app.tsx">_app.tsx</a> add <code>&lt;GlobalStyles/&gt;</code> like this:</p>
+				<pre><code class="language-tsx"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">GlobalStyles</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;twin.macro&#039;</span><span style="color: #000000">;</span>
+
+<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #AF00DB">default</span><span style="color: #000000"> </span><span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">App</span><span style="color: #000000">({</span><span style="color: #001080">Component</span><span style="color: #000000">, </span><span style="color: #001080">pageProps</span><span style="color: #000000">}:</span><span style="color: #267F99">AppProps</span><span style="color: #000000">){</span>
+<span style="color: #000000">  </span><span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #800000">&lt;&gt;</span>
+<span style="color: #000000">    </span><span style="color: #800000">&lt;</span><span style="color: #267F99">GlobalStyles</span><span style="color: #800000">/&gt;</span>
+<span style="color: #000000">    </span><span style="color: #800000">&lt;</span><span style="color: #267F99">Component</span><span style="color: #000000"> </span><span style="color: #0000FF">{</span><span style="color: #000000">...</span><span style="color: #001080">pageProps</span><span style="color: #0000FF">}</span><span style="color: #800000">/&gt;</span>
+<span style="color: #000000">  </span><span style="color: #800000">&lt;/&gt;</span><span style="color: #000000">;</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<p>Create <code>.babelrc.js</code> in the root folder and add:</p>
+				<pre><code class="language-js"><span style="color: #267F99">module</span><span style="color: #000000">.</span><span style="color: #267F99">exports</span><span style="color: #000000"> = {</span>
+<span style="color: #000000">  </span><span style="color: #001080">presets:</span><span style="color: #000000"> [</span>
+<span style="color: #000000">    [</span>
+<span style="color: #000000">      </span><span style="color: #A31515">&#039;next/babel&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">      {</span>
+<span style="color: #000000">        </span><span style="color: #A31515">&#039;preset-react&#039;</span><span style="color: #001080">:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">          </span><span style="color: #001080">runtime:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;automatic&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">          </span><span style="color: #001080">importSource:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@emotion/react&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">        },</span>
+<span style="color: #000000">      },</span>
+<span style="color: #000000">    ],</span>
+<span style="color: #000000">  ],</span>
+<span style="color: #000000">  </span><span style="color: #001080">plugins:</span><span style="color: #000000"> [</span><span style="color: #A31515">&#039;@emotion/babel-plugin&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;babel-plugin-macros&#039;</span><span style="color: #000000">],</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<p>Then, create <code>next.config.js</code> in the root folder and add:</p>
+				<pre><code class="language-js"><span style="color: #267F99">module</span><span style="color: #000000">.</span><span style="color: #267F99">exports</span><span style="color: #000000"> = {</span>
+<span style="color: #000000">  </span><span style="color: #795E26">webpack</span><span style="color: #001080">:</span><span style="color: #000000"> (</span><span style="color: #001080">config</span><span style="color: #000000">, { </span><span style="color: #001080">isServer</span><span style="color: #000000"> }) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #008000">// Fixes packages that depend on fs/module module</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (!</span><span style="color: #001080">isServer</span><span style="color: #000000">) {</span>
+<span style="color: #000000">      </span><span style="color: #001080">config</span><span style="color: #000000">.</span><span style="color: #001080">node</span><span style="color: #000000"> = { </span><span style="color: #001080">fs:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;empty&#039;</span><span style="color: #000000">, </span><span style="color: #001080">module:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;empty&#039;</span><span style="color: #000000"> }</span>
+<span style="color: #000000">    }</span>
+
+<span style="color: #000000">    </span><span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #001080">config</span>
+<span style="color: #000000">  },</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<p>Finally, create <code>twin.d.ts</code> in the root folder and add these type declarations:</p>
+				<pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;twin.macro&#039;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">styledImport</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@emotion/styled&#039;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">css</span><span style="color: #000000"> </span><span style="color: #AF00DB">as</span><span style="color: #000000"> </span><span style="color: #001080">cssImport</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@emotion/react&#039;</span>
+
+<span style="color: #008000">// The css prop</span>
+<span style="color: #008000">// https://emotion.sh/docs/typescript#css-prop</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> {} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@emotion/react/types/css-prop&#039;</span>
+
+<span style="color: #0000FF">declare</span><span style="color: #000000"> </span><span style="color: #0000FF">module</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;twin.macro&#039;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #008000">// The styled and css imports</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">styled</span><span style="color: #000000">: </span><span style="color: #0000FF">typeof</span><span style="color: #000000"> </span><span style="color: #267F99">styledImport</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">css</span><span style="color: #000000">: </span><span style="color: #0000FF">typeof</span><span style="color: #000000"> </span><span style="color: #267F99">cssImport</span>
+<span style="color: #000000">}</span>
+
+<span style="color: #008000">// The &#039;as&#039; prop on styled components</span>
+<span style="color: #0000FF">declare</span><span style="color: #000000"> </span><span style="color: #001080">global</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">namespace</span><span style="color: #000000"> </span><span style="color: #267F99">JSX</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">interface</span><span style="color: #000000"> </span><span style="color: #267F99">IntrinsicAttributes</span><span style="color: #000000">&lt;</span><span style="color: #267F99">T</span><span style="color: #000000">&gt; </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #267F99">DOMAttributes</span><span style="color: #000000">&lt;</span><span style="color: #267F99">T</span><span style="color: #000000">&gt; {</span>
+<span style="color: #000000">      </span><span style="color: #001080">as</span><span style="color: #000000">?: </span><span style="color: #267F99">string</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<p>And include it into <code>tsconfig.json</code>:</p>
+				<pre><code class="language-json"><span style="color: #000000">{</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;include&quot;</span><span style="color: #000000">: [</span><span style="color: #A31515">&quot;twin.d.ts&quot;</span><span style="color: #000000">]</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<p>See <a href="/pages/index.tsx"><code>./pages/index.tsx</code></a> for code that uses twin.macro&#39;s features to see if everything so far is setup correctly.</p>
+				<a href="#optional-setup-tailwindcss-intellisense-for-vscode" id="optional-setup-tailwindcss-intellisense-for-vscode" style="color: inherit; text-decoration: none;">
+					<h4>(Optional) Setup TailwindCSS Intellisense for VSCode</h4>
+				</a>
+				<p>Get it from <a href="https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss">https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss</a> and add these to <code>.vscode/settings.json</code>:</p>
+				<pre><code class="language-json"><span style="color: #000000">{</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;editor.quickSuggestions&quot;</span><span style="color: #000000">: </span><span style="color: #0000FF">true</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;tailwindCSS.experimental.classRegex&quot;</span><span style="color: #000000">: [</span>
+<span style="color: #000000">      </span><span style="color: #A31515">&quot;tw`([^`]*)&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #A31515">&quot;tw=</span><span style="color: #EE0000">\&quot;</span><span style="color: #A31515">([^</span><span style="color: #EE0000">\&quot;</span><span style="color: #A31515">]*)&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #A31515">&quot;tw={</span><span style="color: #EE0000">\&quot;</span><span style="color: #A31515">([^</span><span style="color: #EE0000">\&quot;</span><span style="color: #A31515">}]*)&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #A31515">&quot;tw</span><span style="color: #EE0000">\\</span><span style="color: #A31515">.</span><span style="color: #EE0000">\\</span><span style="color: #A31515">w+`([^`]*)&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #A31515">&quot;tw</span><span style="color: #EE0000">\\</span><span style="color: #A31515">(.*?</span><span style="color: #EE0000">\\</span><span style="color: #A31515">)`([^`]*)&quot;</span>
+<span style="color: #000000">  ],</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;tailwindCSS.includeLanguages&quot;</span><span style="color: #000000">: {</span>
+<span style="color: #000000">    </span><span style="color: #0451A5">&quot;typescript&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;javascript&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #0451A5">&quot;typescriptreact&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;javascript&quot;</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#setup-storybook" id="setup-storybook" style="color: inherit; text-decoration: none;">
+					<h3>Setup Storybook</h3>
+				</a>
+				<p>To add <a href="https://storybook.js.org/docs/react/get-started/introduction">Storybook.js</a>:</p>
+				<pre><code class="language-sh"><span style="color: #008000">#Storybook v6.2.0 was needed to solve something related to core-js</span>
+<span style="color: #000000">yarn add --dev @storybook/cli@next prop-types @emotion/babel-plugin-jsx-pragmatic @babel/plugin-transform-react-jsx</span>
+<span style="color: #000000">yarn sb init</span>
+<span style="color: #000000">yarn storybook</span>
+</code></pre>
+				<p>Create <code>./.storybook/.babelrc</code> and add:</p>
+				<pre><code class="language-json"><span style="color: #000000">{</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;presets&quot;</span><span style="color: #000000">: [</span>
+<span style="color: #000000">    [</span>
+<span style="color: #000000">      </span><span style="color: #A31515">&quot;next/babel&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">      {</span>
+<span style="color: #000000">        </span><span style="color: #0451A5">&quot;preset-react&quot;</span><span style="color: #000000">: {</span>
+<span style="color: #000000">          </span><span style="color: #0451A5">&quot;runtime&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;automatic&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">          </span><span style="color: #0451A5">&quot;importSource&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;@emotion/react&quot;</span>
+<span style="color: #000000">        }</span>
+<span style="color: #000000">      }</span>
+<span style="color: #000000">    ]</span>
+<span style="color: #000000">  ],</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;plugins&quot;</span><span style="color: #000000">: [</span>
+<span style="color: #000000">    </span><span style="color: #A31515">&quot;babel-plugin-macros&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    [</span>
+<span style="color: #000000">      </span><span style="color: #A31515">&quot;@emotion/babel-plugin-jsx-pragmatic&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">      {</span>
+<span style="color: #000000">        </span><span style="color: #0451A5">&quot;export&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;jsx&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">        </span><span style="color: #0451A5">&quot;import&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;__cssprop&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">        </span><span style="color: #0451A5">&quot;module&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;@emotion/react&quot;</span>
+<span style="color: #000000">      }</span>
+<span style="color: #000000">    ],</span>
+<span style="color: #000000">    [</span>
+<span style="color: #000000">      </span><span style="color: #A31515">&quot;@babel/plugin-transform-react-jsx&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">      {</span>
+<span style="color: #000000">        </span><span style="color: #0451A5">&quot;pragma&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;__cssprop&quot;</span>
+<span style="color: #000000">      },</span>
+<span style="color: #000000">      </span><span style="color: #A31515">&quot;emotion-css-prop&quot;</span>
+<span style="color: #000000">    ]</span>
+<span style="color: #000000">  ]</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<p>Adapted from <a href="https://github.com/ben-rogerson/twin.examples/blob/master/storybook-emotion/.storybook/.babelrc">https://github.com/ben-rogerson/twin.examples/blob/master/storybook-emotion/.storybook/.babelrc</a>. A different set of plugins had to be used for Storybook&#39;s <code>.babelrc</code> to work. This is probably because the way Next.js and Storybook transpiles is different, leading to the <code>@emotion/babel-plugin</code> not working for storybook. Presets had to be respecified too as they were overwritten. Also, see <a href="/src/containers/Cards.stories.js"><code>./src/containers/Cards.stories.js</code></a> for an example.</p>
+				<p>Finally, to <code>./.storybook/preview.js</code> add:</p>
+				<pre><code class="language-jsx"><span style="color: #000000">import { GlobalStyles } from &#039;twin.macro&#039;</span>
+
+<span style="color: #000000">export const decorators = [</span>
+<span style="color: #000000">  Story =&gt; (</span>
+<span style="color: #000000">    &lt;div&gt;</span>
+<span style="color: #000000">      {/* */}</span>
+<span style="color: #000000">      &lt;GlobalStyles /&gt;</span>
+<span style="color: #000000">      &lt;Story /&gt;</span>
+<span style="color: #000000">    &lt;/div&gt;</span>
+<span style="color: #000000">  ),</span>
+<span style="color: #000000">]</span>
+</code></pre>
+				<a href="#credits" id="credits" style="color: inherit; text-decoration: none;">
+					<h2>Credits</h2>
+				</a>
+				<p>Many thanks to <a href="https://github.com/ben-rogerson">ben-rogerson</a> for developing twin.macro, if not for which none of this would be possible. I really like the twin.macro + emotionjs library to the point when I tried to switch to a component library, I was actually put off by the relative difficulty of styling things. He had also made several examples of how to use twin.macro with various frameworks, without which it would have taken me much longer to get this to work.</p>
+				<a href="#standards-unfinished" id="standards-unfinished" style="color: inherit; text-decoration: none;">
+					<h2>Standards (unfinished)</h2>
+				</a>
+				<p>Most of my components will have a <code>type</code> and <code>variant</code> prop. <code>type</code> refers to mainly the accent, allowing you to customize which accent is used for the component. <code>variant</code> refers to the style of the component, for example, an outlined button with transparent background versus one that is filled in.</p>
+				<p>The root element of container components will have <code>.root</code> added to them. As for other components, use the browser&#39;s devtools to inspect the classes added. These classes were added to make it easier to style the component from the outside if needed.</p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="modules.html">Exports</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/aesthetic_isogridbackground.html">aesthetic/<wbr>Isogrid<wbr>Background</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/aesthetic_rainbowtext.html">aesthetic/<wbr>Rainbow<wbr>Text</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/aesthetic_scrollhint.html">aesthetic/<wbr>Scroll<wbr>Hint</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/aesthetic_texteffect.html">aesthetic/<wbr>Text<wbr>Effect</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/containers_card.html">containers/<wbr>Card</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/containers_cardgroup.html">containers/<wbr>Card<wbr>Group</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/display_icon.html">display/<wbr>Icon</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/display_lazyimage.html">display/<wbr>Lazy<wbr>Image</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/feedback_toast.html">feedback/<wbr>Toast</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/input_button.html">input/<wbr>Button</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/input_toggle.html">input/<wbr>Toggle</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/nav_nav.html">nav/<wbr>Nav</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/theme_darkthemeprovider.html">theme/<wbr>Dark<wbr>Theme<wbr>Provider</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/theme_basetheme.html">theme/base<wbr>Theme</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/utils_list.html">utils/<wbr>List</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/utils_deviceorientation.html">utils/device<wbr>Orientation</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/utils_orientablesvg.html">utils/orientableSVG</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
