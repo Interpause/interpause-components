@@ -34,6 +34,15 @@ yarn pnpify --sdk vscode
 
 See <https://yarnpkg.com/getting-started/editor-sdks> for other IDEs.
 
+While I have yet to make it installable as a module, one possible approach for now is to add this repository as a remote:
+
+```sh
+git remote add components https://github.com/Interpause/interpause-components.git
+git fetch components
+```
+
+Before doing so however, publish the repository/configure the origin first to prevent accidentally trying to push to this repository.
+
 ## Documentation
 
 Documentation can be found at <https://interpause.github.io/interpause-components>. It was auto-generated using [typedoc](https://typedoc.org/). I will eventually be hosting an interactive documentation/demo using Storybook when the component library is much more complete.
@@ -186,12 +195,11 @@ yarn pnpify --sdk vscode
 # you might want to add to .gitignore some of the generated files like .vscode
 ```
 
-Finally in the generated `.yarnrc.yml` file add:
+If you run into module resolution problems, you can try adding to `.yarnrc.yml`:
 
 ```yaml
 nodeLinker: "pnp"
 pnpMode: "loose"
-# required due to issues with some packages
 ```
 
 ### Setup twin.macro and emotion
