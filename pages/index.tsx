@@ -40,7 +40,7 @@ export default function Home() {
           </a>
         </h1>
 
-        <h2 tw="text-2xl text-center m-0">This is modified version 2!</h2>
+        <h2 tw="text-2xl text-center m-0">Congrats on successfully setting up twin.macro with emotionjs!</h2>
 
         <p tw="text-2xl text-center my-4">
           Get started by editing <code tw="bg-gray-200 rounded text-xl p-1 font-mono">pages/index.tsx</code>
