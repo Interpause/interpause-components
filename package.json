@@ -1,7 +1,15 @@
 {
   "name": "interpause-components",
   "version": "0.1.0",
-  "private": true,
+
+  "description": "ReactJS component library using twin.macro and emotionjs",
+  "keywords": ["react", "typescript", "component-library", "emotionjs", "tailwindcss", "yarn2"],
+  "main": "index.ts",
+  "homepage": "https://github.com/Interpause/interpause-components#readme",
+  "repository": "https://github.com/Interpause/interpause-components",
+  "license": "MIT",
+  "author": "John-Henry Lim <hyphen@interpause.dev>",
+
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -19,10 +27,8 @@
     "twin.macro": "^2.0.8"
   },
   "peerDependencies": {
-    "@emotion/css": ">=11.0.0",
     "@emotion/react": ">=11.0.0",
     "@emotion/styled": ">=11.0.0",
-    "next": ">=9.0.0",
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
   },
