@@ -1,6 +1,6 @@
 import 'twin.macro';
 import Head from 'next/head';
-import { CardData, CardFlexAuto } from '../src/containers/CardGroup';
+import { CardData, SimpleCardFlex } from '../src/containers/CardFlex';
 
 export default function Home() {
   let cards: CardData[] = [
@@ -45,7 +45,7 @@ export default function Home() {
         <p tw="text-2xl text-center my-4">
           Get started by editing <code tw="bg-gray-200 rounded text-xl p-1 font-mono">pages/index.tsx</code>
         </p>
-        <CardFlexAuto cards={cards} />
+        <SimpleCardFlex cards={cards} />
       </main>
 
       <footer tw="flex justify-center items-center w-full h-8 border-t-2 border-gray-300">

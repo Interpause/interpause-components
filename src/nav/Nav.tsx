@@ -20,29 +20,31 @@ export const BaseNavbar = styled.nav`
     css`
       --nav-height: ${height}rem;
     `}
-  ${tw`sticky flex flex-wrap md:flex-nowrap bg-normal-soft md:shadow-md top-0 inset-x-0 z-75`}
+  ${tw`sticky flex flex-wrap md:flex-nowrap bg-white md:shadow-md top-0 inset-x-0 z-75`}
 	transition: height 150ms cubic-bezier(0.4, 0, 0.2, 1);
   height: var(--nav-height);
   > .nav-items {
     ${tw`inline-flex flex-row w-full divide-x-2 my-2 overflow-x-auto`}
   }
+  .dark & { ${tw`bg-black`} }
 `;
 
 /** Styled BaseNavbar that allows NavItems to collapse into dropdown. */
 export const CollapsableNavbar = styled(BaseNavbar)`
   ${mobileScreen} {
-    ${tw`fixed bg-opacity-0`}
+    ${tw`fixed bg-opacity-0!`}
     >.nav-items {
-      ${tw`absolute flex flex-col divide-y divide-x-0 bg-normal-soft transition-transform motion-reduce:transition-none transform-gpu top-0 -z-25 m-0`}
+      ${tw`absolute flex flex-col divide-y divide-x-0 bg-white transition-transform motion-reduce:transition-none transform-gpu top-0 -z-25 m-0`}
       padding-top: var(--nav-height);
+      .dark & { ${tw`bg-black`} }
+      &>.item {
+        ${tw`w-full text-left py-2`}
+      }
     }
     &:not(.opened) {
       > .nav-items {
         ${tw`pointer-events-none -translate-y-full`}
       }
-    }
-    ${NavItem} {
-      ${tw`w-full text-left py-2`}
     }
   }
 `;
@@ -56,13 +58,13 @@ export function NavLink({ route, children, ...props }: NavLinkProps) {
   return (
     <NavItem css={tw`hocus:text-blue-400 cursor-pointer`} {...(props as StyledComponent<HTMLLIElement>)}>
       {children}
-      <a tw="absolute inset-0" href={route} css={tw`hidden`}></a>
+      <a href={route} css={tw`absolute inset-0`}></a>
     </NavItem>
   );
 }
 
 export interface NavbarProps extends HTMLProps<HTMLElement> {
-  /** List of routes to use in Navbar. Uses NavLink. */
+  /** List of routes to use in Navbar. Key is route, value is label. Uses NavLink. */
   routes: Record<string, string>;
   /** List of routes to use in Navbar. Uses NavLink. */
   ItemProps?: HTMLProps<HTMLLIElement>;
@@ -73,7 +75,7 @@ export interface NavbarProps extends HTMLProps<HTMLElement> {
 /** 
  * Complete Navbar component.
  * 
- * @param routes List of routes to use in Navbar. Uses NavLink.
+ * @param routes List of routes to use in Navbar. Key is route, value is label. Uses NavLink.
  * @param ItemProps Additional props to forward to NavItems/NavLinks.
  */
 export function Navbar({ routes, ItemProps, height=4, ...props }: NavbarProps) {
@@ -96,7 +98,7 @@ export function Navbar({ routes, ItemProps, height=4, ...props }: NavbarProps) {
         as="button"
         icon={ICON.menu}
         onClick={navOpener}
-        tw="flex-shrink-0 md:hidden text-white ring-inset ring-2 ring-theme bg-indigo-400 rounded-lg bg-opacity-20! hocus:bg-opacity-60! m-1 p-1"
+        tw="flex-shrink-0 md:hidden text-white ring-inset ring-2 ring-primary bg-indigo-400 rounded-lg bg-opacity-20! hocus:bg-opacity-60! m-1 p-1"
         css={css`
           height: ${(height * 3) / 4}rem;
           width: ${(height * 3) / 4}rem;
@@ -105,12 +107,12 @@ export function Navbar({ routes, ItemProps, height=4, ...props }: NavbarProps) {
       />
       <ul className="nav-items">
         {Object.entries(routes).map(([route, text], i) => (
-          <NavLink route={route} {...ItemProps} key={i} onClick={navOpener}>
+          <NavLink route={route} {...ItemProps} key={i} className="item" onClick={navOpener}>
             {text}
           </NavLink>
         ))}
         <NavItem tw="flex-grow max-w-full hidden lg:inline-flex"></NavItem>
-        <NavItem tw="w-40 flex-none">
+        <NavItem tw="w-40 flex-none" className="item">
           <DarkToggle height={1.25} />
         </NavItem>
       </ul>

@@ -6,41 +6,52 @@
 import { ReactText, useState } from 'react';
 import { BaseTextProps, styleState, BaseTextWithEffect } from './TextEffect';
 
-/** Default config for RainbowText. */
-export const RainbowTextConfig = {
+export interface RainbowTextProps extends Omit<BaseTextProps, 'text' | 'styleStateHook'>{
+  children: ReactText;
   /** Duration of animation in seconds. */
-  duration: 20,
+  duration?: number;
   /** Number of color stops in rainbow gradient, increase to make more accurate gradient. */
-  numStops: 21,
+  numStops?: number;
   /** Saturation of rainbow gradient (HSL colorspace). */
-  saturation: 100,
+  saturation?: number;
   /** Luminosity of rainbow gradient (HSL colorspace). */
-  luminosity: 60,
+  luminosity?: number;
   /** SVG path of pattern. */
+  pattern?: string;
+  /** Height of pattern viewport. */
+  pHeight?: number;
+  /** Width of pattern viewport. */
+  pWidth?: number;
+  /** Size of pattern relative to text in percent. */
+  pSize?: number;
+  /** Color of pattern. */
+  pFill?: string;
+  /** Width of rect used in pattern, should be larger than 100% to transition smoothly. Default allows smooth tessellation. */
+  bgWidth?: number;
+  /** Height of rect used in pattern, just leave at 100%. */
+  bgHeight?: number;
+}
+
+/** Default config for RainbowText. */
+export const DefaultRainbowTextConfig = {
+  duration: 20,
+  numStops: 21,
+  saturation: 100,
+  luminosity: 60,
   pattern:
     'M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z',
-  /** Height of pattern viewport. */
   pHeight: 49,
-  /** Width of pattern viewport. */
   pWidth: 28,
-  /** Size of pattern relative to text in percent. */
   pSize: 50,
-  /** Color of pattern. */
   pFill: '#fff',
-  /** Width of rect used in pattern, should be larger than 100% to transition smoothly. Default allows smooth tessellation. */
   bgWidth: (100 * 49) / 28,
-  /** Height of rect used in pattern, just leave at 100%. */
   bgHeight: 100,
 } as const;
 
-export interface RainbowTextProps extends Omit<BaseTextProps, 'text' | 'styleStateHook'> {
-  config?: Partial<typeof RainbowTextConfig>;
-  children: ReactText;
-}
 /** rainbow text cause why not. */
-export function RainbowText({ children, config, ...props }: RainbowTextProps) {
+export function RainbowText({ children, ...props }: RainbowTextProps) {
   const [state, setState] = useState<styleState>();
-  const conf = { ...RainbowTextConfig, ...config };
+  const conf = { ...DefaultRainbowTextConfig, ...props };
   const {
     duration,
     numStops: N,

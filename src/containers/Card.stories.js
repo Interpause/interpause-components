@@ -4,7 +4,7 @@ import { SimpleCard } from './Card';
 import { accents } from '../theme/baseTheme';
 
 export default {
-  title: 'container/SimpleCard',
+  title: 'container/Card',
   component: SimpleCard,
   argTypes: {
     variant: {
@@ -28,6 +28,8 @@ export default {
   },
 };
 
+const filler = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at libero vitae lectus aliquet porttitor efficitur nec massa. Proin sollicitudin mi semper, blandit mauris et, tincidunt neque. In at tempus arcu.';
+
 const Template = ({ theme, ...args }) => (
   <div className={theme}>
     <SimpleCard {...args} />
@@ -36,30 +38,31 @@ const Template = ({ theme, ...args }) => (
 
 export const Normal = Template.bind({});
 Normal.args = {
-  header: 'Does not have link',
-  body: 'insert lorum ipsum',
-  footer: 'eww feet',
+  header: 'A Card',
+  body: filler,
+  footer: 'Card Footer',
+  onClick: undefined
 };
 
 export const Button = Template.bind({});
 Button.args = {
   header: 'Has button function',
   onClick: () => alert('hi'),
-  body: 'insert lorum ipsum',
-  footer: 'eww feet',
+  body: filler,
+  footer: 'Im a button',
 };
 
 export const Linked = Template.bind({});
 Linked.args = {
   header: 'Has link',
   href: '#',
-  body: 'insert lorum ipsum',
-  footer: 'eww feet',
+  body: filler,
+  footer: 'Im a link',
 };
 
 export const Custom = Template.bind({});
 Custom.args = {
-  header: 'Custom',
-  body: 'insert lorum ipsum',
+  header: <code>Elements are accepted too!</code>,
+  body: <em>{filler}</em>,
   footer: <input type="range"></input>
 };

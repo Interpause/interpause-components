@@ -1,11 +1,11 @@
 /**
- * @file Ways to hold cards.
+ * @file Flex container for Cards.
  * @author John-Henry Lim <hyphen@interpause.dev>
  */
 
 import { ReactNode } from 'react';
 import tw, { styled } from 'twin.macro';
-import { SimpleCard } from './Card';
+import { CardProps, SimpleCard } from './Card';
 
 export type CardData = {
   /** Title of card. */
@@ -16,7 +16,7 @@ export type CardData = {
   href?: string;
 };
 
-/** Apply .card to Card elements in here in order for CardFlex to work correctly. See code for CardFlexAuto as example. Is actually a styled div. */
+/** Apply .card to Card elements in here in order for CardFlex to work correctly. See code for SimpleCardFlex as example. Is actually a styled div. */
 const CardFlex = styled.div`
   ${tw`flex flex-col flex-wrap items-center justify-center sm:(max-w-screen-md flex-row)`}
   &>.card {
@@ -24,16 +24,16 @@ const CardFlex = styled.div`
   }
 `;
 
-export interface CardFlexAutoProps {
+export interface SimpleCardFlexProps extends CardProps {
   cards: CardData[];
   className?: string;
 }
 /** Easily make a CardFlex with the Cards already added to it. */
-export function CardFlexAuto({ cards, ...props }: CardFlexAutoProps) {
+export function SimpleCardFlex({ cards, ...props }: SimpleCardFlexProps) {
   return (
     <CardFlex className={props.className}>
       {cards.map((card, i) => (
-        <SimpleCard header={card.title} body={card.body} footer="click me" href={card.href} className="card" key={i} />
+        <SimpleCard header={card.title} body={card.body} type={props.type} variant={props.variant} footer="click me" href={card.href} className="card" key={i} />
       ))}
     </CardFlex>
   );
