@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>CardFlexAutoProps | interpause-components</title>
+	<title>SimpleCardFlexProps | interpause-components</title>
 	<meta name="description" content="Documentation for interpause-components">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,13 +55,13 @@
 					<a href="../modules.html">interpause-components</a>
 				</li>
 				<li>
-					<a href="../modules/containers_cardgroup.html">containers/CardGroup</a>
+					<a href="../modules/containers_cardflex.html">containers/CardFlex</a>
 				</li>
 				<li>
-					<a href="containers_cardgroup.cardflexautoprops.html">CardFlexAutoProps</a>
+					<a href="containers_cardflex.simplecardflexprops.html">SimpleCardFlexProps</a>
 				</li>
 			</ul>
-			<h1>Interface CardFlexAutoProps</h1>
+			<h1>Interface SimpleCardFlexProps</h1>
 		</div>
 	</div>
 </header>
@@ -72,7 +72,12 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">CardFlexAutoProps</span>
+						<a href="containers_card.cardprops.html" class="tsd-signature-type" data-tsd-kind="Interface">CardProps</a>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">SimpleCardFlexProps</span>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -83,8 +88,10 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="containers_cardgroup.cardflexautoprops.html#cards" class="tsd-kind-icon">cards</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="containers_cardgroup.cardflexautoprops.html#classname" class="tsd-kind-icon">class<wbr>Name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="containers_cardflex.simplecardflexprops.html#cards" class="tsd-kind-icon">cards</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="containers_cardflex.simplecardflexprops.html#classname" class="tsd-kind-icon">class<wbr>Name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="containers_cardflex.simplecardflexprops.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="containers_cardflex.simplecardflexprops.html#variant" class="tsd-kind-icon">variant</a></li>
 							</ul>
 						</section>
 					</div>
@@ -95,10 +102,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="cards" class="tsd-anchor"></a>
 					<h3>cards</h3>
-					<div class="tsd-signature tsd-kind-icon">cards<span class="tsd-signature-symbol">:</span> <a href="../modules/containers_cardgroup.html#carddata" class="tsd-signature-type" data-tsd-kind="Type alias">CardData</a><span class="tsd-signature-symbol">[]</span></div>
+					<div class="tsd-signature tsd-kind-icon">cards<span class="tsd-signature-symbol">:</span> <a href="../modules/containers_cardflex.html#carddata" class="tsd-signature-type" data-tsd-kind="Type alias">CardData</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Interpause/interpause-components/blob/141c00d/src/containers/CardGroup.tsx#L28">src/containers/CardGroup.tsx:28</a></li>
+							<li>Defined in <a href="https://github.com/Interpause/interpause-components/blob/75962e8/src/containers/CardFlex.tsx#L28">src/containers/CardFlex.tsx:28</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -108,7 +115,29 @@
 					<div class="tsd-signature tsd-kind-icon">class<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Interpause/interpause-components/blob/141c00d/src/containers/CardGroup.tsx#L29">src/containers/CardGroup.tsx:29</a></li>
+							<li>Defined in <a href="https://github.com/Interpause/interpause-components/blob/75962e8/src/containers/CardFlex.tsx#L29">src/containers/CardFlex.tsx:29</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="type" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> type</h3>
+					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;primary&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;secondary&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;info&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;trivial&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;good&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;risky&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;bad&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;normal&quot;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="containers_card.cardprops.html">CardProps</a>.<a href="containers_card.cardprops.html#type">type</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/Interpause/interpause-components/blob/75962e8/src/containers/Card.tsx#L14">src/containers/Card.tsx:14</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="variant" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> variant</h3>
+					<div class="tsd-signature tsd-kind-icon">variant<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;outline&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;filled&quot;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="containers_card.cardprops.html">CardProps</a>.<a href="containers_card.cardprops.html#variant">variant</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/Interpause/interpause-components/blob/75962e8/src/containers/Card.tsx#L15">src/containers/Card.tsx:15</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -136,7 +165,7 @@
 						<a href="../modules/containers_card.html">containers/<wbr>Card</a>
 					</li>
 					<li class="current tsd-kind-module">
-						<a href="../modules/containers_cardgroup.html">containers/<wbr>Card<wbr>Group</a>
+						<a href="../modules/containers_cardflex.html">containers/<wbr>Card<wbr>Flex</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="../modules/display_icon.html">display/<wbr>Icon</a>
@@ -178,23 +207,29 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="containers_cardgroup.cardflexautoprops.html" class="tsd-kind-icon">Card<wbr>Flex<wbr>Auto<wbr>Props</a>
+						<a href="containers_cardflex.simplecardflexprops.html" class="tsd-kind-icon">Simple<wbr>Card<wbr>Flex<wbr>Props</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="containers_cardgroup.cardflexautoprops.html#cards" class="tsd-kind-icon">cards</a>
+								<a href="containers_cardflex.simplecardflexprops.html#cards" class="tsd-kind-icon">cards</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="containers_cardgroup.cardflexautoprops.html#classname" class="tsd-kind-icon">class<wbr>Name</a>
+								<a href="containers_cardflex.simplecardflexprops.html#classname" class="tsd-kind-icon">class<wbr>Name</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="containers_cardflex.simplecardflexprops.html#type" class="tsd-kind-icon">type</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="containers_cardflex.simplecardflexprops.html#variant" class="tsd-kind-icon">variant</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-						<a href="../modules/containers_cardgroup.html#carddata" class="tsd-kind-icon">Card<wbr>Data</a>
+						<a href="../modules/containers_cardflex.html#carddata" class="tsd-kind-icon">Card<wbr>Data</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="../modules/containers_cardgroup.html#cardflexauto" class="tsd-kind-icon">Card<wbr>Flex<wbr>Auto</a>
+						<a href="../modules/containers_cardflex.html#simplecardflex" class="tsd-kind-icon">Simple<wbr>Card<wbr>Flex</a>
 					</li>
 				</ul>
 			</nav>

@@ -91,6 +91,12 @@
 <span style="color: #000000">yarn pnpify --sdk vscode</span>
 </code></pre>
 				<p>See <a href="https://yarnpkg.com/getting-started/editor-sdks">https://yarnpkg.com/getting-started/editor-sdks</a> for other IDEs.</p>
+				<p>While I have yet to make it installable as a module, one possible approach for now is to add this repository as a remote:</p>
+				<pre><code class="language-sh"><span style="color: #000000">git remote add components https://github.com/Interpause/interpause-components.git</span>
+<span style="color: #000000">git fetch components</span>
+<span style="color: #008000"># make sure you push to correct repository</span>
+<span style="color: #000000">git push --set-upstream origin main</span>
+</code></pre>
 				<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
 					<h2>Documentation</h2>
 				</a>
@@ -213,10 +219,9 @@
 <span style="color: #008000"># see https://yarnpkg.com/getting-started/editor-sdks for other IDEs</span>
 <span style="color: #008000"># you might want to add to .gitignore some of the generated files like .vscode</span>
 </code></pre>
-				<p>Finally in the generated <code>.yarnrc.yml</code> file add:</p>
+				<p>If you run into module resolution problems, you can try adding to <code>.yarnrc.yml</code>:</p>
 				<pre><code class="language-yaml"><span style="color: #800000">nodeLinker</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;pnp&quot;</span>
 <span style="color: #800000">pnpMode</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;loose&quot;</span>
-<span style="color: #008000"># required due to issues with some packages</span>
 </code></pre>
 				<a href="#setup-twinmacro-and-emotion" id="setup-twinmacro-and-emotion" style="color: inherit; text-decoration: none;">
 					<h3>Setup twin.macro and emotion</h3>
@@ -402,7 +407,7 @@
 						<a href="modules/containers_card.html">containers/<wbr>Card</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/containers_cardgroup.html">containers/<wbr>Card<wbr>Group</a>
+						<a href="modules/containers_cardflex.html">containers/<wbr>Card<wbr>Flex</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/display_icon.html">display/<wbr>Icon</a>
