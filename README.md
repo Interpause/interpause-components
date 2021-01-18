@@ -39,9 +39,9 @@ While I have yet to make it installable as a module, one possible approach for n
 ```sh
 git remote add components https://github.com/Interpause/interpause-components.git
 git fetch components
+# make sure you push to correct repository
+git push --set-upstream origin main
 ```
-
-Before doing so however, publish the repository/configure the origin first to prevent accidentally trying to push to this repository.
 
 ## Documentation
 
