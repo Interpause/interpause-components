@@ -17,7 +17,7 @@ export const NavItem = styled.li`
 export function NavLink({className,...props}:ComponentProps<typeof LinkButton>){
   return (
     <NavItem className={className}>
-      <LinkButton {...props} tw="text-normal hocus:(text-blue-400)" css={css`text-align: inherit`}/>
+      <LinkButton {...props} tw="text-normal hocus:(text-blue-400) p-0" css={css`text-align: inherit`}/>
     </NavItem>
   );
 }
@@ -44,7 +44,7 @@ export const CollapsableNavbar = styled(BaseNavbar)`
   ${mobileScreen} {
     ${tw`fixed bg-opacity-0!`}
     >.nav-list {
-      ${tw`absolute flex flex-col divide-y divide-x-0 bg-white transition-transform motion-reduce:transition-none transform-gpu top-0 -z-25 m-0`}
+      ${tw`absolute flex flex-col divide-y divide-x-0 bg-white shadow-md transition-transform motion-reduce:transition-none transform-gpu top-0 -z-25 m-0`}
       padding-top: var(--nav-height);
       .dark & { ${tw`bg-black`} }
       &>.nav-item {
@@ -66,7 +66,7 @@ export interface NavbarProps extends ComponentProps<'nav'> {
   ItemProps?: ComponentProps<typeof NavLink>;
   /** Height of Navbar in rem. */
   height?: number;
-  /** Component to wrap anchor tags for routing purposes. */
+  /** Component used to wrap anchor tags for routing purposes. */
   RouterWrapper?: ({ children }: any) => JSX.Element;
 }
 //TODO: Implement the navbar context provider for in page hiding of navbar, recustomization by page etc
@@ -74,10 +74,7 @@ export interface NavbarProps extends ComponentProps<'nav'> {
  * Complete Navbar component. For styling purposes:
  * - ul containing NavItems has `.nav-list` applied to it
  * - NavItems have `.nav-item` applied to them
- * 
- * @param routes List of routes to use in Navbar. Key is name, value is route. Uses NavLink.
- * @param ItemProps Additional props to forward to NavItems/NavLinks.
- * @param RouterWrapper Component used to wrap anchor tag for routing.
+ * - The dropdown button has `.nav-opener` applied to it
  * @example
  * ```jsx
  * <Navbar routes={...} RouterWrapper={NextLink}/>
@@ -93,12 +90,13 @@ export function Navbar({ routes, ItemProps, height=4, RouterWrapper, ...props }:
         as="button"
         icon={ICON.menu}
         onClick={navOpener}
-        tw="flex-shrink-0 md:hidden text-white ring-inset ring-2 ring-primary bg-indigo-400 rounded-lg bg-opacity-20! hocus:bg-opacity-60! m-1 p-1"
+        tw="flex-shrink-0 md:hidden text-white ring-inset ring-2 ring-primary bg-primary rounded-lg bg-opacity-20! hocus:bg-opacity-60! m-1 p-1"
         css={css`
           height: ${(height * 3) / 4}rem;
           width: ${(height * 3) / 4}rem;
           backdrop-filter: invert(40%) hue-rotate(60deg);
         `}
+        className="nav-opener"
       />
       <ul className="nav-list">
         {Object.entries(routes).map(([name, route], i) => (

@@ -9,5 +9,6 @@ export enum Orientation {
 }
 
 export interface OrientableSVG extends ComponentProps<'svg'> {
+  /** Rotation of the SVG component in degrees. */
   orientation?: Orientation | number;
 }

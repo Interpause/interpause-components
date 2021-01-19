@@ -7,6 +7,7 @@ import tw, { css, styled } from 'twin.macro';
 import { accentTypes, getAccent } from '../theme/baseTheme';
 import { ListItemProps, useListReducer, ListAction, List, ListProps } from '../utils/List';
 import { SvgIcon, ICON } from '../display/Icon';
+import { rem2px } from '../utils';
 
 export interface ToastProps extends ComponentProps<'div'> {
   type: accentTypes;
@@ -78,7 +79,7 @@ export function Toast({ type, dispatch, id, animState, duration, children, ...pr
         duration:duration,
         children:children,
         // the extra is to get 1 rem in pixels for the top margin
-        _maxHeight:`${rect.height+parseFloat(getComputedStyle(document.documentElement).fontSize)}px`,
+        _maxHeight:`${rect.height+rem2px(1)}px`,
         _isTimeoutSet: true
       }
     });

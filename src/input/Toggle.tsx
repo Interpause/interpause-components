@@ -80,21 +80,21 @@ export interface ToggleProps extends ComponentProps<'label'> {
 /** Toggle component. Provides classes for styling purposes, see example.
  * @example
  * ```jsx
- *   css`
- *     .slider,
- *     .bg {
- *      ${tw`rounded-sm`}
- *     }
- *     .slider {
- *       ${tw`bg-white`}
- *     }
- *     .bg {
- *       ${tw`bg-trivial`}
- *     }
- *     &.on .bg {
- *       ${tw`bg-primary bg-opacity-100`}
- *     }
- *   `;
+ * css`
+ *   .slider,
+ *   .bg {
+ *     ${tw`rounded-sm`}
+ *   }
+ *   .slider {
+ *     ${tw`bg-white`}
+ *   }
+ *   .bg {
+ *     ${tw`bg-trivial`}
+ *   }
+ *   &.on .bg {
+ *     ${tw`bg-primary bg-opacity-100`}
+ *   }
+ * `;
  * ```
  */
 export function Toggle({ toggleHook: [isOn, setOn], label, height = 2, ...props }: ToggleProps) {
@@ -103,7 +103,7 @@ export function Toggle({ toggleHook: [isOn, setOn], label, height = 2, ...props 
   return (
     <ToggleWrapper ref={tRef} height={height} css={defaultStyle} {...(props as StyledComponent<HTMLLabelElement>)}>
       <p className="label">{label ?? ''} </p>
-      <input type="checkbox" checked={isOn} onClick={() => setOn(!isOn)} readOnly></input>
+      <input type="checkbox" checked={isOn} onClick={() => setOn(!isOn)}></input>
       <div className="wrapper">
         <span className="bg" />
         <span className="slider" />

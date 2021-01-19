@@ -50,15 +50,20 @@ export function Button(props: ButtonProps & { onClick?: () => void }) {
   );
 }
 
+export interface LinkButtonProps extends ButtonProps {
+  href?: string;
+  /** Component used to wrap anchor tags for routing purposes. */
+  RouterWrapper?: ({ children }: any) => JSX.Element;
+};
+
 /** 
  * Button component using anchor tag with support for Routers.
- * @param RouterWrapper Component used to wrap anchor tag for routing.
  * @example
  * ```jsx
  * <LinkButton RouterWrapper={NextLink} href="/nextjs">Uses next/router<LinkButton/>
  * ```
  */
-export function LinkButton(props: ButtonProps & { href?: string; RouterWrapper?: ({ children }: any) => JSX.Element }) {
+export function LinkButton(props: LinkButtonProps) {
   const { RouterWrapper } = props;
   const linkElement = (
     <a css={ButtonStyle(props)} className={props.className} href={props.href}>

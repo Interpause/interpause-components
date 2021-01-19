@@ -15,7 +15,6 @@ export const lineStyle = {
 
 /**
  * Creates an animated arrow hinting the user to scroll in that direction.
- * @param orientation Takes either an Orientation or degrees clockwise relative to pointing down.
  */
 export function ScrollHint({ orientation, ...props }: OrientableSVG) {
   return (
