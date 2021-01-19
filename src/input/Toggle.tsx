@@ -2,7 +2,7 @@
  * @file Everything about Toggles.
  * @author John-Henry Lim <hyphen@interpause.dev>
  */
-import { Dispatch, SetStateAction, HTMLProps, useRef, useEffect } from 'react';
+import { Dispatch, SetStateAction, ComponentProps, useRef, useEffect } from 'react';
 import tw, { css, styled } from 'twin.macro';
 import { StyledComponent } from '@emotion/styled';
 
@@ -65,7 +65,7 @@ export const ToggleWrapper = styled.label`
   }
 `;
 
-export interface ToggleProps extends HTMLProps<HTMLLabelElement> {
+export interface ToggleProps extends ComponentProps<'label'> {
   /** Array returned by React.useState(true|false). */
   toggleHook: [boolean, Dispatch<SetStateAction<boolean>>];
   /** Text label for toggle. */
@@ -77,7 +77,26 @@ export interface ToggleProps extends HTMLProps<HTMLLabelElement> {
   /** TODO: implement. */
   type?: never;
 }
-/** Toggle component. Look at defaultStyle for how to customize the toggle using css prop. */
+/** Toggle component. Provides classes for styling purposes, see example.
+ * @example
+ * ```jsx
+ *   css`
+ *     .slider,
+ *     .bg {
+ *      ${tw`rounded-sm`}
+ *     }
+ *     .slider {
+ *       ${tw`bg-white`}
+ *     }
+ *     .bg {
+ *       ${tw`bg-trivial`}
+ *     }
+ *     &.on .bg {
+ *       ${tw`bg-primary bg-opacity-100`}
+ *     }
+ *   `;
+ * ```
+ */
 export function Toggle({ toggleHook: [isOn, setOn], label, height = 2, ...props }: ToggleProps) {
   const tRef = useRef<HTMLLabelElement>(null);
   useEffect(() => tRef.current?.classList[isOn ? 'add' : 'remove']('on'), [isOn]);

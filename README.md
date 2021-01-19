@@ -391,4 +391,4 @@ Many thanks to [ben-rogerson](https://github.com/ben-rogerson) for developing tw
 
 Most of my components will have a `type` and `variant` prop. `type` refers to mainly the accent, allowing you to customize which accent is used for the component. `variant` refers to the style of the component, for example, an outlined button with transparent background versus one that is filled in.
 
-The root element of container components will have `.root` added to them. As for other components, use the browser's devtools to inspect the classes added. These classes were added to make it easier to style the component from the outside if needed.
+All components will pass the `className` prop to the root element, allowing you to style them directly using the `tw` or `css` props. Components that contain other sub-components that makes sense to be stylable will attach classes to those sub-components so that they can be styled from outside. In that case, the classes will be mentioned in the documentation. Else, you could use the browser's debtools to inspect the classes added.

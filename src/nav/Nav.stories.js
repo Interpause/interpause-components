@@ -18,9 +18,9 @@ const Template = ({ ...args }) => (
 export const Normal = Template.bind({});
 Normal.args = {
 	routes:{
-		'#a':'link1',
-		'#b':'link2',
-		'#c':'link3',
-		'#d':'link4'
+		'link1':'#a',
+		'link2':'#b',
+		'link3':'#c',
+		'link4':'#d'
 	}
 };

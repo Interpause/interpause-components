@@ -55,7 +55,7 @@ export const getAccent = (accent: accentTypes) => css`
   }
 `;
 
-/** Default font size for various heading tags. */
+/** Default font size for various heading tags. To override in component, have to do `& h1` for example to be more specific. */
 export const typographyStyle = css`
   body {
     h1 {
@@ -112,7 +112,9 @@ export const typographyStyle = css`
  */ 
 export const baseStyle = css`
   ${typographyStyle}
-
+  *, ::before, ::after {
+    border-color: rgba(var(--hi-color-trivial), 0.4);
+  }
   :root {
     ${themeVars}
     ${tw`text-normal text-center`}

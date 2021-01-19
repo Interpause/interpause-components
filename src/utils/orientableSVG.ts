@@ -1,4 +1,4 @@
-import { SVGProps } from 'react';
+import { ComponentProps } from 'react';
 
 /** All SVG components are designed oriented upwards. */
 export enum Orientation {
@@ -8,6 +8,6 @@ export enum Orientation {
   left = 270,
 }
 
-export interface OrientableSVG extends SVGProps<SVGSVGElement> {
+export interface OrientableSVG extends ComponentProps<'svg'> {
   orientation?: Orientation | number;
 }

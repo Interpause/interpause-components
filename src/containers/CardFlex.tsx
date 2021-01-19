@@ -16,10 +16,13 @@ export type CardData = {
   href?: string;
 };
 
-/** Apply .card to Card elements in here in order for CardFlex to work correctly. See code for SimpleCardFlex as example. Is actually a styled div. */
+/**
+ * Flexbox div to hold cards. For styling purposes:
+ * - apply `.card` to Card components inside CardFlex
+ */
 const CardFlex = styled.div`
   ${tw`flex flex-col flex-wrap items-center justify-center sm:(max-w-screen-md flex-row)`}
-  &>.card {
+  &>.card, &>div {
     ${tw`m-4 w-11/12 md:(w-5/12 h-64) flex-auto`}
   }
 `;
@@ -28,7 +31,10 @@ export interface SimpleCardFlexProps extends CardProps {
   cards: CardData[];
   className?: string;
 }
-/** Easily make a CardFlex with the Cards already added to it. */
+/**
+ * Easily make a CardFlex with the Cards already added to it. For styling purposes:
+ * - Cards in SimpleCardFlex have `.card`
+ */
 export function SimpleCardFlex({ cards, ...props }: SimpleCardFlexProps) {
   return (
     <CardFlex className={props.className}>

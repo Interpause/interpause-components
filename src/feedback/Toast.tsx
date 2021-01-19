@@ -2,13 +2,13 @@
  * @file Animated toasts.
  * @author John-Henry Lim <hyphen@interpause.dev>
  */
-import { createContext, useContext, Dispatch, useEffect, HTMLProps, ForwardedRef } from 'react';
+import { createContext, useContext, Dispatch, useEffect, ComponentProps, ForwardedRef } from 'react';
 import tw, { css } from 'twin.macro';
 import { accentTypes, getAccent } from '../theme/baseTheme';
 import { ListItemProps, useListReducer, ListAction, List, ListProps } from '../utils/List';
 import { SvgIcon, ICON } from '../display/Icon';
 
-export interface ToastProps extends HTMLProps<HTMLDivElement> {
+export interface ToastProps extends ComponentProps<'div'> {
   type: accentTypes;
   duration: number;
 }
@@ -39,7 +39,7 @@ export const getToastStyle = (type: accentTypes) => css`
  * @note timeout.exit is how long it stays in exiting state
  */
 export const DefaultToastAnim = {
-  timeout: { enter: 1, exit: 400 },
+  timeout: { enter: 1, exit: 300 },
   styles: {
     entering: css`
       ${tw`opacity-0 -left-1/2 max-h-0`}
@@ -48,13 +48,13 @@ export const DefaultToastAnim = {
       ${tw`opacity-100 left-0 max-h-20`}
     `,
     exiting: css`
-      ${tw`opacity-0 left-1/2 max-h-0 mt-0`}
+      ${tw`opacity-0 left-1/2 max-h-0`}
     `,
   },
 } as const;
 
 /** Actual Toast component. Usually not used directly. */
-export function Toast({ type, dispatch, ...props }: ListItemProps<ToastProps>, ref: ForwardedRef<HTMLDivElement>) {
+export function Toast({ type, dispatch, ...props }: ListItemProps<ToastProps>, ref: ForwardedRef<any>) {
   const delToast = () => dispatch({ type: 'delItem', id: props.id });
   useEffect(() => {
     const id = setTimeout(delToast, props.duration);

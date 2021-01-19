@@ -2,7 +2,7 @@
  * @file Generic List to easily make animated lists of things. See Toast.tsx for example usage.
  * @author John-Henry Lim <hyphen@interpause.dev>
  */
-import { createRef, Dispatch, ForwardedRef, forwardRef, HTMLProps, useReducer } from 'react';
+import { createRef, Dispatch, ForwardedRef, forwardRef, ComponentProps, useReducer } from 'react';
 import 'twin.macro';
 import { SerializedStyles } from '@emotion/react';
 import { Transition, TransitionGroup } from 'react-transition-group';
@@ -52,11 +52,11 @@ export interface AnimProps {
   };
 }
 
-export interface ListProps<ItemType> extends HTMLProps<HTMLDivElement> {
+export interface ListProps<ItemType> extends ComponentProps<'div'> {
   /** Access to the List reducer and state. */
   reducerHook: [ListState<ItemType>, Dispatch<ListAction<ItemType>>];
   /** Component used as the List item. Will be wrapped by React.ForwardRef. */
-  ListItemComponent: (props: ListItemProps<ItemType>, ref: ForwardedRef<HTMLDivElement>) => JSX.Element;
+  ListItemComponent: (props: ListItemProps<ItemType>, ref: ForwardedRef<any>) => JSX.Element;
   /** Properties used to animate List items. */
   AnimProps?: AnimProps;
 }
@@ -82,7 +82,7 @@ export function List<ItemType>({ reducerHook, ListItemComponent, AnimProps, ...p
     <div {...props}>
       <TransitionGroup component={null}>
         {Object.entries(state).map(([key, item]) => {
-          const itemRef = createRef<HTMLDivElement>();
+          const itemRef = createRef<any>();
           return (
             <Transition nodeRef={itemRef} key={key} timeout={AnimProps?.timeout ?? 0}>
               {(animState) => (

@@ -1,9 +1,9 @@
 /**
- * @file Everything about Icons.
+ * @file Everything about Icons. TODO: material icons
  * @author John-Henry Lim <hyphen@interpause.dev>
  */
+
 import tw, { css, styled } from 'twin.macro';
-import { SerializedStyles } from '@emotion/react';
 import { OrientableSVG } from '../utils/orientableSVG';
 
 /** Enum containing SVG paths for each SvgIcon. */
@@ -21,35 +21,38 @@ export enum ICON {
 
 /** Internal styled figure. */
 export const IconWrapper = styled.figure`
-  ${tw`relative inline-block flex-none m-0.5`}
+  ${tw`relative inline-block flex-none m-0.5 w-8`}
   ${({ orientation }: { orientation?: number; href?: string }) =>
     css`
       transform: rotate(${orientation ?? 0}deg);
     `}
 `;
 
-export type IconProps = ({ icon: ICON } & OrientableSVG) & {
+export interface SvgIconProps extends OrientableSVG {
   as?: keyof JSX.IntrinsicElements;
-  href?: string;
   /** Icon label. */
   label?: string;
-  /** Style to apply to label. */
-  labelStyle?: SerializedStyles;
-};
-/** SvgIcon component, needs height and width styles to scale properly. */
-export function SvgIcon({ orientation, className, href, as, label, labelStyle, onClick, ...props }: IconProps) {
+  /** Icon to use. */
+  icon: ICON;
+}
+
+/**
+ * SvgIcon component. For styling purposes:
+ * - figcaption has `.label`
+ */
+export function SvgIcon({ orientation, className, href, as, icon, label, onClick, ...props }: SvgIconProps) {
   return (
     <IconWrapper
       as={as}
-      className={`${className} group`}
+      className={className}
       orientation={orientation}
       href={href}
       onClick={onClick as any}
     >
       <svg viewBox="0 0 1024 1024" {...props}>
-        <path strokeLinecap="round" strokeLinejoin="round" fill="currentColor" d={props.icon} />
+        <path strokeLinecap="round" strokeLinejoin="round" fill="currentColor" d={icon} />
       </svg>
-      <figcaption css={labelStyle}>{label}</figcaption>
+      <figcaption className="label">{label}</figcaption>
     </IconWrapper>
   );
 }

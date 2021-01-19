@@ -59,10 +59,15 @@ export type SimpleCardProps = CardProps & {
       }
   );
 
-/** Easily make a complete Card. */
+/**
+ * Easily make a complete Card. For styling purposes:
+ * - CardHeader has `.header`
+ * - CardBody has `.body`
+ * - CardFooter has `.footer`
+ */
 export function SimpleCard(props: SimpleCardProps) {
   return (
-    <Card className={`${props.className} wrapper`} type={props.type} variant={props.variant}>
+    <Card className={props.className} type={props.type} variant={props.variant}>
       <CardHeader className="header">
         {isValidElement(props.header) ? props.header : <h4>{props.header}</h4>}
       </CardHeader>

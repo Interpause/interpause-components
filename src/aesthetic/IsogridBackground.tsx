@@ -10,7 +10,8 @@ let rand = () => 0.5;
 /** Hex color string e.g. #69420f. */
 export type HexColor = string; // `#${string}`; type template literals are broken on typescript 4.1.3, and for some reason yarn cant install the beta version with some error I cannot resolve
 /** Config for SVG generation. */
-export interface IsogridConfig {
+export interface IsogridProps {
+  className: string;
   /** Number of rows of triangles generated. */
   rows: number;
   /** Number of columns of triangles generated. */
@@ -28,7 +29,7 @@ export interface IsogridConfig {
   /** Seed used for RNG. */
   randSeed: number;
 }
-export type IsogridKeys = keyof IsogridConfig;
+export type IsogridKeys = keyof IsogridProps;
 
 /** Properties each animated triangle has. */
 export interface TriProps {
@@ -41,7 +42,8 @@ export interface TriProps {
 }
 
 /** Default config for the generated background. */
-export const bgDefaults: Readonly<IsogridConfig> = {
+export const bgDefaults: Readonly<IsogridProps> = {
+  className: '',
   rows: 10,
   cols: 4,
   minSpeed: 20,
@@ -71,13 +73,13 @@ export const bgDefaults: Readonly<IsogridConfig> = {
  * @param conf The generation config.
  * @returns Smart shuffled copy of conf.colors.
  */
-export function smartShuffle(conf: IsogridConfig, above?: HexColor, left?: HexColor) {
+export function smartShuffle(conf: IsogridProps, above?: HexColor, left?: HexColor) {
   let frndarr = conf.colors.slice();
   let shuffled: HexColor[] = [];
 
   //assuming its in list, highly likely considering context of usage
-  if (rand() < conf.randomness && typeof above !== 'undefined') frndarr.splice(frndarr.indexOf(above), 1);
-  if (rand() < conf.randomness && typeof left !== 'undefined') frndarr.splice(frndarr.indexOf(left), 1);
+  if (above && rand() < conf.randomness) frndarr.splice(frndarr.indexOf(above), 1);
+  if (left && rand() < conf.randomness) frndarr.splice(frndarr.indexOf(left), 1);
 
   shuffled.push(frndarr[Math.floor(rand() * frndarr.length)]);
   let nrndarr = conf.colors.slice();
@@ -98,7 +100,7 @@ export function smartShuffle(conf: IsogridConfig, above?: HexColor, left?: HexCo
  * @param conf The generation config.
  * @returns Randomly generated TriProps (excluding points).
  */
-export function genTriProps(conf: IsogridConfig, above?: HexColor, left?: HexColor) {
+export function genTriProps(conf: IsogridProps, above?: HexColor, left?: HexColor) {
   let r_seq = smartShuffle(conf, above, left);
   r_seq.push(r_seq.slice(0, 1)[0]);
   return {
@@ -120,13 +122,13 @@ export function Triangle({ colorSeq, speed, points }: TriProps) {
 import { memo } from 'react';
 /** Generates SVG component. */
 export const IsogridBackground = memo(
-  (props?: Partial<IsogridConfig>) => {
-    let conf: IsogridConfig = JSON.parse(JSON.stringify(bgDefaults));
-    (Object.entries(props ?? {}) as [IsogridKeys, any][]).forEach(([k, v]) => (conf[k] = v));
+  (props?: Partial<IsogridProps>) => {
+    let conf:IsogridProps = JSON.parse(JSON.stringify(bgDefaults));
+    (Object.entries(props ?? {}) as [IsogridKeys, any][]).forEach(([k, v]) => {(conf as any)[k] = v});
 
     /** Base of triangles in SVG units. */
     const tlen = 100;
-    /** Height of triangles in SVG units, current value forms equilateral triangles. TODO: consider effects of changing thgt (non-equilateral triangles). */
+    /** Height of triangles in SVG units, current value forms equilateral triangles. */
     const thgt = (tlen / 2) * 1.732050808;
     /** Length of gap between triangles in SVG units. */
     let glen = (tlen / 2) * conf.gapRatio;
@@ -206,7 +208,7 @@ export const IsogridBackground = memo(
     }
 
     return (
-      <svg viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="xMidYMid slice" height="100%" width="100%">
+      <svg viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="xMidYMid slice" height="100%" width="100%" className={conf.className}>
         {triangles}
       </svg>
     );

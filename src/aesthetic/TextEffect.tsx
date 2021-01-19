@@ -47,27 +47,27 @@ export function BaseTextWithEffect({ orientation, text, children, styleStateHook
       font: font,
     });
   }, [text, props.className]);
-
-  if (typeof state === 'undefined')
-    return <span ref={fontRef} className={props.className} style={{ visibility: 'hidden' }}></span>;
-
-  return (
-    <svg
-      ref={fontRef}
-      viewBox={`0 0 ${state.width} ${state.height}`}
-      transform={`rotate(${orientation ?? 0} 0 0)`}
-      {...props}
-    >
-      {children}
-      <text
-        x="50%"
-        textAnchor="middle"
-        dominantBaseline="text-before-edge"
-        style={{ font: state.font }}
-        fill="url(#pattern)"
+    
+  if (state)
+    return (
+      <svg
+        ref={fontRef}
+        viewBox={`0 0 ${state.width} ${state.height}`}
+        transform={`rotate(${orientation ?? 0} 0 0)`}
+        {...props}
       >
-        {text}
-      </text>
-    </svg>
-  );
+        {children}
+        <text
+          x="50%"
+          textAnchor="middle"
+          dominantBaseline="text-before-edge"
+          style={{ font: state.font }}
+          fill="url(#pattern)"
+        >
+          {text}
+        </text>
+      </svg>
+    );
+
+  return <span ref={fontRef} className={props.className} style={{ visibility: 'hidden' }}></span>;
 }

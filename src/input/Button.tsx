@@ -32,7 +32,7 @@ export const ButtonStyle = (props: ButtonProps) => css`
 
 	${props.variant == 'text' &&
   css`
-    ${tw`hocus:underline bg-opacity-0`}
+    ${tw`hocus:underline bg-opacity-0 rounded-none`}
   `}
 
 	${(props.variant ?? 'filled') == 'filled' &&
@@ -50,9 +50,13 @@ export function Button(props: ButtonProps & { onClick?: () => void }) {
   );
 }
 
-/** Button component using anchor tag with support for Routers.
+/** 
+ * Button component using anchor tag with support for Routers.
  * @param RouterWrapper Component used to wrap anchor tag for routing.
- * @example <LinkButton RouterWrapper={NextLink} href="/nextjs">Uses next/router<LinkButton/>
+ * @example
+ * ```jsx
+ * <LinkButton RouterWrapper={NextLink} href="/nextjs">Uses next/router<LinkButton/>
+ * ```
  */
 export function LinkButton(props: ButtonProps & { href?: string; RouterWrapper?: ({ children }: any) => JSX.Element }) {
   const { RouterWrapper } = props;
