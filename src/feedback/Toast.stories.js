@@ -51,5 +51,5 @@ export const Normal = Template.bind({});
 Normal.args = {
   message: 'hello world',
   type: 'info',
-  duration: 1000,
+  duration: 3000,
 };

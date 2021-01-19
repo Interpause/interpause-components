@@ -71,6 +71,8 @@ export type ListItemProps<ItemType> = {
   dispatch: Dispatch<ListAction<ItemType>>;
   /** Used to refer to the List item when dispatching to the store. */
   id: string;
+  /** Passes the transition state to the ListItem if handling animation itself. */
+  animState: string;
 } & ItemType;
 
 /**
@@ -86,13 +88,14 @@ export function List<ItemType>({ reducerHook, ListItemComponent, AnimProps, ...p
           const itemRef = createRef<any>();
           return (
             <Transition nodeRef={itemRef} key={key} timeout={AnimProps?.timeout ?? 0}>
-              {(animState) => (
+              {(animState:string) => (
                 //@ts-ignore some type-checking bug that expectedly comes around when it gets so complex
                 <Item
                   ref={itemRef}
                   {...item}
                   dispatch={dispatch}
                   css={AnimProps && AnimProps.styles[animState]}
+                  animState={animState}
                   id={key}
                 />
               )}
