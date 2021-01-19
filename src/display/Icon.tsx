@@ -21,7 +21,6 @@ export enum ICON {
 
 /** Internal styled figure. */
 export const IconWrapper = styled.figure`
-  ${tw`relative inline-block flex-none m-0.5 w-8`}
   ${({ orientation }: { orientation?: number; href?: string }) =>
     css`
       transform: rotate(${orientation ?? 0}deg);
@@ -44,6 +43,7 @@ export function SvgIcon({ orientation, className, href, as, icon, label, onClick
   return (
     <IconWrapper
       as={as}
+      tw="relative inline-block flex-none m-0.5 w-8"
       className={className}
       orientation={orientation}
       href={href}

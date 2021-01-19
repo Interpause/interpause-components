@@ -3,7 +3,6 @@
  * @author John-Henry Lim <hyphen@interpause.dev>
  */
 import { createRef, Dispatch, ForwardedRef, forwardRef, ComponentProps, useReducer } from 'react';
-import 'twin.macro';
 import { SerializedStyles } from '@emotion/react';
 import { Transition, TransitionGroup } from 'react-transition-group';
 
@@ -44,11 +43,17 @@ export const useListReducer = <ItemType,>() =>
     }
   }, {});
 
-/** Properties required to animate List items. */
+/** 
+ * Properties required to animate List items. When first added, items are briefly in the `exited` state before shifting to `entering`. Hence, initial style should be in `exited`. This is possible because when the item actually exits, it skips the `exited` state.
+ * 
+ * @note timeout.appear seems to do nothing & defaults to timeout.enter anyways.
+ * @note timeout.enter is how long it stays in entering state.
+ * @note timeout.exit is how long it stays in exiting state.
+ */
 export interface AnimProps {
   timeout: number | { enter?: number; exit?: number; appear?: number };
   styles: {
-    [key: string]: SerializedStyles;
+    [state:string]:SerializedStyles;
   };
 }
 
@@ -70,11 +75,7 @@ export type ListItemProps<ItemType> = {
 
 /**
  * List component. See Toast.tsx for usage example.
- * 
- * @param ListItemComponent Component used as the List item.
- * @param AnimProps Properties used to animate List items.
- * @param reducerHook Access to the List reducer and state.
- * */
+ */
 export function List<ItemType>({ reducerHook, ListItemComponent, AnimProps, ...props }: ListProps<ItemType>) {
   const [state, dispatch] = reducerHook;
   const Item = forwardRef(ListItemComponent);

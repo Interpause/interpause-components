@@ -3,7 +3,7 @@
  * @author John-Henry Lim <hyphen@interpause.dev>
  */
 import { createContext, useContext, Dispatch, useEffect, ComponentProps, ForwardedRef } from 'react';
-import tw, { css } from 'twin.macro';
+import tw, { css, styled } from 'twin.macro';
 import { accentTypes, getAccent } from '../theme/baseTheme';
 import { ListItemProps, useListReducer, ListAction, List, ListProps } from '../utils/List';
 import { SvgIcon, ICON } from '../display/Icon';
@@ -14,7 +14,7 @@ export interface ToastProps extends ComponentProps<'div'> {
 }
 /** Default Toast props. */
 export const DefaultToastProps = {
-  type: 'normal',
+  type: 'primary',
   duration: 10000,
 } as const;
 
@@ -26,30 +26,29 @@ export const ToastContext = createContext<Dispatch<ListAction<ToastProps>>>(() =
 /** Returns the style for a Toast based on its type. */
 export const getToastStyle = (type: accentTypes) => css`
   ${getAccent(type)}
-  ${tw`relative flex flex-row rounded border-2 ml-auto lg:max-w-2xl motion-reduce:transition-none overflow-hidden mt-1`}
-  transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1), left 200ms cubic-bezier(0.4, 0, 0.2, 1), max-height 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  ${tw`flex flex-row flex-shrink-0 rounded border-2 lg:max-w-2xl ml-auto overflow-hidden mt-1`}
+  
 `;
 
-/**
- * Default animation for Toasts.
- * 
- * @note styles.exit never shows up as component is removed at that stage.
- * @note timeout.appear seems to do nothing & defaults to timeout.enter anyways.
- * @note timeout.enter is how long it stays in entering state.
- * @note timeout.exit is how long it stays in exiting state
- */
+/** Workaround to have a margin between toasts but smoothly animate height anyways. */
+export const ToastAnimContainer = styled.div`
+  ${tw`relative flex flex-col-reverse overflow-visible motion-reduce:transition-none`}
+  transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1), left 200ms cubic-bezier(0.4, 0, 0.2, 1) 50ms, max-height 300ms cubic-bezier(0.4, 0, 0.2, 1);
+`;
+
+/** Default animation for Toasts. */
 export const DefaultToastAnim = {
-  timeout: { enter: 1, exit: 300 },
+  timeout: { enter: 0, exit: 300 },
   styles: {
     entering: css`
       ${tw`opacity-0 -left-1/2 max-h-0`}
     `,
     entered: css`
-      ${tw`opacity-100 left-0 max-h-20`}
+      ${tw`opacity-100 left-0 max-h-16`}
     `,
     exiting: css`
       ${tw`opacity-0 left-1/2 max-h-0`}
-    `,
+    `
   },
 } as const;
 
@@ -61,15 +60,17 @@ export function Toast({ type, dispatch, ...props }: ListItemProps<ToastProps>, r
     return () => clearTimeout(id);
   }, [props.duration]);
   return (
-    <div ref={ref} css={getToastStyle(type)} {...props}>
-      <span tw="p-1">{props.children}</span>
-      <SvgIcon
-        as="button"
-        icon={ICON.cross}
-        tw="flex-none w-4 mr-1 ml-2 self-stretch opacity-60 hocus:opacity-100"
-        onClick={delToast}
-      />
-    </div>
+    <ToastAnimContainer ref={ref} {...props}>
+      <div css={getToastStyle(type)}>
+        <span tw="p-1">{props.children}</span>
+        <SvgIcon
+          as="button"
+          icon={ICON.cross}
+          tw="flex-none w-4 mr-1 ml-2 self-stretch opacity-60 hocus:opacity-100"
+          onClick={delToast}
+        />
+      </div>
+    </ToastAnimContainer>
   );
 }
 
@@ -79,7 +80,7 @@ export function ToastWrapper(props: Omit<ListProps<ToastProps>, 'ListItemCompone
   return (
     <ToastContext.Provider value={dispatch}>
       <List<ToastProps>
-        tw="fixed flex flex-col justify-end inset-x-2 bottom-2 lg:left-auto z-100"
+        tw="fixed flex flex-col justify-end right-2 bottom-2 ml-2 z-100"
         AnimProps={DefaultToastAnim}
         ListItemComponent={Toast}
         reducerHook={[state, dispatch]}
