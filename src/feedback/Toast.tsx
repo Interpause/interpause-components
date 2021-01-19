@@ -2,7 +2,7 @@
  * @file Animated toasts.
  * @author John-Henry Lim <hyphen@interpause.dev>
  */
-import { createContext, useContext, Dispatch, useEffect, ComponentProps, ForwardedRef, useRef, useState, useLayoutEffect } from 'react';
+import { createContext, useContext, Dispatch, ComponentProps, ForwardedRef, useRef, useLayoutEffect } from 'react';
 import tw, { css, styled } from 'twin.macro';
 import { accentTypes, getAccent } from '../theme/baseTheme';
 import { ListItemProps, useListReducer, ListAction, List, ListProps } from '../utils/List';
@@ -11,11 +11,15 @@ import { SvgIcon, ICON } from '../display/Icon';
 export interface ToastProps extends ComponentProps<'div'> {
   type: accentTypes;
   duration: number;
+  _maxHeight: string|undefined;
+  _isTimeoutSet: boolean;
 }
 /** Default Toast props. */
 export const DefaultToastProps = {
   type: 'primary',
   duration: 10000,
+  _maxHeight: undefined, 
+  _isTimeoutSet: false
 } as const;
 
 /** React context used to hold dispatch for making Toasts. */
@@ -34,7 +38,7 @@ export const getToastStyle = (type: accentTypes) => css`
 export const ToastAnimContainer = styled.div`
   ${tw`relative flex flex-col-reverse overflow-visible motion-reduce:transition-none`}
   ${tw` opacity-0 max-h-0`}
-  transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1), left 200ms cubic-bezier(0.4, 0, 0.2, 1) 50ms, max-height 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1), left 300ms cubic-bezier(0.4, 0, 0.2, 1), max-height 300ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
 /** Default animation for Toasts. */
@@ -54,24 +58,36 @@ export const DefaultToastAnim = {
 } as const;
 
 /** Actual Toast component. Usually not used directly. */
-export function Toast({ type, dispatch, animState, ...props }: ListItemProps<ToastProps>, ref: ForwardedRef<any>) {
-  const delToast = () => dispatch({ type: 'delItem', id: props.id });
-  const [ maxHeight, setMaxHeight ] = useState('999rem'); // infinite initial max height fixes it
+export function Toast({ type, dispatch, id, animState, duration, children, ...props }: ListItemProps<ToastProps>, ref: ForwardedRef<any>) {
+  const delToast = () => dispatch({ type: 'delItem', id: id });
   const toastRef = useRef<HTMLDivElement>(null);
-  
-  useEffect(() => { setTimeout(delToast, props.duration) }, []);
 
   useLayoutEffect(() => {
     const toastDiv = toastRef.current;
-    if(toastDiv == null) return;
+    if(toastDiv == null || props._maxHeight) return;
+    if(!props._isTimeoutSet) setTimeout(delToast, duration);
     const rect = toastDiv.getBoundingClientRect();
-    // the extra is to get 1 rem in pixels for the top margin
-    setMaxHeight(`${rect.height+parseFloat(getComputedStyle(document.documentElement).fontSize)}px`)
-  }, [JSON.stringify(props.children)]);
+    
+    // adds maxHeight info among others to parent reducer where they escape rerender
+    dispatch({
+      type: 'addItem',
+      id: id,
+      data: {
+        ...props,
+        type:type,
+        duration:duration,
+        children:children,
+        // the extra is to get 1 rem in pixels for the top margin
+        _maxHeight:`${rect.height+parseFloat(getComputedStyle(document.documentElement).fontSize)}px`,
+        _isTimeoutSet: true
+      }
+    });
+  }, []); // component rerenders anyways
+
   return (
-    <ToastAnimContainer ref={ref} {...props} css={(animState==="entered")&&css`max-height:${maxHeight}!important;`}>
+    <ToastAnimContainer ref={ref} {...props} css={(animState==="entered")&&css`max-height:${props._maxHeight??'999rem'}!important;`}>
       <div ref={toastRef} css={getToastStyle(type)}>
-        <span tw="p-1">{props.children}</span>
+        <span tw="p-1">{children}</span>
         <SvgIcon
           as="button"
           icon={ICON.cross}
