@@ -4,7 +4,7 @@
  */
 import React, { ComponentProps, useRef } from 'react';
 import tw, { css, styled } from 'twin.macro';
-import { SvgIcon, ICON } from '../display/Icon';
+import { SvgIcon, ICON } from '../display/SvgIcon';
 import { mobileScreen } from '../utils/deviceOrientation';
 import { DarkToggle } from '../theme/DarkThemeProvider';
 import { LinkButton } from '../input';

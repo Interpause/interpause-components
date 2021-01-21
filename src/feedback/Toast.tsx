@@ -6,7 +6,7 @@ import { createContext, useContext, Dispatch, ComponentProps, ForwardedRef, useR
 import tw, { css, styled } from 'twin.macro';
 import { accentTypes, getAccent } from '../theme/baseTheme';
 import { ListItemProps, useListReducer, ListAction, List, ListProps } from '../utils/List';
-import { SvgIcon, ICON } from '../display/Icon';
+import { SvgIcon, ICON } from '../display/SvgIcon';
 import { rem2px } from '../utils';
 
 export interface ToastProps extends ComponentProps<'div'> {
@@ -67,6 +67,7 @@ export function Toast({ type, dispatch, id, animState, duration, children, ...pr
     const toastDiv = toastRef.current;
     if(toastDiv == null || props._maxHeight) return;
     if(!props._isTimeoutSet) setTimeout(delToast, duration);
+    // NOTE: Rect may change on viewport resize, but as long as the number of lines dont increase, toast looks fine hence resizeListener not used
     const rect = toastDiv.getBoundingClientRect();
     
     // adds maxHeight info among others to parent reducer where they escape rerender
@@ -78,12 +79,12 @@ export function Toast({ type, dispatch, id, animState, duration, children, ...pr
         type:type,
         duration:duration,
         children:children,
-        // the extra is to get 1 rem in pixels for the top margin
+        // the top margin is 1rem
         _maxHeight:`${rect.height+rem2px(1)}px`,
         _isTimeoutSet: true
       }
     });
-  }, []); // component rerenders anyways
+  }, []); // effect seems to run on every rerender caused by the parent List rerendering...
 
   return (
     <ToastAnimContainer ref={ref} {...props} css={(animState==="entered")&&css`max-height:${props._maxHeight??'999rem'}!important;`}>

@@ -3,8 +3,7 @@
  * @author John-Henry Lim <hyphen@interpause.dev>
  */
 
-import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
-import { OrientableSVG } from '../utils/orientableSVG';
+import { ComponentProps, Dispatch, SetStateAction, useEffect, useRef } from 'react';
 
 /** Used to store height, width and font of text to properly style the SVG. */
 export interface styleState {
@@ -13,12 +12,15 @@ export interface styleState {
   font: string;
 }
 
-export interface BaseTextProps extends OrientableSVG {
+export interface BaseTextProps extends ComponentProps<'svg'> {
+  /** Rotation of the SVG component in degrees. */
+  orientation?: number;
   /** Text used in effect. */
   text: string;
   /** Allows styleState to be passed to the parent component to style. */
   styleStateHook: [styleState | undefined, Dispatch<SetStateAction<styleState | undefined>>];
 }
+
 /** Internal component for SVG text with special effects. */
 export function BaseTextWithEffect({ orientation, text, children, styleStateHook, ...props }: BaseTextProps) {
   const [state, setState] = styleStateHook;

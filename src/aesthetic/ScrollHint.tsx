@@ -3,7 +3,7 @@
  * @author John-Henry Lim <hyphen@interpause.dev>
  */
 
-import { OrientableSVG } from '../utils/orientableSVG';
+import { ComponentProps } from "react";
 
 /** Hardcoded style of stroke used in SVG. */
 export const lineStyle = {
@@ -13,10 +13,15 @@ export const lineStyle = {
   fill: 'none',
 } as const;
 
+export interface ScrollHintProps extends ComponentProps<'svg'> {
+  /** Rotation of the SVG component in degrees. */
+  orientation?: number;
+}
+
 /**
  * Creates an animated arrow hinting the user to scroll in that direction.
  */
-export function ScrollHint({ orientation, ...props }: OrientableSVG) {
+export function ScrollHint({ orientation, ...props }: ScrollHintProps) {
   return (
     <svg viewBox="0 0 100 160" transform={`rotate(${orientation ?? 0} 0 0)`} {...props}>
       <g>

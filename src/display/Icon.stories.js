@@ -1,27 +1,20 @@
 import React from 'react';
 
-import { SvgIcon, ICON } from './Icon';
+import { Icon } from './Icon';
 
 export default {
-  title: 'display/SvgIcon',
-	component: SvgIcon,
-	argTypes: {
-		icon: {
-			control: {
-				type: 'select',
-				options: ICON
-			}
-		}
-	}
+  title: 'display/MaterialIcon',
+	component: Icon
 };
 
 const Template = ({ theme, ...args }) => (
   <div className={theme}>
-    <SvgIcon {...args} style={{width:'5rem'}} />
+    <Icon {...args} style={{width:'5rem'}} />
+		<Icon style={{width:'5rem'}}>home</Icon>
   </div>
 );
 
 export const Normal = Template.bind({});
 Normal.args = {
-	icon:ICON.github
+	children:'home'
 };
