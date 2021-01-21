@@ -43,7 +43,7 @@ export function SvgIcon({ orientation, className, href, as, icon, label, onClick
       className={className}
       orientation={orientation}
       href={href}
-      onClick={onClick as any}
+      onClick={onClick}
       {...props}
     >
       <svg viewBox="0 0 1024 1024">

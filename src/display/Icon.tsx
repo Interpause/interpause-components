@@ -60,7 +60,7 @@ export function Icon({ orientation, className, children, href, as, label, onClic
       className={className}
       orientation={orientation}
       href={href}
-      onClick={onClick as any}
+      onClick={onClick}
       {...props}
     >
       <i ref={iconRef} tw="align-bottom" className="material-icons">{children}</i>

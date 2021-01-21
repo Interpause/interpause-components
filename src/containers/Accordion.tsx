@@ -26,10 +26,11 @@ export interface AccordionProps {
 export function Accordion(props:AccordionProps){
 	const [isOpen, setOpen] = useState(false);
 	const [openHeight, setOpenHeight] = useState('999rem');
-	const [closeHeight, setCloseHeight] = useState('999rem');
+	const [closeHeight, setCloseHeight] = useState('1rem');
 
 	const bodyRef = useRef<HTMLDivElement>(null);
 	const headerRef = useRef<HTMLElement>(null);
+	const summaryRef = useRef<HTMLDetailsElement>(null);
 	const accordionOpener = (e:MouseEvent) => {
 		e.preventDefault();
 		setOpen(!isOpen);
@@ -38,13 +39,17 @@ export function Accordion(props:AccordionProps){
 	useEffect(() => {
 		const bodyDiv = bodyRef.current;
 		const headerDiv = headerRef.current;
-		if(bodyDiv == null || headerDiv == null) return;
+		const parentDiv = summaryRef.current;
+		if(bodyDiv == null || headerDiv == null || parentDiv == null) return;
 		
 		const calculateHeights = ()=>{
+			parentDiv.style.transition = 'none';
+			// body cannot be display:hidden first else this wont work
 			const bodyRect = bodyDiv.getBoundingClientRect();
 			const headerRect = headerDiv.getBoundingClientRect();
 			setCloseHeight(`${headerRect.height}px`)
 			setOpenHeight(`${bodyRect.height+headerRect.height}px`);
+			setTimeout(()=>parentDiv.style.transition = 'max-height 300ms cubic-bezier(0.4, 0, 0.2, 1)',20);
 		}
 		calculateHeights();
 		window.addEventListener('resize', calculateHeights);
@@ -52,15 +57,18 @@ export function Accordion(props:AccordionProps){
   }, [JSON.stringify(props.body),JSON.stringify(props.header)]);
 
 	return (
-		<details css={css`
-			${tw`relative overflow-hidden text-left`}
-			transition: max-height 300ms cubic-bezier(0.4, 0, 0.2, 1);
+		<details ref={summaryRef} css={css`
+			${tw`relative overflow-hidden text-left cursor-pointer`}
 			list-style: none;
 			max-height:${isOpen?openHeight:closeHeight};
 			&>.header{
 				${isOpen&&getAccent(props.type??'primary')}
 				${tw`flex flex-row p-1 border-2 rounded w-full transition-colors`}
 				::-webkit-details-marker { display:none }
+			}
+			&>.body{
+				${tw`relative p-1 -top-1 border-2 border-t-0 transition-colors border-trivial border-opacity-0`}
+				${isOpen&&tw`border-opacity-40`}
 			}
 		`} open>
 			<summary ref={headerRef} className="header" onClick={accordionOpener}>
