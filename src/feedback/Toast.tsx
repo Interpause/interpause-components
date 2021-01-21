@@ -8,6 +8,7 @@ import { accentTypes, getAccent } from '../theme/baseTheme';
 import { ListItemProps, useListReducer, ListAction, List, ListProps } from '../utils/List';
 import { SvgIcon, ICON } from '../display/SvgIcon';
 import { rem2px } from '../utils';
+import { Alert } from './Alert';
 
 export interface ToastProps extends ComponentProps<'div'> {
   type: accentTypes;
@@ -27,13 +28,6 @@ export const DefaultToastProps = {
 export const ToastContext = createContext<Dispatch<ListAction<ToastProps>>>(() =>
   console.error('ToastContext was not provided!')
 );
-
-/** Returns the style for a Toast based on its type. */
-export const getToastStyle = (type: accentTypes) => css`
-  ${getAccent(type)}
-  ${tw`flex flex-row text-left flex-shrink-0 rounded border-2 lg:max-w-2xl ml-auto overflow-hidden mt-1`}
-  
-`;
 
 /** Workaround to have a margin between toasts but smoothly animate height anyways. */
 export const ToastAnimContainer = styled.div`
@@ -86,17 +80,11 @@ export function Toast({ type, dispatch, id, animState, duration, children, ...pr
     });
   }, []); // effect seems to run on every rerender caused by the parent List rerendering...
 
+  //TODO: toast variants? I meant if we make alert variants I guess it forwards that.
+
   return (
     <ToastAnimContainer ref={ref} {...props} css={(animState==="entered")&&css`max-height:${props._maxHeight??'999rem'}!important;`}>
-      <div ref={toastRef} css={getToastStyle(type)}>
-        <span tw="p-1">{children}</span>
-        <SvgIcon
-          as="button"
-          icon={ICON.cross}
-          tw="flex-none w-4 mr-1 ml-2 self-stretch opacity-60 hocus:opacity-100"
-          onClick={delToast}
-        />
-      </div>
+      <Alert ref={toastRef} type={type} tw="lg:max-w-2xl ml-auto overflow-hidden mt-1" dismissable onClick={delToast}>{children}</Alert>
     </ToastAnimContainer>
   );
 }

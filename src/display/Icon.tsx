@@ -63,7 +63,7 @@ export function Icon({ orientation, className, children, href, as, label, onClic
       onClick={onClick}
       {...props}
     >
-      <i ref={iconRef} tw="align-bottom" className="material-icons">{children}</i>
+      <i ref={iconRef} tw="align-bottom pointer-events-none" className="material-icons">{children}</i>
       <figcaption className="label">{label}</figcaption>
     </IconWrapper>
   );

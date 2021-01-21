@@ -46,7 +46,7 @@ export function SvgIcon({ orientation, className, href, as, icon, label, onClick
       onClick={onClick}
       {...props}
     >
-      <svg viewBox="0 0 1024 1024">
+      <svg viewBox="0 0 1024 1024" tw="pointer-events-none">
         <path strokeLinecap="round" strokeLinejoin="round" fill="currentColor" d={icon} />
       </svg>
       <figcaption className="label">{label}</figcaption>
