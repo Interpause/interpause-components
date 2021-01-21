@@ -6,7 +6,7 @@
 import { ReactNode, isValidElement, MouseEvent, useState, useEffect, useRef } from 'react';
 import tw, { css, styled } from 'twin.macro';
 import { accentTypes, getAccent } from '../theme/baseTheme';
-import { SvgIcon, ICON } from '../display/Icon';
+import { Icon } from '../display/Icon';
 
 export type AccordionVariants = 'normal';
 
@@ -38,11 +38,17 @@ export function Accordion(props:AccordionProps){
 	useEffect(() => {
 		const bodyDiv = bodyRef.current;
 		const headerDiv = headerRef.current;
-    if(bodyDiv == null || headerDiv == null) return;
-		const bodyRect = bodyDiv.getBoundingClientRect();
-		const headerRect = headerDiv.getBoundingClientRect();
-		setCloseHeight(`${headerRect.height}px`)
-		setOpenHeight(`${bodyRect.height+headerRect.height}px`);
+		if(bodyDiv == null || headerDiv == null) return;
+		
+		const calculateHeights = ()=>{
+			const bodyRect = bodyDiv.getBoundingClientRect();
+			const headerRect = headerDiv.getBoundingClientRect();
+			setCloseHeight(`${headerRect.height}px`)
+			setOpenHeight(`${bodyRect.height+headerRect.height}px`);
+		}
+		calculateHeights();
+		window.addEventListener('resize', calculateHeights);
+		
   }, [JSON.stringify(props.body),JSON.stringify(props.header)]);
 
 	return (
@@ -60,7 +66,7 @@ export function Accordion(props:AccordionProps){
 			<summary ref={headerRef} className="header" onClick={accordionOpener}>
 				{isValidElement(props.header) ? props.header : <h4>{props.header}</h4>}
 				<span tw="flex-grow"/>
-				<SvgIcon icon={ICON.arrow} tw="self-end transition-transform" orientation={isOpen?180:0}/>
+				<Icon tw="self-end transition-transform w-8" orientation={isOpen?180:0}>expand_less</Icon>
 			</summary>
 			<div ref={bodyRef} className="body">{isValidElement(props.body) ? props.body : <p>{props.body}</p>}</div>
 		</details>
