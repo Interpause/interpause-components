@@ -2,9 +2,8 @@
  * @file Everything about Toggles.
  * @author John-Henry Lim <hyphen@interpause.dev>
  */
-import { Dispatch, SetStateAction, ComponentProps, useRef, useEffect } from 'react';
+import { Dispatch, SetStateAction, ComponentProps } from 'react';
 import tw, { css, styled } from 'twin.macro';
-import { StyledComponent } from '@emotion/styled';
 
 /** Default style used for Toggle. */
 export const defaultStyle = css`
@@ -97,13 +96,11 @@ export interface ToggleProps extends ComponentProps<'label'> {
  * `;
  * ```
  */
-export function Toggle({ toggleHook: [isOn, setOn], label, height = 2, ...props }: ToggleProps) {
-  const tRef = useRef<HTMLLabelElement>(null);
-  useEffect(() => tRef.current?.classList[isOn ? 'add' : 'remove']('on'), [isOn]);
+export function Toggle({ toggleHook: [isOn, setOn], label, height = 2, className, ...props }: ToggleProps) {
   return (
-    <ToggleWrapper ref={tRef} height={height} css={defaultStyle} {...(props as StyledComponent<HTMLLabelElement>)}>
+    <ToggleWrapper height={height} css={defaultStyle} className={`${className} ${isOn&&'on'}`} {...props}>
       <p className="label">{label ?? ''} </p>
-      <input type="checkbox" checked={isOn} onClick={() => setOn(!isOn)}></input>
+      <input type="checkbox" checked={isOn} onChange={() => setOn(!isOn)}></input>
       <div className="wrapper">
         <span className="bg" />
         <span className="slider" />

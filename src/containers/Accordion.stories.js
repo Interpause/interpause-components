@@ -33,6 +33,7 @@ const filler = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
 const Template = ({ theme, ...args }) => (
   <div className={theme}>
     <Accordion {...args} />
+    <Accordion {...args} />
     <h6>some content after</h6>
   </div>
 );

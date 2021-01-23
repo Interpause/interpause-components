@@ -16,5 +16,6 @@ const Template = ({ theme, ...args }) => (
 export const Normal = Template.bind({});
 Normal.args = {
 	src:'https://github.githubassets.com/images/modules/open_graph/github-mark.png',
-	aspectRatio:'1200 630'
+  height:630,
+  width:1200
 };

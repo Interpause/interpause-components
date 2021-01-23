@@ -11,7 +11,10 @@ export const IconWrapper = styled.figure`
   ${tw`relative inline-block flex-none`}
   ${({ orientation }: { orientation?: number, href?: string }) =>
     css`
-      transform: rotate(${orientation ?? 0}deg);
+      &>.icon{
+        transform: rotate(${orientation ?? 0}deg);
+        transition: inherit;
+      }
     `}
   &>.label{ ${tw`text-center whitespace-normal`} }
 `;
@@ -49,8 +52,8 @@ export function Icon({ orientation, className, children, href, as, label, onClic
     const iconElem = iconRef.current;
     const wrapperElem = wrapperRef.current;
     if(iconElem == null || wrapperElem == null) return;
-    const rect = wrapperElem.getBoundingClientRect();
-    iconElem.style.fontSize = `${Math.max(rect.height,rect.width)}px`;
+    if(parseFloat(wrapperElem.style.height)>parseFloat(wrapperElem.style.width)) iconElem.style.fontSize = wrapperElem.style.height;
+    else iconElem.style.fontSize = wrapperElem.style.width;
   },[className]);
   
   return (
@@ -63,7 +66,7 @@ export function Icon({ orientation, className, children, href, as, label, onClic
       onClick={onClick}
       {...props}
     >
-      <i ref={iconRef} tw="align-bottom pointer-events-none" className="material-icons">{children}</i>
+      <i ref={iconRef} tw="align-bottom pointer-events-none" className="material-icons icon">{children}</i>
       <figcaption className="label">{label}</figcaption>
     </IconWrapper>
   );

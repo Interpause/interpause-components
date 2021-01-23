@@ -9,7 +9,7 @@ export default {
     variant: {
       control: {
         type: 'select',
-        options: ['text', 'outline', 'filled'],
+        options: [],
       },
     },
     theme: {
@@ -18,14 +18,12 @@ export default {
         options: ['dark', 'light'],
       },
     },
-    /*
     type: {
       control: {
         type: 'select',
         options: accents
       }
 		}
-		*/
   },
 };
 

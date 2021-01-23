@@ -2,15 +2,14 @@
  * @file Animated toasts.
  * @author John-Henry Lim <hyphen@interpause.dev>
  */
-import { createContext, useContext, Dispatch, ComponentProps, ForwardedRef, useRef, useLayoutEffect } from 'react';
+import { createContext, useContext, Dispatch, ForwardedRef, useRef, useLayoutEffect } from 'react';
 import tw, { css, styled } from 'twin.macro';
-import { accentTypes, getAccent } from '../theme/baseTheme';
+import { accentTypes } from '../theme/baseTheme';
 import { ListItemProps, useListReducer, ListAction, List, ListProps } from '../utils/List';
-import { SvgIcon, ICON } from '../display/SvgIcon';
 import { rem2px } from '../utils';
-import { Alert } from './Alert';
+import { Alert, AlertProps } from './Alert';
 
-export interface ToastProps extends ComponentProps<'div'> {
+export interface ToastProps extends AlertProps {
   type: accentTypes;
   duration: number;
   _maxHeight: string|undefined;
@@ -57,6 +56,7 @@ export function Toast({ type, dispatch, id, animState, duration, children, ...pr
   const delToast = () => dispatch({ type: 'delItem', id: id });
   const toastRef = useRef<HTMLDivElement>(null);
 
+  // toasts arent SSR, this is fine
   useLayoutEffect(() => {
     const toastDiv = toastRef.current;
     if(toastDiv == null || props._maxHeight) return;

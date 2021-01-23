@@ -3,14 +3,14 @@
  * @author John-Henry Lim <hyphen@interpause.dev>
  */
 
-import { ReactNode, isValidElement, MouseEvent, useState, useEffect, useRef } from 'react';
-import tw, { css, styled } from 'twin.macro';
+import { ReactNode, isValidElement, MouseEvent, useState, useEffect, useRef, ComponentProps } from 'react';
+import tw, { css } from 'twin.macro';
 import { accentTypes, getAccent } from '../theme/baseTheme';
 import { Icon } from '../display/Icon';
 
 export type AccordionVariants = 'normal';
 
-export interface AccordionProps {
+export interface AccordionProps extends ComponentProps<'details'>{
 	/** TODO: implement */
   type?: accentTypes;
 	variant?: AccordionVariants;
@@ -70,7 +70,7 @@ export function Accordion(props:AccordionProps){
 				${tw`relative p-1 -top-1 border-2 border-t-0 transition-colors border-trivial border-opacity-0`}
 				${isOpen&&tw`border-opacity-40`}
 			}
-		`} open>
+		`} {...props} open>
 			<summary ref={headerRef} className="header" onClick={accordionOpener}>
 				{isValidElement(props.header) ? props.header : <h4>{props.header}</h4>}
 				<span tw="flex-grow"/>
