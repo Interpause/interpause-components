@@ -52,8 +52,8 @@ export function Icon({ orientation, className, children, href, as, label, onClic
     const iconElem = iconRef.current;
     const wrapperElem = wrapperRef.current;
     if(iconElem == null || wrapperElem == null) return;
-    if(parseFloat(wrapperElem.style.height)>parseFloat(wrapperElem.style.width)) iconElem.style.fontSize = wrapperElem.style.height;
-    else iconElem.style.fontSize = wrapperElem.style.width;
+    const wrapperStyle = getComputedStyle(wrapperElem);
+    iconElem.style.fontSize = wrapperStyle.width;
   },[className]);
   
   return (

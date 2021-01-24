@@ -47,6 +47,13 @@ export const getAccent = (accent: accentTypes) => css`
   --tw-ring-color: rgba(var(--hi-color-${accent}), var(--tw-ring-opacity));
   --tw-ring-offset-color: rgba(var(--hi-color-${accent}), 1);
 
+  --tw-text-opacity:        1;
+  --tw-placeholder-opacity: 0.65;
+  --tw-bg-opacity:          0.3;
+  --tw-border-opacity:      1;
+  --tw-divide-opacity:      0.2;
+  --tw-ring-opacity:        0.2;
+
   & > * + * {
     border-color: rgba(var(--hi-color-${accent}), var(--tw-divide-opacity));
   }
