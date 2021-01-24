@@ -71,8 +71,19 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Properties required to animate List items.</p>
+						<p>Properties required to animate List items. When first added, items are briefly in the <code>exited</code> state before shifting to <code>entering</code>. Hence, initial style should be in <code>exited</code>. This is possible because when the item actually exits, it skips the <code>exited</code> state.</p>
 					</div>
+					<dl class="tsd-comment-tags">
+						<dt>note</dt>
+						<dd><p>timeout.appear seems to do nothing &amp; defaults to timeout.enter anyways.</p>
+						</dd>
+						<dt>note</dt>
+						<dd><p>timeout.enter is how long it stays in entering state.</p>
+						</dd>
+						<dt>note</dt>
+						<dd><p>timeout.exit is how long it stays in exiting state.</p>
+						</dd>
+					</dl>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
@@ -105,14 +116,14 @@
 					<div class="tsd-signature tsd-kind-icon">styles<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{}</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Interpause/interpause-components/blob/75962e8/src/utils/List.tsx#L50">src/utils/List.tsx:50</a></li>
+							<li>Defined in <a href="https://github.com/Interpause/interpause-components/blob/f42a528/src/utils/List.tsx#L55">src/utils/List.tsx:55</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-index-signature">
-								<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">SerializedStyles</span></h5>
+								<h5><span class="tsd-signature-symbol">[</span>state: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">SerializedStyles</span></h5>
 							</li>
 						</ul>
 					</div>
@@ -123,7 +134,7 @@
 					<div class="tsd-signature tsd-kind-icon">timeout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>appear<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>enter<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>exit<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Interpause/interpause-components/blob/75962e8/src/utils/List.tsx#L49">src/utils/List.tsx:49</a></li>
+							<li>Defined in <a href="https://github.com/Interpause/interpause-components/blob/f42a528/src/utils/List.tsx#L54">src/utils/List.tsx:54</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -148,16 +159,28 @@
 						<a href="../modules/aesthetic_texteffect.html">aesthetic/<wbr>Text<wbr>Effect</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="../modules/containers_accordion.html">containers/<wbr>Accordion</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="../modules/containers_card.html">containers/<wbr>Card</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="../modules/containers_cardflex.html">containers/<wbr>Card<wbr>Flex</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="../modules/display_badge.html">display/<wbr>Badge</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="../modules/display_icon.html">display/<wbr>Icon</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="../modules/display_lazyimage.html">display/<wbr>Lazy<wbr>Image</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/display_svgicon.html">display/<wbr>Svg<wbr>Icon</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/feedback_alert.html">feedback/<wbr>Alert</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="../modules/feedback_toast.html">feedback/<wbr>Toast</a>
@@ -169,7 +192,13 @@
 						<a href="../modules/input_toggle.html">input/<wbr>Toggle</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="../modules/nav_nav.html">nav/<wbr>Nav</a>
+						<a href="../modules/nav_breadcrumb.html">nav/<wbr>Breadcrumb</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/nav_navitem.html">nav/<wbr>Nav<wbr>Item</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/nav_navbar.html">nav/<wbr>Navbar</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="../modules/theme_darkthemeprovider.html">theme/<wbr>Dark<wbr>Theme<wbr>Provider</a>
@@ -182,9 +211,6 @@
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="../modules/utils_deviceorientation.html">utils/device<wbr>Orientation</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/utils_orientablesvg.html">utils/orientableSVG</a>
 					</li>
 				</ul>
 			</nav>

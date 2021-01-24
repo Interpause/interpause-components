@@ -73,6 +73,7 @@
 							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/input_button.buttonprops.html" class="tsd-kind-icon">Button<wbr>Props</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/input_button.linkbuttonprops.html" class="tsd-kind-icon">Link<wbr>Button<wbr>Props</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -100,7 +101,7 @@
 					<div class="tsd-signature tsd-kind-icon">Button<wbr>Variants<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;outline&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;filled&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;text&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Interpause/interpause-components/blob/75962e8/src/input/Button.tsx#L10">src/input/Button.tsx:10</a></li>
+							<li>Defined in <a href="https://github.com/Interpause/interpause-components/blob/f42a528/src/input/Button.tsx#L10">src/input/Button.tsx:10</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -117,7 +118,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Interpause/interpause-components/blob/75962e8/src/input/Button.tsx#L45">src/input/Button.tsx:45</a></li>
+									<li>Defined in <a href="https://github.com/Interpause/interpause-components/blob/f42a528/src/input/Button.tsx#L51">src/input/Button.tsx:51</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -145,7 +146,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Interpause/interpause-components/blob/75962e8/src/input/Button.tsx#L20">src/input/Button.tsx:20</a></li>
+									<li>Defined in <a href="https://github.com/Interpause/interpause-components/blob/f42a528/src/input/Button.tsx#L21">src/input/Button.tsx:21</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -167,13 +168,13 @@
 					<a name="linkbutton" class="tsd-anchor"></a>
 					<h3>Link<wbr>Button</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">Link<wbr>Button<span class="tsd-signature-symbol">(</span>props<span class="tsd-signature-symbol">: </span><a href="../interfaces/input_button.buttonprops.html" class="tsd-signature-type" data-tsd-kind="Interface">ButtonProps</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{ </span>RouterWrapper<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">(</span>{ children }<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">JSX.Element</span><span class="tsd-signature-symbol">; </span>href<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Element</span></li>
+						<li class="tsd-signature tsd-kind-icon">Link<wbr>Button<span class="tsd-signature-symbol">(</span>props<span class="tsd-signature-symbol">: </span><a href="../interfaces/input_button.linkbuttonprops.html" class="tsd-signature-type" data-tsd-kind="Interface">LinkButtonProps</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Element</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Interpause/interpause-components/blob/75962e8/src/input/Button.tsx#L57">src/input/Button.tsx:57</a></li>
+									<li>Defined in <a href="https://github.com/Interpause/interpause-components/blob/f42a528/src/input/Button.tsx#L74">src/input/Button.tsx:74</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -182,14 +183,15 @@
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
-									<dd><p><LinkButton RouterWrapper={NextLink} href="/nextjs">Uses next/router<LinkButton/></p>
+									<dd><pre><code class="language-jsx"><span style="color: #000000">&lt;LinkButton RouterWrapper={NextLink} href=&quot;/nextjs&quot; disableIfRouteMatch&gt;Uses next/router&lt;LinkButton/&gt;</span>
+</code></pre>
 									</dd>
 								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>props: <a href="../interfaces/input_button.buttonprops.html" class="tsd-signature-type" data-tsd-kind="Interface">ButtonProps</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{ </span>RouterWrapper<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">(</span>{ children }<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">JSX.Element</span><span class="tsd-signature-symbol">; </span>href<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></h5>
+									<h5>props: <a href="../interfaces/input_button.linkbuttonprops.html" class="tsd-signature-type" data-tsd-kind="Interface">LinkButtonProps</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
@@ -217,16 +219,28 @@
 						<a href="aesthetic_texteffect.html">aesthetic/<wbr>Text<wbr>Effect</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="containers_accordion.html">containers/<wbr>Accordion</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="containers_card.html">containers/<wbr>Card</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="containers_cardflex.html">containers/<wbr>Card<wbr>Flex</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="display_badge.html">display/<wbr>Badge</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="display_icon.html">display/<wbr>Icon</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="display_lazyimage.html">display/<wbr>Lazy<wbr>Image</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="display_svgicon.html">display/<wbr>Svg<wbr>Icon</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="feedback_alert.html">feedback/<wbr>Alert</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="feedback_toast.html">feedback/<wbr>Toast</a>
@@ -238,7 +252,13 @@
 						<a href="input_toggle.html">input/<wbr>Toggle</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="nav_nav.html">nav/<wbr>Nav</a>
+						<a href="nav_breadcrumb.html">nav/<wbr>Breadcrumb</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="nav_navitem.html">nav/<wbr>Nav<wbr>Item</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="nav_navbar.html">nav/<wbr>Navbar</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="theme_darkthemeprovider.html">theme/<wbr>Dark<wbr>Theme<wbr>Provider</a>
@@ -252,15 +272,15 @@
 					<li class=" tsd-kind-module">
 						<a href="utils_deviceorientation.html">utils/device<wbr>Orientation</a>
 					</li>
-					<li class=" tsd-kind-module">
-						<a href="utils_orientablesvg.html">utils/orientableSVG</a>
-					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
 						<a href="../interfaces/input_button.buttonprops.html" class="tsd-kind-icon">Button<wbr>Props</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/input_button.linkbuttonprops.html" class="tsd-kind-icon">Link<wbr>Button<wbr>Props</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
 						<a href="input_button.html#buttonvariants" class="tsd-kind-icon">Button<wbr>Variants</a>

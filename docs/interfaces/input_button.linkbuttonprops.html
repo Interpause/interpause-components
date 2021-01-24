@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>SimpleCardFlexProps | interpause-components</title>
+	<title>LinkButtonProps | interpause-components</title>
 	<meta name="description" content="Documentation for interpause-components">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,13 +55,13 @@
 					<a href="../modules.html">interpause-components</a>
 				</li>
 				<li>
-					<a href="../modules/containers_cardflex.html">containers/CardFlex</a>
+					<a href="../modules/input_button.html">input/Button</a>
 				</li>
 				<li>
-					<a href="containers_cardflex.simplecardflexprops.html">SimpleCardFlexProps</a>
+					<a href="input_button.linkbuttonprops.html">LinkButtonProps</a>
 				</li>
 			</ul>
-			<h1>Interface SimpleCardFlexProps</h1>
+			<h1>Interface LinkButtonProps</h1>
 		</div>
 	</div>
 </header>
@@ -72,10 +72,10 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="containers_card.cardprops.html" class="tsd-signature-type" data-tsd-kind="Interface">CardProps</a>
+						<a href="input_button.buttonprops.html" class="tsd-signature-type" data-tsd-kind="Interface">ButtonProps</a>
 						<ul class="tsd-hierarchy">
 							<li>
-								<span class="target">SimpleCardFlexProps</span>
+								<span class="target">LinkButtonProps</span>
 							</li>
 						</ul>
 					</li>
@@ -88,10 +88,14 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="containers_cardflex.simplecardflexprops.html#cards" class="tsd-kind-icon">cards</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="containers_cardflex.simplecardflexprops.html#classname" class="tsd-kind-icon">class<wbr>Name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="containers_cardflex.simplecardflexprops.html#type" class="tsd-kind-icon">type</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="containers_cardflex.simplecardflexprops.html#variant" class="tsd-kind-icon">variant</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="input_button.linkbuttonprops.html#routerwrapper" class="tsd-kind-icon">Router<wbr>Wrapper</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="input_button.linkbuttonprops.html#children" class="tsd-kind-icon">children</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="input_button.linkbuttonprops.html#classname" class="tsd-kind-icon">class<wbr>Name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="input_button.linkbuttonprops.html#disableifroutematch" class="tsd-kind-icon">disable<wbr>IfRoute<wbr>Match</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="input_button.linkbuttonprops.html#disabled" class="tsd-kind-icon">disabled</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="input_button.linkbuttonprops.html#href" class="tsd-kind-icon">href</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="input_button.linkbuttonprops.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="input_button.linkbuttonprops.html#variant" class="tsd-kind-icon">variant</a></li>
 							</ul>
 						</section>
 					</div>
@@ -100,22 +104,75 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="cards" class="tsd-anchor"></a>
-					<h3>cards</h3>
-					<div class="tsd-signature tsd-kind-icon">cards<span class="tsd-signature-symbol">:</span> <a href="../modules/containers_cardflex.html#carddata" class="tsd-signature-type" data-tsd-kind="Type alias">CardData</a><span class="tsd-signature-symbol">[]</span></div>
+					<a name="routerwrapper" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> Router<wbr>Wrapper</h3>
+					<div class="tsd-signature tsd-kind-icon">Router<wbr>Wrapper<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Element</span><span class="tsd-signature-symbol">)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Interpause/interpause-components/blob/f42a528/src/containers/CardFlex.tsx#L31">src/containers/CardFlex.tsx:31</a></li>
+							<li>Defined in <a href="https://github.com/Interpause/interpause-components/blob/f42a528/src/input/Button.tsx#L62">src/input/Button.tsx:62</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Component used to wrap anchor tags for routing purposes.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="children" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> children</h3>
+					<div class="tsd-signature tsd-kind-icon">children<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ReactNode</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="input_button.buttonprops.html">ButtonProps</a>.<a href="input_button.buttonprops.html#children">children</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/Interpause/interpause-components/blob/f42a528/src/input/Button.tsx#L15">src/input/Button.tsx:15</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="classname" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> class<wbr>Name</h3>
 					<div class="tsd-signature tsd-kind-icon">class<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="input_button.buttonprops.html">ButtonProps</a>.<a href="input_button.buttonprops.html#classname">className</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/Interpause/interpause-components/blob/f42a528/src/containers/CardFlex.tsx#L32">src/containers/CardFlex.tsx:32</a></li>
+							<li>Defined in <a href="https://github.com/Interpause/interpause-components/blob/f42a528/src/input/Button.tsx#L16">src/input/Button.tsx:16</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="disableifroutematch" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> disable<wbr>IfRoute<wbr>Match</h3>
+					<div class="tsd-signature tsd-kind-icon">disable<wbr>IfRoute<wbr>Match<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/Interpause/interpause-components/blob/f42a528/src/input/Button.tsx#L64">src/input/Button.tsx:64</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>If true, button will be disabled if the href of the current route and link matches.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="disabled" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> disabled</h3>
+					<div class="tsd-signature tsd-kind-icon">disabled<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="input_button.buttonprops.html">ButtonProps</a>.<a href="input_button.buttonprops.html#disabled">disabled</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/Interpause/interpause-components/blob/f42a528/src/input/Button.tsx#L17">src/input/Button.tsx:17</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="href" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> href</h3>
+					<div class="tsd-signature tsd-kind-icon">href<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/Interpause/interpause-components/blob/f42a528/src/input/Button.tsx#L60">src/input/Button.tsx:60</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -124,20 +181,20 @@
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> type</h3>
 					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;primary&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;secondary&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;info&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;trivial&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;good&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;risky&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;bad&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;normal&quot;</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="containers_card.cardprops.html">CardProps</a>.<a href="containers_card.cardprops.html#type">type</a></p>
+						<p>Inherited from <a href="input_button.buttonprops.html">ButtonProps</a>.<a href="input_button.buttonprops.html#type">type</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/Interpause/interpause-components/blob/f42a528/src/containers/Card.tsx#L14">src/containers/Card.tsx:14</a></li>
+							<li>Defined in <a href="https://github.com/Interpause/interpause-components/blob/f42a528/src/input/Button.tsx#L13">src/input/Button.tsx:13</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="variant" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> variant</h3>
-					<div class="tsd-signature tsd-kind-icon">variant<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;outline&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;filled&quot;</span></div>
+					<div class="tsd-signature tsd-kind-icon">variant<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;text&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;outline&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;filled&quot;</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="containers_card.cardprops.html">CardProps</a>.<a href="containers_card.cardprops.html#variant">variant</a></p>
+						<p>Inherited from <a href="input_button.buttonprops.html">ButtonProps</a>.<a href="input_button.buttonprops.html#variant">variant</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/Interpause/interpause-components/blob/f42a528/src/containers/Card.tsx#L15">src/containers/Card.tsx:15</a></li>
+							<li>Defined in <a href="https://github.com/Interpause/interpause-components/blob/f42a528/src/input/Button.tsx#L14">src/input/Button.tsx:14</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -167,7 +224,7 @@
 					<li class=" tsd-kind-module">
 						<a href="../modules/containers_card.html">containers/<wbr>Card</a>
 					</li>
-					<li class="current tsd-kind-module">
+					<li class=" tsd-kind-module">
 						<a href="../modules/containers_cardflex.html">containers/<wbr>Card<wbr>Flex</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -188,7 +245,7 @@
 					<li class=" tsd-kind-module">
 						<a href="../modules/feedback_toast.html">feedback/<wbr>Toast</a>
 					</li>
-					<li class=" tsd-kind-module">
+					<li class="current tsd-kind-module">
 						<a href="../modules/input_button.html">input/<wbr>Button</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -219,32 +276,53 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="input_button.buttonprops.html" class="tsd-kind-icon">Button<wbr>Props</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="containers_cardflex.simplecardflexprops.html" class="tsd-kind-icon">Simple<wbr>Card<wbr>Flex<wbr>Props</a>
+						<a href="input_button.linkbuttonprops.html" class="tsd-kind-icon">Link<wbr>Button<wbr>Props</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="containers_cardflex.simplecardflexprops.html#cards" class="tsd-kind-icon">cards</a>
+								<a href="input_button.linkbuttonprops.html#routerwrapper" class="tsd-kind-icon">Router<wbr>Wrapper</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="input_button.linkbuttonprops.html#children" class="tsd-kind-icon">children</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="input_button.linkbuttonprops.html#classname" class="tsd-kind-icon">class<wbr>Name</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="containers_cardflex.simplecardflexprops.html#classname" class="tsd-kind-icon">class<wbr>Name</a>
+								<a href="input_button.linkbuttonprops.html#disableifroutematch" class="tsd-kind-icon">disable<wbr>IfRoute<wbr>Match</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="containers_cardflex.simplecardflexprops.html#type" class="tsd-kind-icon">type</a>
+								<a href="input_button.linkbuttonprops.html#disabled" class="tsd-kind-icon">disabled</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="input_button.linkbuttonprops.html#href" class="tsd-kind-icon">href</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="containers_cardflex.simplecardflexprops.html#variant" class="tsd-kind-icon">variant</a>
+								<a href="input_button.linkbuttonprops.html#type" class="tsd-kind-icon">type</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="input_button.linkbuttonprops.html#variant" class="tsd-kind-icon">variant</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-						<a href="../modules/containers_cardflex.html#carddata" class="tsd-kind-icon">Card<wbr>Data</a>
+						<a href="../modules/input_button.html#buttonvariants" class="tsd-kind-icon">Button<wbr>Variants</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="../modules/containers_cardflex.html#simplecardflex" class="tsd-kind-icon">Simple<wbr>Card<wbr>Flex</a>
+						<a href="../modules/input_button.html#button" class="tsd-kind-icon">Button</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="../modules/input_button.html#buttonstyle" class="tsd-kind-icon">Button<wbr>Style</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="../modules/input_button.html#linkbutton" class="tsd-kind-icon">Link<wbr>Button</a>
 					</li>
 				</ul>
 			</nav>

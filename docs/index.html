@@ -124,7 +124,7 @@
 </code></pre>
 				<p>I preserved the <code>--tw-opacity</code> CSS variables, allowing control over the intensity of the color via changing its opacity for various stuff such as backgrounds and borders:</p>
 				<pre><code class="language-json"><span style="color: #000000">{</span>
-<span style="color: #000000">  </span><span style="color: #0451A5">&quot;primary&quot;</span><span style="color: #000000">:</span><span style="color: #A31515">&quot;rgba(var(--hi-color-primary),var(--tw-text-opacity))&quot;</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;primary&quot;</span><span style="color: #000000">:</span><span style="color: #A31515">&quot;rgba(var(--hi-color-primary), var(--tw-text-opacity))&quot;</span>
 <span style="color: #000000">}</span>
 </code></pre>
 				<pre><code class="language-jsx"><span style="color: #000000">// e.g. this is still possible</span>
@@ -382,7 +382,8 @@
 					<h2>Standards (unfinished)</h2>
 				</a>
 				<p>Most of my components will have a <code>type</code> and <code>variant</code> prop. <code>type</code> refers to mainly the accent, allowing you to customize which accent is used for the component. <code>variant</code> refers to the style of the component, for example, an outlined button with transparent background versus one that is filled in.</p>
-				<p>The root element of container components will have <code>.root</code> added to them. As for other components, use the browser&#39;s devtools to inspect the classes added. These classes were added to make it easier to style the component from the outside if needed.</p>
+				<p>All components will pass the <code>className</code> prop to the root element, allowing you to style them directly using the <code>tw</code> or <code>css</code> props. Components that contain other sub-components that makes sense to be stylable will attach classes to those sub-components so that they can be styled from outside. In that case, the classes will be mentioned in the documentation. Else, you could use the browser&#39;s debtools to inspect the classes added. Refs are sometimes forwarded.</p>
+				<p>Note to self, bookmark this: <a href="https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react/index.d.ts">https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react/index.d.ts</a>. Still hate how tslinter seems to arbitrarily resolve or not resolve types. Really wish they would show Omit&lt;...&gt; rather than resolve it automatically to Pick&lt;...super long list...&gt;.</p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -404,16 +405,28 @@
 						<a href="modules/aesthetic_texteffect.html">aesthetic/<wbr>Text<wbr>Effect</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="modules/containers_accordion.html">containers/<wbr>Accordion</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="modules/containers_card.html">containers/<wbr>Card</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/containers_cardflex.html">containers/<wbr>Card<wbr>Flex</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="modules/display_badge.html">display/<wbr>Badge</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="modules/display_icon.html">display/<wbr>Icon</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/display_lazyimage.html">display/<wbr>Lazy<wbr>Image</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/display_svgicon.html">display/<wbr>Svg<wbr>Icon</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/feedback_alert.html">feedback/<wbr>Alert</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/feedback_toast.html">feedback/<wbr>Toast</a>
@@ -425,7 +438,13 @@
 						<a href="modules/input_toggle.html">input/<wbr>Toggle</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/nav_nav.html">nav/<wbr>Nav</a>
+						<a href="modules/nav_breadcrumb.html">nav/<wbr>Breadcrumb</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/nav_navitem.html">nav/<wbr>Nav<wbr>Item</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/nav_navbar.html">nav/<wbr>Navbar</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/theme_darkthemeprovider.html">theme/<wbr>Dark<wbr>Theme<wbr>Provider</a>
@@ -438,9 +457,6 @@
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/utils_deviceorientation.html">utils/device<wbr>Orientation</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/utils_orientablesvg.html">utils/orientableSVG</a>
 					</li>
 				</ul>
 			</nav>
