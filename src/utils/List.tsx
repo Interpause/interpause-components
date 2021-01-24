@@ -2,7 +2,7 @@
  * @file Generic List to easily make animated lists of things. See Toast.tsx for example usage.
  * @author John-Henry Lim <hyphen@interpause.dev>
  */
-import { createRef, Dispatch, ForwardedRef, forwardRef, ComponentProps, useReducer } from 'react';
+import { createRef, Dispatch, ComponentProps, useReducer, ForwardRefExoticComponent, PropsWithoutRef, RefAttributes } from 'react';
 import { SerializedStyles } from '@emotion/react';
 import { Transition, TransitionGroup } from 'react-transition-group';
 
@@ -60,8 +60,8 @@ export interface AnimProps {
 export interface ListProps<ItemType> extends ComponentProps<'div'> {
   /** Access to the List reducer and state. */
   reducerHook: [ListState<ItemType>, Dispatch<ListAction<ItemType>>];
-  /** Component used as the List item. Will be wrapped by React.ForwardRef. */
-  ListItemComponent: (props: ListItemProps<ItemType>, ref: ForwardedRef<any>) => JSX.Element;
+  /** Component used as the List item. Should forward ref using react.ForwardRef. */
+  ListItemComponent: ForwardRefExoticComponent<PropsWithoutRef<ListItemProps<ItemType>> & RefAttributes<any>>;
   /** Properties used to animate List items. */
   AnimProps?: AnimProps;
 }
@@ -80,7 +80,6 @@ export type ListItemProps<ItemType> = {
  */
 export function List<ItemType>({ reducerHook, ListItemComponent, AnimProps, ...props }: ListProps<ItemType>) {
   const [state, dispatch] = reducerHook;
-  const Item = forwardRef(ListItemComponent);
   return (
     <div {...props}>
       <TransitionGroup component={null}>
@@ -89,10 +88,9 @@ export function List<ItemType>({ reducerHook, ListItemComponent, AnimProps, ...p
           return (
             <Transition nodeRef={itemRef} key={key} timeout={AnimProps?.timeout ?? 0}>
               {(animState:string) => (
-                //@ts-ignore some type-checking bug that expectedly comes around when it gets so complex
-                <Item
+                <ListItemComponent
                   ref={itemRef}
-                  {...item}
+                  {...item as any}
                   dispatch={dispatch}
                   css={AnimProps && AnimProps.styles[animState]}
                   animState={animState}

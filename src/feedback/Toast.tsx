@@ -2,7 +2,7 @@
  * @file Animated toasts.
  * @author John-Henry Lim <hyphen@interpause.dev>
  */
-import { createContext, useContext, Dispatch, ForwardedRef, useRef, useLayoutEffect } from 'react';
+import { createContext, useContext, Dispatch, ForwardedRef, useRef, useLayoutEffect, forwardRef } from 'react';
 import tw, { css, styled } from 'twin.macro';
 import { accentTypes } from '../theme/baseTheme';
 import { ListItemProps, useListReducer, ListAction, List, ListProps } from '../utils/List';
@@ -52,7 +52,7 @@ export const DefaultToastAnim = {
 } as const;
 
 /** Actual Toast component. Usually not used directly. */
-export function Toast({ type, dispatch, id, animState, duration, children, ...props }: ListItemProps<ToastProps>, ref: ForwardedRef<any>) {
+export const Toast = forwardRef(({ type, dispatch, id, animState, duration, children, ...props }: ListItemProps<ToastProps>, ref: ForwardedRef<any>) => {
   const delToast = () => dispatch({ type: 'delItem', id: id });
   const toastRef = useRef<HTMLDivElement>(null);
 
@@ -87,7 +87,7 @@ export function Toast({ type, dispatch, id, animState, duration, children, ...pr
       <Alert ref={toastRef} type={type} tw="lg:max-w-2xl ml-auto overflow-hidden mt-1" dismissable onClick={delToast}>{children}</Alert>
     </ToastAnimContainer>
   );
-}
+});
 
 /** Should be wrapped around App to allow useToaster() hook to work. */
 export function ToastWrapper(props: Omit<ListProps<ToastProps>, 'ListItemComponent' | 'reducerHook'>) {

@@ -49,7 +49,7 @@ export const defaultDarkToggleStyle = css`
     ${tw`bg-yellow-600`}
   }
   &.on .bg {
-    ${tw`bg-gray-900`}
+    ${tw`bg-indigo-900`}
   }
   &.on .slider {
     ${tw`bg-yellow-200`}
