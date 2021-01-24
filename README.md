@@ -74,7 +74,7 @@ I preserved the `--tw-opacity` CSS variables, allowing control over the intensit
 
 ```json
 {
-  "primary":"rgba(var(--hi-color-primary),var(--tw-text-opacity))"
+  "primary":"rgba(var(--hi-color-primary), var(--tw-text-opacity))"
 }
 ```
 
@@ -391,4 +391,6 @@ Many thanks to [ben-rogerson](https://github.com/ben-rogerson) for developing tw
 
 Most of my components will have a `type` and `variant` prop. `type` refers to mainly the accent, allowing you to customize which accent is used for the component. `variant` refers to the style of the component, for example, an outlined button with transparent background versus one that is filled in.
 
-All components will pass the `className` prop to the root element, allowing you to style them directly using the `tw` or `css` props. Components that contain other sub-components that makes sense to be stylable will attach classes to those sub-components so that they can be styled from outside. In that case, the classes will be mentioned in the documentation. Else, you could use the browser's debtools to inspect the classes added.
+All components will pass the `className` prop to the root element, allowing you to style them directly using the `tw` or `css` props. Components that contain other sub-components that makes sense to be stylable will attach classes to those sub-components so that they can be styled from outside. In that case, the classes will be mentioned in the documentation. Else, you could use the browser's debtools to inspect the classes added. Refs are sometimes forwarded.
+
+Note to self, bookmark this: <https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react/index.d.ts>. Still hate how tslinter seems to arbitrarily resolve or not resolve types. Really wish they would show Omit<...> rather than resolve it automatically to Pick<...super long list...>.

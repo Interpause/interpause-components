@@ -34,7 +34,7 @@ export const ToggleWrapper = styled.label`
     ${tw`opacity-0 h-0 w-0`}
   }
   > .label {
-    ${tw`align-middle inline`}
+    ${tw`align-middle inline transition-colors`}
     font-size:calc(var(--toggle-height)*3/4);
   }
   > .wrapper {
@@ -43,14 +43,14 @@ export const ToggleWrapper = styled.label`
     width: calc(var(--toggle-height) * 2);
 
     > .slider {
-      ${tw`absolute transition-transform`}
+      ${tw`absolute transition`}
       height:calc(var(--toggle-height)*3/4);
       width: calc(var(--toggle-height) * 3 / 4);
       left: calc(var(--toggle-height) * 1 / 8);
       bottom: calc(var(--toggle-height) * 1 / 8);
     }
     > .bg {
-      ${tw`absolute inset-0`}
+      ${tw`absolute inset-0 transition-colors`}
     }
   }
   &.on .slider {

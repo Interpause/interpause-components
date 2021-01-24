@@ -48,7 +48,7 @@ export const CollapsableNavbar = styled(BaseNavbar)`
 `;
 
 export interface NavbarProps extends ComponentProps<'nav'> {
-  /** List of routes to use in Navbar. Key is route, value is label. Uses NavLink. */
+  /** List of routes to use in Navbar. Key is route, value is label. */
   routes: Record<string, string>;
   /** Height of Navbar in rem. */
   height?: number;
