@@ -53,6 +53,7 @@ export function Accordion(props:AccordionProps){
 		}
 		calculateHeights();
 		window.addEventListener('resize', calculateHeights);
+		return ()=>window.removeEventListener('resize', calculateHeights);
 		
   }, [JSON.stringify(props.body),JSON.stringify(props.header)]);
 
