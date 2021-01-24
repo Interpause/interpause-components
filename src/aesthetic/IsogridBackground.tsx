@@ -22,6 +22,8 @@ export interface IsogridProps {
   maxSpeed: number;
   /** Size of gap between triangles relative to length of the triangle. Should be between 0-1. */
   gapRatio: number;
+  /** Default value is equal to tan(60deg) and forms equilateral triangles. Smaller is flatter. */
+  heightRatio: number;
   /** A higher value more aggressively prevents triangles of similar colors being next to each other. Should be between 0-1. */
   randomness: number;
   /** Colors that the triangle will animate between, shuffled for each triangle. */
@@ -49,6 +51,7 @@ export const bgDefaults: Readonly<IsogridProps> = {
   minSpeed: 20,
   maxSpeed: 50,
   gapRatio: 0.15,
+  heightRatio: 1.7320508075688772935274463415059,
   randomness: 0.75,
   randSeed: 31415926535898,
   colors: [
@@ -129,7 +132,7 @@ export const IsogridBackground = memo(
     /** Base of triangles in SVG units. */
     const tlen = 100;
     /** Height of triangles in SVG units, current value forms equilateral triangles. */
-    const thgt = (tlen / 2) * 1.732050808;
+    const thgt = (tlen / 2) * conf.heightRatio;
     /** Length of gap between triangles in SVG units. */
     let glen = (tlen / 2) * conf.gapRatio;
     /** Horizontal offset for triangle points in SVG units. */

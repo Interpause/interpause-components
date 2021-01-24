@@ -7,10 +7,18 @@ export default {
   component: IsogridBackground,
 };
 
-const Template = ({ theme, ...args }) => <IsogridBackground {...args}/>;
+const Template = ({ theme, ...args }) => <div style={{height:'95vh',width:'95vw'}}><IsogridBackground {...args}/></div>;
 
 export const Normal = Template.bind({});
 Normal.args = {
-	rows:6,
-	cols:6
+	rows:7,
+	cols:12
+};
+
+export const Pretty = Template.bind({});
+Pretty.args = {
+	rows:7,
+	cols:12,
+	gapRatio:-3,
+	heightRatio:5
 };

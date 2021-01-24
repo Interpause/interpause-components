@@ -7,7 +7,7 @@ export default {
   component: RainbowText,
 };
 
-const Template = ({ theme, ...args }) => <RainbowText {...args}/>;
+const Template = ({ theme, ...args }) => <div style={{width:'50vw'}}><RainbowText {...args}/></div>;
 
 export const Normal = Template.bind({});
 Normal.args = {
