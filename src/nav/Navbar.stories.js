@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Navbar } from './Nav';
+import { Navbar } from './Navbar';
 import { DarkThemeWrapper } from '../theme/DarkThemeProvider';
 
 export default {

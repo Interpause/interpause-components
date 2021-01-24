@@ -1,26 +1,14 @@
 /**
- * @file Navbar and other NavItems.
+ * @file All the navbars.
  * @author John-Henry Lim <hyphen@interpause.dev>
  */
+
 import React, { ComponentProps, useRef } from 'react';
 import tw, { css, styled } from 'twin.macro';
 import { SvgIcon, ICON } from '../display/SvgIcon';
 import { mobileScreen } from '../utils/deviceOrientation';
 import { DarkToggle } from '../theme/DarkThemeProvider';
-import { LinkButton } from '../input';
-
-/** Styled li component. */
-export const NavItem = styled.li`
-  ${tw`relative inline-flex flex-col flex-expand justify-center text-center w-32 max-w-xs p-1`}
-`;
-
-export function NavLink({className,...props}:ComponentProps<typeof LinkButton>){
-  return (
-    <NavItem className={className}>
-      <LinkButton {...props} tw="text-normal hocus:(text-blue-400) p-0" css={css`text-align: inherit`}/>
-    </NavItem>
-  );
-}
+import { NavItem, NavLink } from './NavItem';
 
 /**
  * Styled nav component. For styling purposes:
@@ -62,8 +50,6 @@ export const CollapsableNavbar = styled(BaseNavbar)`
 export interface NavbarProps extends ComponentProps<'nav'> {
   /** List of routes to use in Navbar. Key is route, value is label. Uses NavLink. */
   routes: Record<string, string>;
-  /** List of routes to use in Navbar. Uses NavLink. */
-  ItemProps?: ComponentProps<typeof NavLink>;
   /** Height of Navbar in rem. */
   height?: number;
   /** Component used to wrap anchor tags for routing purposes. */
@@ -80,17 +66,16 @@ export interface NavbarProps extends ComponentProps<'nav'> {
  * <Navbar routes={...} RouterWrapper={NextLink}/>
  * ```
  */
-export function Navbar({ routes, ItemProps, height=4, RouterWrapper, ...props }: NavbarProps) {
+export function Navbar({ routes, height=4, RouterWrapper, ...props }: NavbarProps) {
   const navbar = useRef<HTMLElement>(null);
   const navOpener = () => navbar.current?.classList.toggle('opened');
   return (
     <CollapsableNavbar ref={navbar} height={height} {...props}>
-      <span tw="flex-grow md:flex-grow-0"></span>
       <SvgIcon
         as="button"
         icon={ICON.menu}
         onClick={navOpener}
-        tw="flex-shrink-0 md:hidden text-white ring-inset ring-2 ring-primary bg-primary rounded-lg bg-opacity-20! hocus:bg-opacity-60! m-1 p-1"
+        tw="flex-shrink-0 md:hidden text-white ring-inset ring-2 ring-primary bg-primary rounded-lg bg-opacity-20! hocus:bg-opacity-60! m-1 p-1 ml-auto"
         css={css`
           height: ${(height * 3) / 4}rem;
           width: ${(height * 3) / 4}rem;
@@ -98,15 +83,16 @@ export function Navbar({ routes, ItemProps, height=4, RouterWrapper, ...props }:
         `}
         className="nav-opener"
       />
-      <ul className="nav-list">
+
+      <ul className="nav-list" onClick={navOpener}> {/* Hey it bubbles, great so the auto-closing after clicking on link for mobile can be here */}
         {Object.entries(routes).map(([name, route], i) => (
-          <NavLink {...ItemProps as any} href={route} variant="text" className="nav-item" RouterWrapper={RouterWrapper} key={i}>
+          <NavLink href={route} variant="text" className="nav-item" RouterWrapper={RouterWrapper} key={i}>
             {name}
           </NavLink>
         ))}
-        <NavItem tw="flex-grow max-w-full hidden lg:inline-flex"></NavItem>
-        <NavItem tw="w-40 flex-none" className="nav-item">
-          <DarkToggle height={1.25} />
+
+        <NavItem tw="max-w-none w-auto flex-expand border-none" className="nav-item">
+          <DarkToggle height={1.25} tw="md:ml-auto mr-4"/>
         </NavItem>
       </ul>
     </CollapsableNavbar>
