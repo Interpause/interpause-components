@@ -334,15 +334,7 @@ Create `./.storybook/.babelrc` and add:
 ```json
 {
   "presets": [
-    [
-      "next/babel",
-      {
-        "preset-react": {
-          "runtime": "automatic",
-          "importSource": "@emotion/react"
-        }
-      }
-    ]
+    [ "next/babel" ]
   ],
   "plugins": [
     "babel-plugin-macros",
