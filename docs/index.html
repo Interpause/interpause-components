@@ -59,22 +59,29 @@
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
 				<a href="#interpause39s-components" id="interpause39s-components" style="color: inherit; text-decoration: none;">
-					<h1>Interpause&#39;s Components</h1>
+					<h1><a href="https://github.com/Interpause/interpause-components">Interpause&#39;s Components</a></h1>
 				</a>
 				<blockquote>
 					<p>Next.js Component Library using typescript, twin.macro and Emotion with Yarn 2&#39;s Plug&#39;n&#39;Play working and Storybook to ease component development.</p>
 				</blockquote>
-				<p>My personal components library using <a href="https://github.com/ben-rogerson/twin.macro">twin.macro</a> and <a href="https://emotion.sh/">emotion-js</a> as its CSS-in-JS solution. This repository uses <a href="https://nextjs.org/docs/api-reference/create-next-app">Next.js</a> however the components are reusable in any project that uses React, twin.macro and emotion-js (see <a href="https://github.com/ben-rogerson/twin.examples">https://github.com/ben-rogerson/twin.examples</a>). <a href="https://storybook.js.org/docs/react/get-started/introduction">Storybook.js</a> is also setup to make it easier to develop components.</p>
-				<p>If you are seeing the README from the documentation site, <a href="https://github.com/Interpause/interpause-components">https://github.com/Interpause/interpause-components</a> to get back.</p>
+				<p>My personal components library using <a href="https://github.com/ben-rogerson/twin.macro">twin.macro</a> and <a href="https://emotion.sh/">emotion-js</a> as its CSS-in-JS solution. This repository uses <a href="https://nextjs.org/docs/api-reference/create-next-app">Next.js</a> however the components are reusable in any project that uses React, twin.macro and emotion-js (see <a href="https://github.com/ben-rogerson/twin.examples">https://github.com/ben-rogerson/twin.examples</a>).</p>
 				<a href="#table-of-contents" id="table-of-contents" style="color: inherit; text-decoration: none;">
 					<h2>Table of Contents</h2>
 				</a>
 				<ul>
-					<li><a href="#installation">Installation</a></li>
 					<li><a href="#documentation">Documentation</a></li>
+					<li><a href="#installation">Installation</a></li>
 					<li><a href="#theme">Theme System</a></li>
 					<li><a href="#setup">How it was set up</a></li>
 					<li><a href="#credits">Credits</a></li>
+				</ul>
+				<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
+					<h2>Documentation</h2>
+				</a>
+				<ul>
+					<li>For full details on the components, types and so on, see the <a href="https://typedoc.org/">typedoc</a> documentation: <a href="https://interpause.github.io/interpause-components">https://interpause.github.io/interpause-components</a></li>
+					<li>For interacting with the components live, see the <a href="https://storybook.js.org/docs/react/get-started/introduction">Storybook.js</a> documentation: <a href="https://storybook.interpause.dev">https://storybook.interpause.dev</a></li>
+					<li>To return back to the repository: <a href="https://github.com/Interpause/interpause-components">https://github.com/Interpause/interpause-components</a></li>
 				</ul>
 				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
 					<h2>Installation</h2>
@@ -97,10 +104,6 @@
 <span style="color: #008000"># make sure you push to correct repository</span>
 <span style="color: #000000">git push --set-upstream origin main</span>
 </code></pre>
-				<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
-					<h2>Documentation</h2>
-				</a>
-				<p>Documentation can be found at <a href="https://interpause.github.io/interpause-components">https://interpause.github.io/interpause-components</a>. It was auto-generated using <a href="https://typedoc.org/">typedoc</a>. I will eventually be hosting an interactive documentation/demo using Storybook when the component library is much more complete.</p>
 				<a href="#theme" id="theme" style="color: inherit; text-decoration: none;">
 					<h2>Theme</h2>
 				</a>
@@ -280,8 +283,8 @@
 
 <span style="color: #0000FF">declare</span><span style="color: #000000"> </span><span style="color: #0000FF">module</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;twin.macro&#039;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">  </span><span style="color: #008000">// The styled and css imports</span>
-<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">styled</span><span style="color: #000000">: </span><span style="color: #0000FF">typeof</span><span style="color: #000000"> </span><span style="color: #267F99">styledImport</span>
-<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">css</span><span style="color: #000000">: </span><span style="color: #0000FF">typeof</span><span style="color: #000000"> </span><span style="color: #267F99">cssImport</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">styled</span><span style="color: #000000">: </span><span style="color: #0000FF">typeof</span><span style="color: #000000"> </span><span style="color: #001080">styledImport</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">css</span><span style="color: #000000">: </span><span style="color: #0000FF">typeof</span><span style="color: #000000"> </span><span style="color: #001080">cssImport</span>
 <span style="color: #000000">}</span>
 
 <span style="color: #008000">// The &#039;as&#039; prop on styled components</span>
@@ -330,15 +333,7 @@
 				<p>Create <code>./.storybook/.babelrc</code> and add:</p>
 				<pre><code class="language-json"><span style="color: #000000">{</span>
 <span style="color: #000000">  </span><span style="color: #0451A5">&quot;presets&quot;</span><span style="color: #000000">: [</span>
-<span style="color: #000000">    [</span>
-<span style="color: #000000">      </span><span style="color: #A31515">&quot;next/babel&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">      {</span>
-<span style="color: #000000">        </span><span style="color: #0451A5">&quot;preset-react&quot;</span><span style="color: #000000">: {</span>
-<span style="color: #000000">          </span><span style="color: #0451A5">&quot;runtime&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;automatic&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">          </span><span style="color: #0451A5">&quot;importSource&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;@emotion/react&quot;</span>
-<span style="color: #000000">        }</span>
-<span style="color: #000000">      }</span>
-<span style="color: #000000">    ]</span>
+<span style="color: #000000">    [ </span><span style="color: #A31515">&quot;next/babel&quot;</span><span style="color: #000000"> ]</span>
 <span style="color: #000000">  ],</span>
 <span style="color: #000000">  </span><span style="color: #0451A5">&quot;plugins&quot;</span><span style="color: #000000">: [</span>
 <span style="color: #000000">    </span><span style="color: #A31515">&quot;babel-plugin-macros&quot;</span><span style="color: #000000">,</span>
@@ -414,6 +409,9 @@
 						<a href="modules/containers_cardflex.html">containers/<wbr>Card<wbr>Flex</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="modules/containers_carousel.html">containers/<wbr>Carousel</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="modules/display_badge.html">display/<wbr>Badge</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -451,6 +449,9 @@
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/theme_basetheme.html">theme/base<wbr>Theme</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/utils_collapsablediv.html">utils/<wbr>Collapsable<wbr>Div</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/utils_list.html">utils/<wbr>List</a>
