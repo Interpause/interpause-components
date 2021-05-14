@@ -1,16 +1,13 @@
 import React from 'react';
 
-import { SvgIcon, ICON } from './SvgIcon';
+import { SvgIcon, ICON } from '../../src/display/SvgIcon';
 
 export default {
   title: 'display/SvgIcon',
 	component: SvgIcon,
 	argTypes: {
 		icon: {
-			control: {
-				type: 'select',
-				options: ICON
-			}
+			options: ICON
 		}
 	}
 };

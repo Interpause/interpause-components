@@ -10,6 +10,7 @@ export interface CollapsableDivProps extends ComponentProps<'div'>{
   open?: boolean;
 }
 
+//TODO: what about animating via max-width? CollapsableDiv could be renamed to Drawer.
 /** A div that is animated when opening and closing via max-height. */
 export function CollapsableDiv({children, open=false, ...props}:CollapsableDivProps){
 	const [height, setHeight] = useState('0px');

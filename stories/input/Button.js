@@ -1,27 +1,19 @@
-import { Button } from './Button';
-import { accents } from '../theme/baseTheme';
+import { Button } from '../../src/input/Button';
+import { accents } from '../../src/theme/baseTheme';
 
 export default {
   title: 'input/Button',
   component: Button,
   argTypes: {
     variant: {
-      control: {
-        type: 'select',
-        options: ['text', 'outline', 'filled'],
-      },
+      options: ['text', 'outline', 'filled'],
     },
     theme: {
-      control: {
-        type: 'select',
-        options: ['dark', 'light'],
-      },
+      options: ['dark', 'light'],
+			control: { type: 'select' }
     },
     type: {
-      control: {
-        type: 'select',
-        options: accents,
-      },
+      options: accents,
     },
   },
 };

@@ -1,29 +1,21 @@
 import React from 'react';
 
-import { SimpleCard } from './Card';
-import { accents } from '../theme/baseTheme';
+import { SimpleCard } from '../../src/containers/Card';
+import { accents } from '../../src/theme/baseTheme';
 
 export default {
   title: 'container/Card',
   component: SimpleCard,
   argTypes: {
     variant: {
-      control: {
-        type: 'select',
-        options: ['filled', 'outline'],
-      },
+      options: ['filled', 'outline'],
     },
     theme: {
-      control: {
-        type: 'select',
-        options: ['dark', 'light'],
-      },
+      options: ['dark', 'light'],
+      control: { type: 'select' }
     },
     type: {
-      control: {
-        type: 'select',
-        options: accents,
-      },
+      options: accents,
     },
   },
 };

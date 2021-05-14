@@ -8,9 +8,9 @@ export const detRNG = (s: number) => () => ((2 ** 31 - 1) & (s = Math.imul(48271
 /** The seeded RNG function. */
 let rand = () => 0.5;
 /** Hex color string e.g. #69420f. */
-export type HexColor = string; // `#${string}`; type template literals are broken on typescript 4.1.3, and for some reason yarn cant install the beta version with some error I cannot resolve
+export type HexColor = `#${string}`;
 /** Config for SVG generation. */
-export interface IsogridProps {
+export interface IsogridProps extends ComponentProps<'svg'> {
   className: string;
   /** Number of rows of triangles generated. */
   rows: number;
@@ -30,6 +30,8 @@ export interface IsogridProps {
   colors: HexColor[];
   /** Seed used for RNG. */
   randSeed: number;
+  /** SVG scaling method. */
+  preserveAspectRatio: `x${'Min'|'Mid'|'Max'}Y${'Min'|'Mid'|'Max'} ${'meet'|'slice'}`|'none';
 }
 export type IsogridKeys = keyof IsogridProps;
 
@@ -54,6 +56,7 @@ export const bgDefaults: Readonly<IsogridProps> = {
   heightRatio: 1.7320508075688772935274463415059,
   randomness: 0.75,
   randSeed: 31415926535898,
+  preserveAspectRatio: 'xMidYMid slice',
   colors: [
     '#ffffff',
     '#0c7c5f',
@@ -122,12 +125,12 @@ export function Triangle({ colorSeq, speed, points }: TriProps) {
   );
 }
 
-import { memo } from 'react';
-/** Generates SVG component. */
+import { ComponentProps, memo } from 'react';
+/** Generates pretty SVG background. */
 export const IsogridBackground = memo(
   (props?: Partial<IsogridProps>) => {
     let conf:IsogridProps = JSON.parse(JSON.stringify(bgDefaults));
-    (Object.entries(props ?? {}) as [IsogridKeys, any][]).forEach(([k, v]) => {(conf as any)[k] = v});
+    props && (Object.keys(conf) as IsogridKeys[]).forEach(k => {if(typeof props[k] !== 'undefined') (conf as any)[k] = props[k]});
 
     /** Base of triangles in SVG units. */
     const tlen = 100;
@@ -211,7 +214,7 @@ export const IsogridBackground = memo(
     }
 
     return (
-      <svg viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="xMidYMid slice" height="100%" width="100%" className={conf.className}>
+      <svg viewBox={`0 0 ${width} ${height}`} preserveAspectRatio={conf.preserveAspectRatio} height="100%" width="100%" className={conf.className}>
         {triangles}
       </svg>
     );

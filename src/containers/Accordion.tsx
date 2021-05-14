@@ -12,8 +12,8 @@ import { CollapsableDiv } from '../utils';
 export type AccordionVariants = 'normal';
 
 export interface AccordionProps extends ComponentProps<'details'>{
-	/** TODO: implement */
   type?: accentTypes;
+	/** TODO: implement different variants for accordion */
 	variant?: AccordionVariants;
 	body?: ReactNode;
 	header?: ReactNode;

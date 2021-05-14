@@ -1,38 +1,12 @@
 import React from 'react';
 
-import { SimpleCardFlex } from './CardFlex';
-import { accents } from '../theme/baseTheme';
+import { SimpleCardFlex } from '../../src/containers/CardFlex';
+import { DarkThemeWrapper, DarkToggle } from '../../src/theme/DarkThemeProvider';
 
 export default {
-  title: 'container/CardFlex',
-  component: SimpleCardFlex,
-  argTypes: {
-    variant: {
-      control: {
-        type: 'select',
-        options: ['filled', 'outline'],
-      },
-    },
-    theme: {
-      control: {
-        type: 'select',
-        options: ['dark', 'light'],
-      },
-    },
-    type: {
-      control: {
-        type: 'select',
-        options: accents,
-      },
-    },
-  },
+  title: 'theme/DarkMode',
+  component: DarkToggle,
 };
-
-const Template = ({ theme, ...args }) => (
-  <div className={theme}>
-    <SimpleCardFlex {...args} />
-  </div>
-);
 
 const cards = [
 	{
@@ -58,7 +32,14 @@ const cards = [
 	},
 ];
 
+const Template = ({ ...args }) => (
+  <DarkThemeWrapper>
+		<DarkToggle/>
+    <SimpleCardFlex cards={cards}/>
+  </DarkThemeWrapper>
+);
+
+
 export const Normal = Template.bind({});
 Normal.args = {
-  cards:cards
 };

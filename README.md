@@ -1,18 +1,22 @@
-# Interpause's Components
+# [Interpause's Components](https://github.com/Interpause/interpause-components)
 
 > Next.js Component Library using typescript, twin.macro and Emotion with Yarn 2's Plug'n'Play working and Storybook to ease component development.
 
-My personal components library using [twin.macro](https://github.com/ben-rogerson/twin.macro) and [emotion-js](https://emotion.sh/) as its CSS-in-JS solution. This repository uses [Next.js](https://nextjs.org/docs/api-reference/create-next-app) however the components are reusable in any project that uses React, twin.macro and emotion-js (see <https://github.com/ben-rogerson/twin.examples>). [Storybook.js](https://storybook.js.org/docs/react/get-started/introduction) is also setup to make it easier to develop components.
-
-If you are seeing the README from the documentation site, <https://github.com/Interpause/interpause-components> to get back.
+My personal components library using [twin.macro](https://github.com/ben-rogerson/twin.macro) and [emotion-js](https://emotion.sh/) as its CSS-in-JS solution. This repository uses [Next.js](https://nextjs.org/docs/api-reference/create-next-app) however the components are reusable in any project that uses React, twin.macro and emotion-js (see <https://github.com/ben-rogerson/twin.examples>).
 
 ## Table of Contents
 
-- [Installation](#installation)
 - [Documentation](#documentation)
+- [Installation](#installation)
 - [Theme System](#theme)
 - [How it was set up](#setup)
 - [Credits](#credits)
+
+## Documentation
+
+- For full details on the components, types and so on, see the [typedoc](https://typedoc.org/) documentation: <https://interpause.github.io/interpause-components>
+- For interacting with the components live, see the [Storybook.js](https://storybook.js.org/docs/react/get-started/introduction) documentation: <https://storybook.interpause.dev>
+- To return back to the repository: <https://github.com/Interpause/interpause-components>
 
 ## Installation
 
@@ -42,10 +46,6 @@ git fetch components
 # make sure you push to correct repository
 git push --set-upstream origin main
 ```
-
-## Documentation
-
-Documentation can be found at <https://interpause.github.io/interpause-components>. It was auto-generated using [typedoc](https://typedoc.org/). I will eventually be hosting an interactive documentation/demo using Storybook when the component library is much more complete.
 
 ## Theme
 

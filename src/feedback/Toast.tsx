@@ -64,7 +64,7 @@ export const Toast = forwardRef(({ type, dispatch, id, animState, duration, chil
     // NOTE: Rect may change on viewport resize, but as long as the number of lines dont increase, toast looks fine hence resizeListener not used
     const rect = toastDiv.getBoundingClientRect();
     
-    // adds maxHeight info among others to parent reducer where they escape rerender
+    // adds maxHeight info among others to parent store where they escape rerender
     dispatch({
       type: 'addItem',
       id: id,
@@ -80,8 +80,6 @@ export const Toast = forwardRef(({ type, dispatch, id, animState, duration, chil
     });
   }, []); // effect seems to run on every rerender caused by the parent List rerendering...
 
-  //TODO: toast variants? I meant if we make alert variants I guess it forwards that.
-
   return (
     <ToastAnimContainer ref={ref} {...props} css={(animState==="entered")&&css`max-height:${props._maxHeight??'999rem'}!important;`}>
       <Alert ref={toastRef} type={type} tw="lg:max-w-2xl ml-auto overflow-hidden mt-1" dismissable onClick={delToast}>{children}</Alert>
@@ -89,7 +87,7 @@ export const Toast = forwardRef(({ type, dispatch, id, animState, duration, chil
   );
 });
 
-/** Should be wrapped around App to allow useToaster() hook to work. */
+/** Should be wrapped around App to allow useToaster() hook to work. TODO: allow Toast list to be positioned in other locations */
 export function ToastWrapper(props: Omit<ListProps<ToastProps>, 'ListItemComponent' | 'reducerHook'>) {
   const [state, dispatch] = useListReducer<ToastProps>();
   return (

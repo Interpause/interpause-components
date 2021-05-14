@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Breadcrumb } from './Breadcrumb';
+import { Breadcrumb } from '../../src/nav/Breadcrumb';
 
 export default {
   title: 'Nav/Breadcrumb',

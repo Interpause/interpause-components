@@ -75,7 +75,7 @@ export function Navbar({ routes, height=4, RouterWrapper, ...props }: NavbarProp
         as="button"
         icon={ICON.menu}
         onClick={navOpener}
-        tw="flex-shrink-0 md:hidden text-white ring-inset ring-2 ring-primary bg-primary rounded-lg bg-opacity-20! hocus:bg-opacity-60! m-1 p-1 ml-auto"
+        tw="flex-shrink-0 md:hidden! text-white ring-inset ring-2 ring-primary bg-primary rounded-lg bg-opacity-20! hocus:bg-opacity-60! m-1 p-1 ml-auto"
         css={css`
           height: ${(height * 3) / 4}rem;
           width: ${(height * 3) / 4}rem;

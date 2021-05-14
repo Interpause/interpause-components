@@ -28,7 +28,7 @@ export const ToggleWrapper = styled.label`
     css`
       --toggle-height: ${height}rem;
     `}
-  ${tw`select-none`}
+  ${tw`select-none cursor-pointer`}
 
 	>input[type="checkbox"] {
     ${tw`opacity-0 h-0 w-0`}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ScrollHint } from './ScrollHint';
+import { ScrollHint } from '../../src/aesthetic/ScrollHint';
 
 export default {
   title: 'aesthetic/ScrollHint',

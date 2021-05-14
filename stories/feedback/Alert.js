@@ -1,23 +1,18 @@
 import React from 'react';
 
-import { Alert } from './Alert';
-import { accents } from '../theme/baseTheme';
+import { Alert } from '../../src/feedback/Alert';
+import { accents } from '../../src/theme/baseTheme';
 
 export default {
   title: 'feedback/Alert',
   component: Alert,
   argTypes: {
     theme: {
-      control: {
-        type: 'select',
-        options: ['dark', 'light'],
-      },
+      options: ['dark', 'light'],
+			control: { type: 'select' }
     },
     type: {
-      control: {
-        type: 'select',
-        options: accents,
-      },
+      options: accents,
     },
   },
 };

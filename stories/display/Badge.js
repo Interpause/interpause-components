@@ -1,17 +1,14 @@
 import React from 'react';
 
-import { Badge } from './Badge';
-import { accents } from '../theme/baseTheme';
+import { Badge } from '../../src/display/Badge';
+import { accents } from '../../src/theme/baseTheme';
 
 export default {
   title: 'display/Badge',
 	component: Badge,
 	argTypes: {
 		type: {
-      control: {
-        type: 'select',
-        options: accents,
-      },
+      options: accents,
     },
 	}
 };

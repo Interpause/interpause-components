@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { RainbowText } from './RainbowText';
+import { RainbowText } from '../../src/aesthetic/RainbowText';
 
 export default {
   title: 'aesthetic/RainbowText',

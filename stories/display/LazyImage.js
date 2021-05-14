@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { LazyImage } from './LazyImage';
+import { LazyImage } from '../../src/display/LazyImage';
 
 export default {
   title: 'display/LazyImage',

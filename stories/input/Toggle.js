@@ -1,29 +1,21 @@
 import { useState } from 'react';
-import { Toggle } from './Toggle';
-import { accents } from '../theme/baseTheme';
+import { Toggle } from '../../src/input/Toggle';
+import { accents } from '../../src/theme/baseTheme';
 
 export default {
   title: 'input/Toggle',
   component: Toggle,
   argTypes: {
     variant: {
-      control: {
-        type: 'select',
-        options: [],
-      },
+      options: [],
     },
     theme: {
-      control: {
-        type: 'select',
-        options: ['dark', 'light'],
-      },
+      options: ['dark', 'light'],
+			control: { type: 'select' }
     },
     type: {
-      control: {
-        type: 'select',
-        options: accents
-      }
-		}
+      options: accents,
+    },
   },
 };
 

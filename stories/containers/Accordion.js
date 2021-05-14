@@ -1,29 +1,21 @@
 import React from 'react';
 
-import { Accordion } from './Accordion';
-import { accents } from '../theme/baseTheme';
+import { Accordion } from '../../src/containers/Accordion';
+import { accents } from '../../src/theme/baseTheme';
 
 export default {
   title: 'container/Accordion',
   component: Accordion,
   argTypes: {
     variant: {
-      control: {
-        type: 'select',
-        options: ['filled', 'outline'],
-      },
+      options: ['filled', 'outline'],
     },
     theme: {
-      control: {
-        type: 'select',
-        options: ['dark', 'light'],
-      },
+      options: ['dark', 'light'],
+      control: { type: 'select' }
     },
     type: {
-      control: {
-        type: 'select',
-        options: accents,
-      },
+      options: accents,
     },
   },
 };

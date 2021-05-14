@@ -1,24 +1,19 @@
 import React from 'react';
 
-import { useToaster, ToastWrapper, Toast } from './Toast';
-import { Button } from '../input/Button';
-import { accents } from '../theme/baseTheme';
+import { useToaster, ToastWrapper, Toast } from '../../src/feedback/Toast';
+import { Button } from '../../src/input/Button';
+import { accents } from '../../src/theme/baseTheme';
 
 export default {
   title: 'feedback/Toast',
   component: Toast,
   argTypes: {
     theme: {
-      control: {
-        type: 'select',
-        options: ['dark', 'light'],
-      },
+      options: ['dark', 'light'],
+			control: { type: 'select' }
     },
     type: {
-      control: {
-        type: 'select',
-        options: accents,
-      },
+      options: accents,
     },
   },
 };
