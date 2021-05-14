@@ -1,15 +1,20 @@
 {
   "name": "interpause-components",
   "version": "0.1.0",
-
   "description": "ReactJS component library using twin.macro and emotionjs",
-  "keywords": ["react", "typescript", "component-library", "emotionjs", "tailwindcss", "yarn2"],
+  "keywords": [
+    "react",
+    "typescript",
+    "component-library",
+    "emotionjs",
+    "tailwindcss",
+    "yarn2"
+  ],
   "main": "index.ts",
   "homepage": "https://github.com/Interpause/interpause-components#readme",
   "repository": "https://github.com/Interpause/interpause-components",
   "license": "MIT",
   "author": "John-Henry Lim <hyphen@interpause.dev>",
-
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -21,10 +26,10 @@
     "@emotion/server": "^11.0.0",
     "@tailwindcss/typography": "^0.3.1",
     "color": "^3.1.3",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "react-transition-group": "^4.4.1",
-    "tailwindcss": "^2.0.2",
-    "twin.macro": "^2.0.8"
+    "tailwindcss": "^2.1.2",
+    "twin.macro": "^2.4.1"
   },
   "peerDependencies": {
     "@emotion/react": ">=11.0.0",
@@ -41,27 +46,27 @@
     "@emotion/react": "^11.1.4",
     "@emotion/styled": "^11.0.0",
     "@mdx-js/react": "^1.6.22",
-    "@storybook/addon-actions": "^6.2.0-alpha.13",
-    "@storybook/addon-docs": "^6.2.0-alpha.13",
-    "@storybook/addon-essentials": "^6.2.0-alpha.13",
-    "@storybook/addon-links": "^6.2.0-alpha.13",
+    "@storybook/addon-actions": "^6.2.9",
+    "@storybook/addon-docs": "^6.2.9",
+    "@storybook/addon-essentials": "^6.2.9",
+    "@storybook/addon-links": "^6.2.9",
     "@storybook/cli": "next",
-    "@storybook/react": "^6.2.0-alpha.13",
+    "@storybook/react": "^6.2.9",
     "@types/color": "^3.0.1",
     "@types/node": "^14.14.20",
     "@types/react": "^17.0.0",
     "@types/react-transition-group": "^4.4.0",
     "@yarnpkg/pnpify": "^2.4.0",
     "babel-loader": "^8.2.2",
-    "babel-plugin-macros": "^3.0.1",
-    "globby": "^11.0.2",
-    "next": "10.0.5",
-    "prettier": "^2.2.1",
+    "babel-plugin-macros": "^3.1.0",
+    "globby": "^11.0.3",
+    "next": "^10.2.0",
+    "prettier": "^2.3.0",
     "prop-types": "^15.7.2",
-    "react": "17.0.1",
-    "react-dom": "17.0.1",
-    "typedoc": "^0.20.14",
-    "typescript": "^4.1.3"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "typedoc": "^0.20.36",
+    "typescript": "^4.2.4"
   },
   "babelMacros": {
     "twin": {
