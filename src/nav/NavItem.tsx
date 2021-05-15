@@ -15,7 +15,7 @@ export const NavItem = styled.li`
 export function NavLink({className,...props}:ComponentProps<typeof LinkButton>){
   return (
     <NavItem className={className}>
-      <LinkButton {...props} tw="text-normal hocus:(text-blue-400) p-0" css={css`text-align: inherit`} disableIfRouteMatch/>
+      <LinkButton {...props} tw="text-normal hocus:(text-primary) p-0" css={css`text-align: inherit`} disableIfRouteMatch/>
     </NavItem>
   );
 }

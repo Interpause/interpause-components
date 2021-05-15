@@ -34,7 +34,7 @@ export const CardHeader = tw.div`order-1 p-1`;
 /** Styled div that should be wrapped in Card. */
 export const CardBody = tw.div`order-2 flex-grow my-1 px-1 overflow-x-hidden overflow-y-auto`;
 /** Styled div that should be wrapped in Card. */
-export const CardFooter = tw.div`order-3 border-t border-current p-1`;
+export const CardFooter = tw.div`order-3 p-1`;
 
 export type SimpleCardProps = CardProps & {
   /** Contents of CardHeader. If ReactText, h4 will be used. */

@@ -83,6 +83,12 @@ export function LinkButton(props: LinkButtonProps) {
     setDisabled(linkElem.href == window.location.href);
   }
 
+  /*
+   * TODO: this is broken. Ideally event listener should listen to any href change, but popstate doesn't always trigger.
+   * Without smth like scrollspy, disabling buttons navigating within the page is stupid as href doesn't change
+   * once you scroll elsewhere, leaving the button disabled.
+   * And this doesn't work at all for regular route changes for some reason.
+   */
   useEffect(()=>{
     window.addEventListener('popstate',checkDisabled);
     return ()=>window.removeEventListener('popstate',checkDisabled);

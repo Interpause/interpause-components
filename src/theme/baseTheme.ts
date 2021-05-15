@@ -29,6 +29,7 @@ export const themeVars = css`
   --hi-color-risky:     ${rgb('#fbc02d')};
   --hi-color-bad:       ${rgb('#d50000')};
   --hi-color-normal:    ${rgb('#000')};
+  --hi-color-normalbg:  ${rgb('#fff')};
 
   --tw-text-opacity:        1;
   --tw-placeholder-opacity: 0.65;
@@ -65,6 +66,7 @@ export const getAccent = (accent: accentTypes) => css`
 /** Default font size for various heading tags. To override in component, have to do `& h1` for example to be more specific. */
 export const typographyStyle = css`
   body {
+    ${tw`text-lg`}
     h1 {
       ${tw`text-6xl`}
     }
@@ -83,11 +85,9 @@ export const typographyStyle = css`
     h6 {
       ${tw`text-xl`}
     }
-    p {
-      ${tw`text-lg`}
-    }
 
     @media screen and (max-width: ${theme`screens.md`}) {
+      ${tw`text-base`}
       h1 {
         ${tw`text-5xl`}
       }
@@ -105,9 +105,6 @@ export const typographyStyle = css`
       }
       h6 {
         ${tw`text-lg`}
-      }
-      p {
-        ${tw`text-base`}
       }
     }
   }
@@ -138,6 +135,7 @@ export const baseStyle = css`
   .dark {
     ${themeVars}
     --hi-color-normal: ${rgb('#fff')};
+    --hi-color-normalbg:  ${rgb('#000')};
     --hi-color-secondary: ${rgb('#614bc2')};
 
     ${tw`bg-black text-normal`}

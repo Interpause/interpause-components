@@ -3,7 +3,7 @@
  * @author John-Henry Lim <hyphen@interpause.dev>
  */
 
-import { ReactNode } from 'react';
+import { ReactNode, ReactText } from 'react';
 import tw, { styled } from 'twin.macro';
 import { CardProps, SimpleCard } from './Card';
 
@@ -14,6 +14,8 @@ export type CardData = {
   body: ReactNode;
   /** Link to redirect to when card is clicked. */
   href?: string;
+  /** Footer of card. */
+  footer?: ReactText;
 };
 
 /**
@@ -39,7 +41,7 @@ export function SimpleCardFlex({ cards, ...props }: SimpleCardFlexProps) {
   return (
     <CardFlex className={props.className}>
       {cards.map((card, i) => (
-        <SimpleCard header={card.title} body={card.body} type={props.type} variant={props.variant} footer="click me" href={card.href} className="card" key={i} />
+        <SimpleCard header={card.title} body={card.body} type={props.type} variant={props.variant} footer={card.footer} href={card.href} className="card" key={i} />
       ))}
     </CardFlex>
   );

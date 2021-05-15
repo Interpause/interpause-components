@@ -17,10 +17,13 @@ const colorClasses = {
 const generateColor = ([className,opacityVar]) => [className,Object.fromEntries(accentNames.map(name => [name,`rgba(var(--${prefix}-${name}),var(${opacityVar}))`]))];
 const newColors = Object.fromEntries(Object.entries(colorClasses).map(generateColor));
 
+//Normal color for background should be contrasting
+newColors['backgroundColor']['normal'] = `rgba(var(--${prefix}-normalbg),var(--tw-bg-opacity))`
+
 //Theme colors generated
 //console.debug(newColors);
 
-// copy these CSS vars into baseTheme and edit.
+//Copy these CSS vars into baseTheme and edit.
 //console.debug([...accentNames.map(name => `--${prefix}-${name}`),...Object.values(colorClasses)].join("\n"));
 
 module.exports = {

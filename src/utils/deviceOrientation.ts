@@ -13,7 +13,7 @@ export const hideMobileLandscape = css`
   }
 `;
 /** Style that hides component if mobilePortrait. */
-export const hidemobilePortrait = css`
+export const hideMobilePortrait = css`
   ${mobilePortrait} {
     display: none;
   }

@@ -13,7 +13,7 @@ const BreadcrumbWrapper = styled.nav`
     &>.crumb-item{
       ${tw`p-0 w-auto inline`}
       &>a{
-        ${tw`text-blue-400 underline`}
+        ${tw`text-primary underline`}
       }
     }
     &>.crumb-item+.crumb-item::before{
