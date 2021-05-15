@@ -297,26 +297,9 @@ And include it into `tsconfig.json`:
 
 See [`./pages/index.tsx`](https://github.com/Interpause/interpause-components/blob/main/pages/index.tsx) for code that uses twin.macro's features to see if everything so far is setup correctly.
 
-#### (Optional) Setup TailwindCSS Intellisense for VSCode
+#### Setup TailwindCSS Twin Intellisense for VSCode
 
-Get it from <https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss> and add these to `.vscode/settings.json`:
-
-```json
-{
-  "editor.quickSuggestions": true,
-  "tailwindCSS.experimental.classRegex": [
-      "tw`([^`]*)",
-      "tw=\"([^\"]*)",
-      "tw={\"([^\"}]*)",
-      "tw\\.\\w+`([^`]*)",
-      "tw\\(.*?\\)`([^`]*)"
-  ],
-  "tailwindCSS.includeLanguages": {
-    "typescript": "javascript",
-    "typescriptreact": "javascript"
-  }
-}
-```
+Get it from <https://marketplace.visualstudio.com/items?itemName=lightyen.tailwindcss-intellisense-twin>. Great extension that is better than the official one specifically for twin.macro.
 
 ### Setup Storybook
 
