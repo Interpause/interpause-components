@@ -49,7 +49,7 @@ git push --set-upstream origin main
 
 ## Theme
 
-I created a simple theming system via CSS variables. The 8 different accents are dynamically generated inside [`tailwind.config.js`](https://github.com/Interpause/interpause-components/blob/main/tailwind.config.js):
+There are 8 different default accents. Here is how I intended for them to be used:
 
 - `primary`: emphasis, important
 - `secondary`: contrasting primary
@@ -59,6 +59,29 @@ I created a simple theming system via CSS variables. The 8 different accents are
 - `risky`: warnings, confirmations
 - `bad`: errors, wrong password, serious warnings
 - `normal`: text
+
+To change the default colors, modify [`baseTheme.ts`](https://github.com/Interpause/interpause-components/blob/main/src/theme/baseTheme.ts):
+
+```ts
+//baseTheme.ts
+export const accents = {
+  'primary':'#0288d1',
+  'secondary':'#311b92',
+  'info':'#0288d1',
+  'trivial':'#9e9e9e',
+  'good':'#4caf50',
+  'risky':'#fbc02d',
+  'bad':'#d50000',
+  'normal':'#000'
+}
+```
+
+As for adding/removing/renaming accents, besides modifying the above, [`tailwind.config.js`](https://github.com/Interpause/interpause-components/blob/main/tailwind.config.js) has to be modified as well:
+
+```ts
+//tailwind.config.js
+const accentNames = ["primary","secondary","info","trivial","good","risky","bad","normal"];
+```
 
 The base theme is included via:
 
@@ -70,59 +93,52 @@ import { baseStyle } from '../src/theme/baseTheme'
 <Global styles={baseStyle}/>
 ```
 
-I preserved the `--tw-opacity` CSS variables, allowing control over the intensity of the color via changing its opacity for various stuff such as backgrounds and borders:
+I created a fairly advanced system to control a color's intensity via its luminosity while also maintaining support for Tailwind's opacity classes. To visualize how it is done:
 
-```json
-{
-  "primary":"rgba(var(--hi-color-primary), var(--tw-text-opacity))"
-}
+```css
+--hi-color-primary-h: 200;
+--hi-color-primary-s: 100%;
+--hi-color-primary-l: 40%;
+--hi-color-lightness-text: 1;
+
+color: hsla(var(--hi-color-primary-h), var(--hi-color-primary-s), calc(var(--hi-color-primary-l)*var(--hi-color-lightness-text)), var(--tw-text-opacity));
 ```
 
-```jsx
-// e.g. this is still possible
-<div tw="bg-primary bg-opacity-50"></div>
-```
-
-Unfortunately, the above is currently backfiring for anything not on a plain background. For such components, I have made their backgrounds plain. TODO: A future approach might be to use the CSS3 `hsla()` function and generate a bunch of tailwind classes for luminosity instead of using opacity as the way to control color intensity. Actually see <https://github.com/tailwindlabs/tailwindcss/pull/3850>, might aid you in doing so.
-
-As for how the base theme is configured by default, [`baseTheme.ts`](https://github.com/Interpause/interpause-components/blob/main/src/theme/baseTheme.ts):
+By default, the color intensity is different depending on where it is used, be it `.bg-primary` or `.text-primary`. These can be changed in [`baseTheme.ts`](https://github.com/Interpause/interpause-components/blob/main/src/theme/baseTheme.ts) as well:
 
 ```ts
-/** Used to convert hex to `${r},${g},${b}`. */
-const rgb = (c: string) => Color(c).array().join(',');
-/** SerializedStyles containing default values for CSS vars. */
-const themeVars = css`
-  --hi-color-primary:   ${rgb('#0288d1')};
-  --hi-color-secondary: ${rgb('#311b92')};
-  --hi-color-info:      ${rgb('#0288d1')};
-  --hi-color-trivial:   ${rgb('#9e9e9e')};
-  --hi-color-good:      ${rgb('#4caf50')};
-  --hi-color-risky:     ${rgb('#fbc02d')};
-  --hi-color-bad:       ${rgb('#d50000')};
-  --hi-color-normal:    ${rgb('#000')};
+//baseTheme.ts
+export const themeVars = css`
+  ${Object.entries(accents).map(colorToCSSVars)}
 
-  --tw-text-opacity:        1;
-  --tw-placeholder-opacity: 0.65;
-  --tw-bg-opacity:          0.3;
-  --tw-border-opacity:      1;
-  --tw-divide-opacity:      0.2;
-  --tw-ring-opacity:        0.2;
+  --hi-color-lightness-text:        1;
+  --hi-color-lightness-placeholder: 1.9;
+  --hi-color-lightness-bg:          1.5;
+  --hi-color-lightness-border:      1;
+  --hi-color-lightness-divide:      1.3;
+  --hi-color-lightness-ring:        1.6;
 `;
 ```
-
-I have also made dark and light themes (really go check out [`baseTheme.ts`](https://github.com/Interpause/interpause-components/blob/main/src/theme/baseTheme.ts)). Do follow it if you want to change the theme colors. As for changing the accent names and so on, my code in [`tailwind.config.js`](https://github.com/Interpause/interpause-components/blob/main/tailwind.config.js) should be fairly easy to change.
 
 Finally, I provided a function in [`baseTheme.ts`](https://github.com/Interpause/interpause-components/blob/main/src/theme/baseTheme.ts) to make it easy to change the accent of a component easily:
 
 ```ts
+//baseTheme.ts
 /** creates a SerializedStyles that sets all colors to that of the accent given. */
-const getAccent = (accent:accentTypes) => css`
+export const getAccent = (accent: accentTypes) => css`
   color: rgba(var(--hi-color-${accent}), var(--tw-text-opacity));
   background-color: rgba(var(--hi-color-${accent}), var(--tw-bg-opacity));
   border-color: rgba(var(--hi-color-${accent}), var(--tw-border-opacity));
 
   --tw-ring-color: rgba(var(--hi-color-${accent}), var(--tw-ring-opacity));
   --tw-ring-offset-color: rgba(var(--hi-color-${accent}), 1);
+
+  --hi-color-lightness-text:        1;
+  --hi-color-lightness-placeholder: 1.9;
+  --hi-color-lightness-bg:          1.5;
+  --hi-color-lightness-border:      1;
+  --hi-color-lightness-divide:      1.3;
+  --hi-color-lightness-ring:        1.6;
 
   & > * + * {
     border-color: rgba(var(--hi-color-${accent}), var(--tw-divide-opacity));

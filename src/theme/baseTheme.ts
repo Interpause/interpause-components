@@ -1,9 +1,31 @@
 import tw, { css, theme } from 'twin.macro';
 import Color from 'color';
-/** Used to convert hex to `${r},${g},${b}`. */
-export const rgb = (c: string) => Color(c).array().join(',');
 
-export const accents = ['primary', 'secondary', 'info', 'trivial', 'good', 'risky', 'bad', 'normal'] as const;
+/** Prefix for generated CSS vars. Should be same as in tailwind.config.js. */
+const prefix = "hi-color";
+
+/** names should be same as in tailwind.config.js. */
+export const accents = {
+  'primary':'#0288d1',
+  'secondary':'#311b92',
+  'info':'#0288d1',
+  'trivial':'#9e9e9e',
+  'good':'#4caf50',
+  'risky':'#fbc02d',
+  'bad':'#d50000',
+  'normal':'#000'
+} as const;
+
+/** Converts the color into separate H,S & L CSS vars. */
+export function colorToCSSVars([accentName,c]:[string,string]){
+  const [h,s,l] = Color(c).hsl().array();
+  return `
+    --${prefix}-${accentName}-h: ${h};
+    --${prefix}-${accentName}-s: ${s}%;
+    --${prefix}-${accentName}-l: ${l}%;
+  `;
+}
+
 /**
  * Different color accents to theme components with.
  * 
@@ -17,26 +39,18 @@ export const accents = ['primary', 'secondary', 'info', 'trivial', 'good', 'risk
  * - bad: errors, wrong password, serious warnings
  * - normal: text
  */
-export type accentTypes = typeof accents[number];
-// prettier-ignore
+export type accentTypes = keyof typeof accents;
+
 /** SerializedStyles containing default values for CSS vars. */
 export const themeVars = css`
-  --hi-color-primary:   ${rgb('#0288d1')};
-  --hi-color-secondary: ${rgb('#311b92')};
-  --hi-color-info:      ${rgb('#0288d1')};
-  --hi-color-trivial:   ${rgb('#9e9e9e')};
-  --hi-color-good:      ${rgb('#4caf50')};
-  --hi-color-risky:     ${rgb('#fbc02d')};
-  --hi-color-bad:       ${rgb('#d50000')};
-  --hi-color-normal:    ${rgb('#000')};
-  --hi-color-normalbg:  ${rgb('#fff')};
+  ${Object.entries(accents).map(colorToCSSVars)}
 
-  --tw-text-opacity:        1;
-  --tw-placeholder-opacity: 0.65;
-  --tw-bg-opacity:          0.3;
-  --tw-border-opacity:      1;
-  --tw-divide-opacity:      0.2;
-  --tw-ring-opacity:        0.2;
+  --hi-color-lightness-text:        1;
+  --hi-color-lightness-placeholder: 1.9;
+  --hi-color-lightness-bg:          1.5;
+  --hi-color-lightness-border:      1;
+  --hi-color-lightness-divide:      1.3;
+  --hi-color-lightness-ring:        1.6;
 `;
 
 /** Creates a SerializedStyles that sets all colors to that of the accent given. */
@@ -48,12 +62,12 @@ export const getAccent = (accent: accentTypes) => css`
   --tw-ring-color: rgba(var(--hi-color-${accent}), var(--tw-ring-opacity));
   --tw-ring-offset-color: rgba(var(--hi-color-${accent}), 1);
 
-  --tw-text-opacity:        1;
-  --tw-placeholder-opacity: 0.65;
-  --tw-bg-opacity:          0.3;
-  --tw-border-opacity:      1;
-  --tw-divide-opacity:      0.2;
-  --tw-ring-opacity:        0.2;
+  --hi-color-lightness-text:        1;
+  --hi-color-lightness-placeholder: 1.9;
+  --hi-color-lightness-bg:          1.5;
+  --hi-color-lightness-border:      1;
+  --hi-color-lightness-divide:      1.3;
+  --hi-color-lightness-ring:        1.6;
 
   & > * + * {
     border-color: rgba(var(--hi-color-${accent}), var(--tw-divide-opacity));
@@ -140,10 +154,7 @@ export const baseStyle = css`
   }
   .theme-div.dark {
     ${themeVars}
-    --hi-color-normal: ${rgb('#fff')};
-    --hi-color-normalbg:  ${rgb('#000')};
-    --hi-color-secondary: ${rgb('#614bc2')};
-
+    --hi-color-normal-l: 100%;
     ${tw`bg-black text-normal`}
   }
 `;
