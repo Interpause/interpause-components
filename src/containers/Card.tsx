@@ -23,6 +23,7 @@ export const Card = styled.div`
   width: 50ch;
 
   ${({ variant = 'outline' }: CardProps) =>
+    //javascript doesn't have switches. so i made my own
     ({
       outline: tw`bg-opacity-0 border-2`,
       filled: tw`shadow-md`,

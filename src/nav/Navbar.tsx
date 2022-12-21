@@ -18,12 +18,12 @@ import { NavItem, NavLink } from './NavItem';
  */
 export const BaseNavbar = styled.nav`
   ${({height}:{height:number}) => css`--nav-height: ${height}rem;`}
-  ${tw`sticky flex flex-wrap md:flex-nowrap bg-white md:shadow-md top-0 inset-x-0 z-75`}
+  ${tw`fixed flex flex-wrap md:flex-nowrap bg-white md:shadow-md top-0 inset-x-0 z-75`}
 	transition: height 150ms cubic-bezier(0.4, 0, 0.2, 1);
   height: var(--nav-height);
   .dark & { ${tw`bg-black`} }
   > .nav-list {
-    ${tw`inline-flex flex-row w-full divide-x-2 my-2 overflow-x-auto overflow-y-hidden`}
+    ${tw`inline-flex flex-row w-full divide-x-2 my-2 overflow-hidden`}
   }
 `;
 

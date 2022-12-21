@@ -127,6 +127,12 @@ export const baseStyle = css`
     @media (prefers-reduced-motion) {
       scroll-behavior: auto;
     }
+
+    /* Temporary fix for scaling of text till I think of something better */
+		font-size: 1.75vmin;
+		@media screen and (max-width:768px) {
+			font-size: 1.75vmax;
+		}
   }
   .theme-div.light {
     ${themeVars}

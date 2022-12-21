@@ -120,7 +120,7 @@ export function genTriProps(conf: IsogridProps, above?: HexColor, left?: HexColo
 export function Triangle({ colorSeq, speed, points }: TriProps) {
   return (
     <polygon fill={colorSeq[0]} points={points}>
-      <animate attributeName="fill" values={`${colorSeq.join(';')}`} dur={`${speed}s`} repeatCount="indefinite" />
+      <animate attributeName="fill" values={colorSeq.join(';')} dur={`${speed}s`} repeatCount="indefinite" />
     </polygon>
   );
 }
@@ -130,6 +130,7 @@ import { ComponentProps, memo } from 'react';
 export const IsogridBackground = memo(
   (props?: Partial<IsogridProps>) => {
     let conf:IsogridProps = JSON.parse(JSON.stringify(bgDefaults));
+    /* when using Storybook.js, props may be passed as undefined, which breaks simply doing {...bgDefaults,...props} */
     props && (Object.keys(conf) as IsogridKeys[]).forEach(k => {if(typeof props[k] !== 'undefined') (conf as any)[k] = props[k]});
 
     /** Base of triangles in SVG units. */

@@ -1,7 +1,7 @@
 import { css, theme } from 'twin.macro';
 
 /** Media query for mobile screen. */
-export const mobileScreen = `@media screen and (max-width:${theme`screens.md`})`;
+export const mobileScreen = `@media screen and (max-width:${parseFloat(theme`screens.md`)-1}px)`;
 /** Media query for mobile screen that is landscape. */
 export const mobileLandscape = `${mobileScreen} and (orientation:landscape)`;
 /** Media query for mobile screen that is portrait. */
