@@ -81,8 +81,8 @@ export const Toast = forwardRef(({ type, dispatch, id, animState, duration, chil
   }, []); // effect seems to run on every rerender caused by the parent List rerendering...
 
   return (
-    <ToastAnimContainer ref={ref} {...props} css={(animState==="entered")&&css`max-height:${props._maxHeight??'999rem'}!important;`}>
-      <Alert ref={toastRef} type={type} tw="lg:max-w-2xl ml-auto overflow-hidden mt-1" dismissable onClick={delToast}>{children}</Alert>
+    <ToastAnimContainer ref={ref} {...props} css={[(animState==="entered")&&css`max-height:${props._maxHeight??'999rem'}!important;`,css`>div{ ${tw`lg:max-w-2xl mt-1`} }`]}>
+      <Alert ref={toastRef} type={type} dismissable onClick={delToast}>{children}</Alert>
     </ToastAnimContainer>
   );
 });

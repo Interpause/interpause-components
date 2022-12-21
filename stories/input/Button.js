@@ -19,7 +19,7 @@ export default {
 };
 
 const Template = ({ theme, ...args }) => (
-  <div className={theme}>
+  <div className={'theme-div '+theme}>
     <Button {...args} />
   </div>
 );

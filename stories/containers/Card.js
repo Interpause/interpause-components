@@ -23,7 +23,7 @@ export default {
 const filler = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at libero vitae lectus aliquet porttitor efficitur nec massa. Proin sollicitudin mi semper, blandit mauris et, tincidunt neque. In at tempus arcu.';
 
 const Template = ({ theme, ...args }) => (
-  <div className={theme}>
+  <div className={'theme-div '+theme}>
     <SimpleCard {...args} />
   </div>
 );

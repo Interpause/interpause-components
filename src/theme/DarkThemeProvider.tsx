@@ -31,7 +31,7 @@ export function DarkThemeWrapper({ children, darkDefault }: { children: ReactNod
 
   return (
     <DarkThemeContext.Provider value={{ isDark, setDark }}>
-      <div className={isDark ? 'dark' : 'light'}>{children}</div>
+      <div className={`theme-div ${isDark ? 'dark' : 'light'}`}>{children}</div>
     </DarkThemeContext.Provider>
   );
 }

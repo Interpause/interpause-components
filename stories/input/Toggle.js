@@ -22,7 +22,7 @@ export default {
 const Template = ({ theme, ...args }) => {
   const [isOn, setOn] = useState(false);
   return (
-    <div className={theme}>
+    <div className={'theme-div '+theme}>
       <Toggle toggleHook={[isOn, setOn]} {...args} />
     </div>
   );

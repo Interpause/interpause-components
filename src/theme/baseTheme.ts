@@ -128,11 +128,11 @@ export const baseStyle = css`
       scroll-behavior: auto;
     }
   }
-  .light {
+  .theme-div.light {
     ${themeVars}
     ${tw`bg-white text-normal`}
   }
-  .dark {
+  .theme-div.dark {
     ${themeVars}
     --hi-color-normal: ${rgb('#fff')};
     --hi-color-normalbg:  ${rgb('#000')};

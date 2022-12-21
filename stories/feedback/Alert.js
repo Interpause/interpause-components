@@ -18,7 +18,7 @@ export default {
 };
 
 const Template = (args) => (
-	<div className={args.theme}>
+	<div className={'theme-div '+args.theme}>
       <Alert {...args}/>
     </div>
 );

@@ -23,22 +23,24 @@ export interface AlertProps extends ComponentProps<'div'>{
  */
 export const Alert = forwardRef(({type,dismissable,onClick,children,...props}:AlertProps,ref:ForwardedRef<any>) => {
 	return (
-		<div css={css`
-			${getAccent(type??'info')}
-			${tw`flex flex-row text-left flex-shrink-0 rounded border-2`}
-		`}
-		ref={ref}
-		{...props}>
-			<span tw="p-1" className="body">{children}</span>
-			{dismissable&&
-				<SvgIcon
-					as="button"
-					className="button"
-					icon={ICON.cross}
-					tw="flex-none w-4 mr-1 ml-auto self-stretch opacity-60 hocus:opacity-100"
-					onClick={onClick??(e=>(e.target as HTMLElement).parentElement?.remove())}
-				/>
-			}
+		<div tw="bg-white rounded" ref={ref}>
+			<div css={css`
+				${getAccent(type??'info')}
+				${tw`relative flex flex-row text-left flex-shrink-0 rounded border-2`}
+			`}
+			{...props}>
+				<span tw="p-1" className="body">{children}</span>
+				{dismissable&&
+					<SvgIcon
+						as="button"
+						className="button"
+						icon={ICON.cross}
+						tw="flex-none w-4 mr-1 ml-auto self-stretch opacity-60 hocus:opacity-100"
+						onClick={onClick??(e=>(e.target as HTMLElement).parentElement?.remove())}
+					/>
+				}
+			</div>
 		</div>
+		
 	);
 });

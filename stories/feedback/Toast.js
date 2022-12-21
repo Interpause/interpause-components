@@ -21,7 +21,7 @@ export default {
 const ToastButton = (args) => {
   const toast = useToaster();
   return (
-    <div className={args.theme}>
+    <div className={'theme-div '+args.theme}>
       <Button
         onClick={() =>
           toast(args.message, {

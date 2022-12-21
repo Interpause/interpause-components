@@ -83,6 +83,8 @@ I preserved the `--tw-opacity` CSS variables, allowing control over the intensit
 <div tw="bg-primary bg-opacity-50"></div>
 ```
 
+Unfortunately, the above is currently backfiring for anything not on a plain background. For such components, I have made their backgrounds plain. TODO: A future approach might be to use the CSS3 `hsla()` function and generate a bunch of tailwind classes for luminosity instead of using opacity as the way to control color intensity. Actually see <https://github.com/tailwindlabs/tailwindcss/pull/3850>, might aid you in doing so.
+
 As for how the base theme is configured by default, [`baseTheme.ts`](https://github.com/Interpause/interpause-components/blob/main/src/theme/baseTheme.ts):
 
 ```ts
